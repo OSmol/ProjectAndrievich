@@ -34,6 +34,20 @@ public class TaskScanner {
         return a;
 
     }
+
+    public static double scannerDouble() {
+        Scanner sc = new Scanner(System.in);
+        double a = 0;
+        try {
+            System.out.println("Введите число типа double: ");
+            if (sc.hasNextDouble()){
+                a = sc.nextDouble();}
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели число неправильного типа или вообще не число. Попробуйте еще раз!");
+        }
+        //  sc.close();
+        return a;
+    }
 }
 
      /*   if (sc.hasNextDouble()) {
