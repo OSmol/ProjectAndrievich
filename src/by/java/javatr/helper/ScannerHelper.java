@@ -9,8 +9,14 @@ public class ScannerHelper {
 
     public static int inputIntFromConsole() {
         Scanner sc = new Scanner(System.in);
+        int d;
         System.out.println("Введите число: ");
-        return sc.nextInt();
+        while (!sc.hasNextInt()){
+            sc.next();// read symbols
+            System.out.println("Введите число: ");
+        }
+        d=sc.nextInt();
+        return d;
     }
 
 
