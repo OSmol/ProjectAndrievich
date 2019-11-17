@@ -6,6 +6,5 @@ import javatr.task1.logic.Logic1;
 public class Main1 {
     public static void main(String[] args) {
         System.out.println("Последняя цифра квадрата введенного числа: " + Logic1.poslCyfra(Logic1.makeNumber()));
-
     }
 }
