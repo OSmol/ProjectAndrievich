@@ -7,6 +7,6 @@ import javatr.task7.util.Data7;
 //ближе к началу координат. x y.
 public class Main7 {
     public static void main(String[] args) {
-        System.out.println(Logic7.comparePoint(Data7.enterPoint(),Data7.enterPoint(), Data7.enterPoint(), Data7.enterPoint()));
+      //  System.out.println(Logic7.comparePoint(Data7.enterPoint(),Data7.enterPoint(), Data7.enterPoint(), Data7.enterPoint()));
     }
 }

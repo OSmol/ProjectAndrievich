@@ -13,6 +13,7 @@ public class ScannerHelper {
         return sc.nextInt();
     }
 
+
     public static String inputStringFromConsole() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите строку: ");
