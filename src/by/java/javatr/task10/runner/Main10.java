@@ -3,7 +3,7 @@ package javatr.task10.runner;
 //представить в виде таблицы, первый столбец которой – значения аргумента, второй - соответствующие
 //значения функции.
 //F(x) = tg(x)
-public class Main {
+public class Main10 {
     public static void main(String[] args) {
         System.out.println("aaa");
     }

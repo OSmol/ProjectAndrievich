@@ -1,11 +1,11 @@
 package javatr.task1.logic;
 
-import javatr.task1.util.Data;
+import javatr.task1.util.Data1;
 
 public class Logic1 {
 
     public static int makeNumber() {
-        int number = Data.takeNumber();
+        int number = Data1.takeNumber();
         return number;
     }
 
