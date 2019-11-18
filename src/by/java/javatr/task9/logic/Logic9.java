@@ -5,14 +5,22 @@ import javatr.task9.util.Data9;
 public class Logic9 {
     public static final double PI = 3.14;
 
-    private double radius;
+    private static double radius;
 
     public Logic9(double radius) {
-        this.radius = radius;
+        Logic9.radius = Data9.getNumber();
     }
 
-    public double getRadius() {
+    public static double getPI() {
+        return PI;
+    }
+
+    public static double getRadius() {
         return radius;
+    }
+
+    public static void setRadius(double radius) {
+        Logic9.radius = radius;
     }
 
     public double calculateLength() {
@@ -24,14 +32,12 @@ public class Logic9 {
     }
 
     public static double getLengthCircle() {
-        double testRadius = Data9.getNumber();
-        Logic9 testCircle = new Logic9(testRadius);
+        Logic9 testCircle = new Logic9(getRadius());
         return testCircle.calculateLength();
     }
 
     public static double getSquareCircle() {
-        double testRadius = Data9.getNumber();
-        Logic9 testCircle = new Logic9(testRadius);
+        Logic9 testCircle = new Logic9(getRadius());
         return testCircle.calculateSquare();
     }
 }
