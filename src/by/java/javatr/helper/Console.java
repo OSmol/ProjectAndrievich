@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Console {
 
 
-    public static int inputIntFromConsole() {
+    public static int inputInt() {
         Scanner sc = new Scanner(System.in);
         int d;
         if (!sc.hasNextInt()) {
@@ -29,7 +29,7 @@ public class Console {
         return d;
     }
 
-    public static double inputDoubleFromConsole() {
+    public static double inputDouble() {
         Scanner sc = new Scanner(System.in);
         double d;
         //  System.out.println("Введите число: ");

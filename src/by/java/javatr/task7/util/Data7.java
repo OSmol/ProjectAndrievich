@@ -4,6 +4,6 @@ import javatr.helper.Console;
 
 public class Data7 {
     public static int enterPoint() {
-        return Console.inputIntFromConsole();
+        return Console.inputInt();
     }
 }

@@ -5,6 +5,6 @@ import javatr.helper.Console;
 public class Data3 {
     public static double sizeOfSquareArea(){
         System.out.println("Задайте значение площади внешнего квадрата.");
-        return Console.inputDoubleFromConsole();
+        return Console.inputDouble();
     }
 }

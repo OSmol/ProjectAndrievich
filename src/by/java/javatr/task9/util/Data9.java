@@ -5,6 +5,6 @@ import javatr.helper.Console;
 public class Data9 {
     public static double getNumber() {
 
-        return Console.inputDoubleFromConsole();
+        return Console.inputDouble();
     }
 }
