@@ -1,9 +1,10 @@
 package javatr.task8.util;
 
-import javatr.helper.ScannerHelper;
+import javatr.helper.Console;
 
 public class Data8 {
     public static double enterX() {
-        return ScannerHelper.inputDoubleFromConsole();
+        System.out.println("Введите значение х: ");
+        return Console.inputDoubleFromConsole();
     }
 }

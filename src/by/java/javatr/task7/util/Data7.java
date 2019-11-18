@@ -1,9 +1,9 @@
 package javatr.task7.util;
 
-import javatr.helper.ScannerHelper;
+import javatr.helper.Console;
 
 public class Data7 {
     public static int enterPoint() {
-        return ScannerHelper.inputIntFromConsole();
+        return Console.inputIntFromConsole();
     }
 }

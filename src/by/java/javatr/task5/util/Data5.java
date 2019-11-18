@@ -1,10 +1,10 @@
 package javatr.task5.util;
 
-import javatr.helper.ScannerHelper;
+import javatr.helper.Console;
 
 public class Data5 {
     public static int enterNumber(){
         System.out.println("Введите число: ");
-        return ScannerHelper.inputIntFromConsole();
+        return Console.inputIntFromConsole();
     }
 }

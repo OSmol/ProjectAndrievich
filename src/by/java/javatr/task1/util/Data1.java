@@ -1,10 +1,10 @@
 package javatr.task1.util;
 
 
-import javatr.helper.ScannerHelper;
+import javatr.helper.Console;
 
 public class Data1 {
     public static int getNumber() {
-        return ScannerHelper.inputIntFromConsole();
+        return Console.inputIntFromConsole();
     }
 }

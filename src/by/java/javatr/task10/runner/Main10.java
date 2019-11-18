@@ -12,8 +12,6 @@ import static javatr.task10.logic.Logic10.findFunction;
 //F(x) = tg(x)
 public class Main10 {
     public static void main(String[] args) {
-        System.out.println(findFunction() );
-
-
+        System.out.println(findFunction());
     }
 }

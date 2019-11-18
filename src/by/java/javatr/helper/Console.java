@@ -2,16 +2,16 @@ package javatr.helper;
 
 import java.util.Scanner;
 
-public class ScannerHelper {
+public class Console {
 
 
     public static int inputIntFromConsole() {
         Scanner sc = new Scanner(System.in);
         int d;
-       // System.out.println("Введите число: ");
-        while (!sc.hasNextInt()) {
-            sc.next();// read symbols
-        //    System.out.println("Введите число: ");
+        if (!sc.hasNextInt()) {
+            do {
+                sc.next();// read symbols
+            } while (!sc.hasNextInt());
         }
         d = sc.nextInt();
         return d;
@@ -32,10 +32,10 @@ public class ScannerHelper {
     public static double inputDoubleFromConsole() {
         Scanner sc = new Scanner(System.in);
         double d;
-      //  System.out.println("Введите число: ");
+        //  System.out.println("Введите число: ");
         while (!sc.hasNextDouble()) {
             sc.next();// read symbols
-       //     System.out.println("Введите число: ");
+            //     System.out.println("Введите число: ");
         }
         d = sc.nextDouble();
         return d;

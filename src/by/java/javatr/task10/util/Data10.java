@@ -1,9 +1,9 @@
 package javatr.task10.util;
 
-import javatr.helper.ScannerHelper;
+import javatr.helper.Console;
 
 public class Data10 {
     public static int enterNumber(){
-        return ScannerHelper.inputIntFromConsole();
+        return Console.inputIntFromConsole();
     }
 }
