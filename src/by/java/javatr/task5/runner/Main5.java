@@ -8,8 +8,7 @@ import javatr.task5.util.Data5;
 //числу).
 public class Main5 {
     public static void main(String[] args) {
+Logic5.findDividersOfNumberAndSum();
 
-       Logic5.findDifferenceBetweenNumberAndSumDividers(Logic5.findDividersOfNumberAndSum(), Data5.enterNumber());
-        System.out.println("");
     }
 }
