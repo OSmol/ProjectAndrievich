@@ -13,17 +13,20 @@ public class Logic2 {
             case 8:
             case 10:
             case 12:
+                Data2.getYear();
                 countOfDaysInMonth = 31;
                 break;
             case 2:
                 if (Data2.getYear() % 4 == 0) {
                     countOfDaysInMonth = 29;
+                    System.out.println("Этот год високосный.");
                 } else countOfDaysInMonth = 28;
                 break;
             case 4:
             case 6:
             case 9:
             case 11:
+                Data2.getYear();
                 countOfDaysInMonth = 30;
                 break;
         }

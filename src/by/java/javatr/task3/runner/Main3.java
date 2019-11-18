@@ -7,6 +7,7 @@ import javatr.task3.util.Data3;
 //окружность. Во сколько раз площадь вписанного квадрата меньше площади заданного?
 public class Main3 {
     public static void main(String[] args) {
-        System.out.println("difference=" + Logic3.findDifferenceBetweenSquares(Logic3.findSquareArea(), Logic3.findSquareAreaInCircle(Logic3.findCircleRadius(Logic3.findSquareSide(Logic3.findSquareArea())))));
+        System.out.println("Площадь квадрата, вписанного в окружность= " + Logic3.findSquareAreaInCircle(Logic3.findCircleRadius(Logic3.findSquareSide(Logic3.findSquareArea()))));
+        System.out.println("Во сколько раз площадь вписанного квадрата меньше площади заданного? В  " + Logic3.findDifferenceBetweenSquares(Logic3.findSquareArea(), Logic3.findSquareAreaInCircle(Logic3.findCircleRadius(Logic3.findSquareSide(Data3.sizeOfSquareArea())))) + " раз");
     }
 }
