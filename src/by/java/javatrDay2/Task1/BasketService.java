@@ -52,7 +52,7 @@ public class BasketService {
     }
 
     public int findCountOfBallsByColour(String color) {
-      int count =0;
+        int count = 0;
         for (Ball ball : this.basket.getBalls()) {
             String colorName = ball.getColor().name();
             if (colorName.equalsIgnoreCase(color)) {
