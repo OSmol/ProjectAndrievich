@@ -52,18 +52,14 @@ public class BasketService {
     }
 
     public int findCountOfBallsByColour(String color) {
-        int i = 0;
-        List<Ball> list = new ArrayList<>();
-        List<Ball> balls = this.basket.getBalls();
-        while (i < balls.size()) {
-            Ball ball = balls.get(i);
+      int count =0;
+        for (Ball ball : this.basket.getBalls()) {
             String colorName = ball.getColor().name();
             if (colorName.equalsIgnoreCase(color)) {
-                list.add(ball);
+                count++;
             }
-            i++;
         }
-        return list.size();
+        return count;
     }
 
     public int findWeightOfAllBallsInTheBusket() {

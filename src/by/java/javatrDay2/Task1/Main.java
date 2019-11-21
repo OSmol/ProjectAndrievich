@@ -25,19 +25,17 @@ public class Main {
         BasketService basketService = new BasketService(basket);
         basketService.addBalls(generateBalls());
 //определить вес мячиков
+        System.out.println("Общий вес всех мячей в корзине: ");
         System.out.println(basketService.findWeightOfAllBallsInTheBusket());
 
 //определить количество синих мячиков и вывести список с синими мячиками на консоль
         System.out.println("Enter color: ");
         String colourName = ScannerHelper.inputStringFromConsole();
         System.out.println(basketService.findBallsByColor(colourName));
+
+        System.out.println("Количество мячей заданного цвета: ");
         System.out.println(basketService.findCountOfBallsByColour(colourName));
 
-
  //       System.out.println(basketService.findBallsByColor(Color.BLUE));
-
-
-
-
     }
 }
