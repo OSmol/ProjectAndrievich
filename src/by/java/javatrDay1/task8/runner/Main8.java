@@ -6,6 +6,6 @@ import javatrDay1.task8.logic.Logic8;
 //                                   = 1/(x3-6), if x<3;
 public class Main8 {
     public static void main(String[] args) {
-        System.out.println("F(x) = " + Logic8.findFunction());
+        System.out.println("F(x) = " + Logic8.findFunction(Logic8.getNumber()));
     }
 }

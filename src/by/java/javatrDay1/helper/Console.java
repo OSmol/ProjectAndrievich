@@ -3,10 +3,9 @@ package javatrDay1.helper;
 import java.util.Scanner;
 
 public class Console {
-
+    public static Scanner sc = new Scanner(System.in);
 
     public static int inputInt() {
-        Scanner sc = new Scanner(System.in);
         int d;
         if (!sc.hasNextInt()) {
             do {
@@ -18,7 +17,7 @@ public class Console {
     }
 
     public static String inputStringFromConsole() {
-        Scanner sc = new Scanner(System.in);
+      //  Scanner sc = new Scanner(System.in);
         String d;
         System.out.println("Введите строку: ");
         while (!sc.hasNextLine()) {
@@ -30,7 +29,7 @@ public class Console {
     }
 
     public static double inputDouble() {
-        Scanner sc = new Scanner(System.in);
+       // Scanner sc = new Scanner(System.in);
         double d;
         //  System.out.println("Введите число: ");
         while (!sc.hasNextDouble()) {

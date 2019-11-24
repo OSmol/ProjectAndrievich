@@ -31,13 +31,13 @@ public class Main {
 //2. Отобразить в окне консоли аргументы командной строки в обратном порядке.
 
         System.out.print("Введите последовательность цифр: ");
-        int value = ScannerHelper.inputInt();
-        int mirror = 0;
-        while (value != 0) {
-            mirror = mirror * 10 + (value % 10);
-            value = value / 10;
+        int number = ScannerHelper.inputInt();
+        int reverse = 0;
+        while (number != 0) {
+            reverse =   (number % 10)+reverse * 10;
+            number = number / 10;
         }
-        System.out.print(mirror);
+        System.out.print(reverse);
 
 //3.создать приложение, выводящее заданное количество случайных чисел с переходом и без перехода на новую строку
         Random random = new Random();
@@ -62,7 +62,7 @@ public class Main {
 
  //5. Ввести целые числа как аргументы командной строки, подсчитать их суммы (произведения) и вывести результат на консоль.
 
-        System.out.println("Ввести целые цисла: ");
+        System.out.println("Ввести  целые числа: ");
         int value1 = ScannerHelper.inputInt();
         int sum = 0;
         int com = 1;
