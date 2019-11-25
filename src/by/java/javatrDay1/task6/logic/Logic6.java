@@ -4,9 +4,9 @@ package javatrDay1.task6.logic;
 import javatrDay1.task6.util.Data6;
 
 public class Logic6 {
-    public static String countOfSecondsToThisMoment() {
+    public static String countOfSecondsToThisMoment(int n) {
         String s = "***";
-        int n = Data6.enterCoundOfSecond();
+
         int hour, min, sec;
         if (n > 86400) {
             System.out.println("Слишком большое число! Больше секунд в сутках нет! ");
