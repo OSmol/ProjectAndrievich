@@ -7,16 +7,12 @@ import javatrDay1.task3.util.Data3;
 
 public class Logic3 {
 
-    private static double squareArea = Data3.sizeOfSquareArea();//ввели площадь внешнего квадрата
-    private static double circleRadius = Math.sqrt(squareArea)/2;//нашли радиус круга
-
-
-    public static double findSquareAreaInCircle() {//нашли площадь квадрата в круге
-        double squareAreaInCircle = 0.5 * circleRadius * circleRadius * 4;
+      public static double findSquareAreaInCircle(double squareAreaOutCircle) {//нашли площадь квадрата в круге
+        double squareAreaInCircle = 0.5 * Math.pow((Math.sqrt(squareAreaOutCircle)/2),2) * 4;
         return squareAreaInCircle;
     }
 
-    public static double findDifferenceBetweenSquares(double squareAreaInCircle) {//нашли разницу
-        return squareArea / squareAreaInCircle;
+    public static double findDifferenceBetweenSquares(double squareAreaInCircle, double squareAreaOutCircle) {//нашли разницу
+        return squareAreaOutCircle / squareAreaInCircle;
     }
 }

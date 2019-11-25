@@ -16,4 +16,14 @@ class Logic3Test {
         Logic3 tester = new Logic3();
       //  Assert.assertEquals();
     }
+
+    @Test
+    void testFindSquareAreaInCircle() {
+        assertEquals(12.5, Logic3.findSquareAreaInCircle(25));
+    }
+
+    @Test
+    void testFindDifferenceBetweenSquares() {
+
+    }
 }
