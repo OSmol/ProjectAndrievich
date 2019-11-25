@@ -4,40 +4,23 @@ import javatrDay1.task9.util.Data9;
 
 public class Logic9 {
     public static final double PI = 3.14;
+    public static final double radius = Data9.getRadius();
 
-    private static double radius;
-
-    public Logic9(double radius) {
-        Logic9.radius = Data9.getNumber();
-    }
-
-    public static double getPI() {
-        return PI;
-    }
-
-    public static double getRadius() {
-        return radius;
-    }
-
-    public static void setRadius(double radius) {
-        Logic9.radius = radius;
-    }
-
-    public double calculateLength() {
+    public double calculateLength(double radius) {
         return 2 * PI * radius;
     }
 
-    public double calculateSquare() {
+    public double calculateSquare(double radius) {
         return PI * Math.pow(radius, 2);
     }
 
-    public static double getLengthCircle() {
-        Logic9 testCircle = new Logic9(getRadius());
-        return testCircle.calculateLength();
+    public static double getLengthCircle(double radius) {
+        Logic9 testCircle = new Logic9();
+        return testCircle.calculateLength(radius);
     }
 
-    public static double getSquareCircle() {
-        Logic9 testCircle = new Logic9(getRadius());
-        return testCircle.calculateSquare();
+    public static double getSquareCircle(double radius) {
+        Logic9 testCircle = new Logic9();
+        return testCircle.calculateSquare(radius);
     }
 }
