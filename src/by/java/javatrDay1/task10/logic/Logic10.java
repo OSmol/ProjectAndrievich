@@ -12,11 +12,11 @@ public class Logic10 {
     public static double findFunction(int a, int b, int h) {
 
         double function = 0;
-        System.out.println("x  " + " |  " + "function");
+        System.out.println("x  " + " |  " + "function");//это часть таблицы
         for (double x = a; x <= b; x += h) {
             function = Math.atan(x);
             function = new BigDecimal(function).setScale(3, RoundingMode.UP).doubleValue();
-            System.out.println(x + " |  " + function);
+            System.out.println(x + " |  " + function);//это часть таблицы
         }
         return function;
     }

@@ -10,6 +10,7 @@ import static javatrDay1.task10.logic.Logic10.findFunction;
 //F(x) = tg(x)
 public class Main10 {
     public static void main(String[] args) {
+
         System.out.println(findFunction(Data10.enterA(), Data10.enterB(), Data10.enterH()));
     }
 }
