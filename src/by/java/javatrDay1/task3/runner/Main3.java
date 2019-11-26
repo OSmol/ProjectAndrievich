@@ -12,3 +12,4 @@ public class Main3 {
         System.out.println("Площадь вписанного квадрата меньше площади заданного квадрата в  " + Logic3.findDifferenceBetweenSquares(Logic3.findSquareAreaInCircle(Data3.sizeSquare), Data3.sizeSquare) + " раз");
     }
 }
+
