@@ -3,9 +3,9 @@ package javatrDay1.task2.logic;
 import javatrDay1.task2.util.Data2;
 
 public class Logic2 {
-    public static int countOfDaysThisYear() {
+    public static int countOfDaysThisYear(int numberOfMonth, int numberOfYear) {
         int countOfDaysInMonth = 0;
-        switch (Data2.getMonth()) {
+        switch (numberOfMonth) {
             case 1:
             case 3:
             case 5:
@@ -13,11 +13,10 @@ public class Logic2 {
             case 8:
             case 10:
             case 12:
-                Data2.getYear();
                 countOfDaysInMonth = 31;
                 break;
             case 2:
-                if (Data2.getYear() % 4 == 0) {
+                if (numberOfYear % 4 == 0) {
                     countOfDaysInMonth = 29;
                     System.out.println("Этот год високосный.");
                 } else countOfDaysInMonth = 28;
@@ -26,7 +25,6 @@ public class Logic2 {
             case 6:
             case 9:
             case 11:
-                Data2.getYear();
                 countOfDaysInMonth = 30;
                 break;
         }
