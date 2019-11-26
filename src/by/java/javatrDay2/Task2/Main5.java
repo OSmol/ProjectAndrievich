@@ -1,6 +1,5 @@
 package javatrDay2.Task2;
 
-import javatrDay2.helper.ScannerHelper;
 
 public class Main5 {
     public static void main(String[] args) {

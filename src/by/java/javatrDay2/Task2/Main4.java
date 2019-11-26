@@ -1,11 +1,10 @@
 package javatrDay2.Task2;
+//4.создать приложение для ввода пароля из командной строки и сравнения его со строкой-образцом
 
 import java.io.Console;
-import java.util.Scanner;
 
 public class Main4 {
     public static void main(String[] args) {
-        //4.создать приложение для ввода пароля из командной строки и сравнения его со строкой-образцом
         Console console = System.console();
         System.out.println();
         char[]password = console.readPassword("%s","Введите пароль: ");

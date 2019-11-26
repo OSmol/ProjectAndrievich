@@ -1,11 +1,11 @@
 package javatrDay2.Task2;
+//3.создать приложение, выводящее заданное количество случайных чисел с переходом и без перехода на новую строку
 
 import java.util.Arrays;
 import java.util.Random;
 
 public class Main3 {
     public static void main(String[] args) {
-        //3.создать приложение, выводящее заданное количество случайных чисел с переходом и без перехода на новую строку
         Random random = new Random();
         int size = 5;
         int maxValueOfArray = 10;
