@@ -37,14 +37,21 @@ public class BasketService {
         basket.deleteBall(ball);
     }
 
-    public List<Ball> findBallsByColor(Color color) {
-        List<Ball> findBalls = new ArrayList<>();
-        for (Ball ball : basket.getBalls()) {
-            if (ball.getColor().equals(color)) {
-                findBalls.add(ball);
+    public List<Ball> findBallsByColor(Color color) throws ServiceException {
+        LOGGER.debug("Call method findBallsByColor with color" + color);
+        List<Ball> findBalls;
+        try {
+            findBalls = new ArrayList<>();
+            for (Ball ball : basket.getBalls()) {
+                if (ball.getColor().equals(color)) {
+                    findBalls.add(ball);
+                }
             }
+            LOGGER.debug("list info is: " + findBalls.toString());
+            return findBalls;
+        } catch (Exception e) {
+            throw new ServiceException(e);
         }
-        return findBalls;
     }
 
     public List<Ball> findBallsByColor(String color) throws ServiceException {
@@ -83,11 +90,17 @@ public class BasketService {
         return count;
     }
 
-    public int findWeightOfAllBallsInTheBasket() {
+    public int findWeightOfAllBallsInTheBasket() throws ServiceException {
+        LOGGER.debug("Call method findWeightOfAllBallsInTheBasket");
         int sum = 0;
-        for (Ball ball : this.basket.getBalls()) {
-            sum = sum + ball.getWeight();
+        try {
+            for (Ball ball : this.basket.getBalls()) {
+                sum = sum + ball.getWeight();
+            }
+        } catch (Exception e) {
+            throw new ServiceException(e);
         }
+        LOGGER.debug("Weight Of All Balls In The Basket info is: " + sum);
         return sum;
     }
 }
