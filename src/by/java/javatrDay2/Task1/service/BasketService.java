@@ -90,15 +90,11 @@ public class BasketService {
         return count;
     }
 
-    public int findWeightOfAllBallsInTheBasket() throws ServiceException {
+    public int findWeightOfAllBallsInTheBasket() {
         LOGGER.debug("Call method findWeightOfAllBallsInTheBasket");
         int sum = 0;
-        try {
-            for (Ball ball : this.basket.getBalls()) {
-                sum = sum + ball.getWeight();
-            }
-        } catch (Exception e) {
-            throw new ServiceException(e);
+        for (Ball ball : this.basket.getBalls()) {
+            sum = sum + ball.getWeight();
         }
         LOGGER.debug("Weight Of All Balls In The Basket info is: " + sum);
         return sum;
