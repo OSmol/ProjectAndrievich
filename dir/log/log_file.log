@@ -16,3 +16,7 @@
 2019-12-02 18:38:46 INFO  Main:28 - Введите цвет. Список мячей цвета 0.3: []
 2019-12-02 18:38:46 INFO  Main:29 - Количество мячей цвета 0.3  : 0
 2019-12-02 18:38:46 INFO  Main:31 - Список мячей синего цвета: [Ball{id=5, color=BLUE, size=5, weight=25}, Ball{id=321, color=BLUE, size=7, weight=3}]
+2019-12-02 21:58:35 INFO  Main:24 - Общий вес всех мячей в корзине: 106
+2019-12-02 21:58:40 INFO  Main:28 - Введите цвет. Список мячей цвета red: [Ball{id=123, color=RED, size=1, weight=23}, Ball{id=145, color=RED, size=36, weight=14}]
+2019-12-02 21:58:40 INFO  Main:29 - Количество мячей цвета red  : 2
+2019-12-02 21:58:40 INFO  Main:31 - Список мячей синего цвета: [Ball{id=5, color=BLUE, size=5, weight=25}, Ball{id=321, color=BLUE, size=7, weight=3}]

@@ -23,11 +23,12 @@ public class Main {
 //определить вес мячиков
         LOGGER.info("Общий вес всех мячей в корзине: " + basketService.findWeightOfAllBallsInTheBasket());
 
-//определить количество синих мячиков и вывести список с синими мячиками на консоль
+//определить количество мячиков заданного цвета и вывести список с этими мячиками на консоль
         String colourName = ScannerHelper.inputStringFromConsole();
         LOGGER.info("Введите цвет. Список мячей цвета " + colourName + ": " + basketService.findBallsByColor(colourName));
-        LOGGER.info("Количество мячей цвета " + colourName + "  : " + basketService.findCountOfBallsByColour(colourName));
 
+//определить количество синих мячиков и вывести список с синими мячиками на консоль
+        LOGGER.info("Количество мячей цвета " + colourName + "  : " + basketService.findCountOfBallsByColour(colourName));
         LOGGER.info("Список мячей синего цвета: " + basketService.findBallsByColor(Color.BLUE));
 
     }
