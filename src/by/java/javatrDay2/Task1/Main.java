@@ -30,6 +30,6 @@ public class Main {
 //определить количество синих мячиков и вывести список с синими мячиками на консоль
         LOGGER.info("Количество мячей цвета " + colourName + "  : " + basketService.findCountOfBallsByColour(colourName));
         LOGGER.info("Список мячей синего цвета: " + basketService.findBallsByColor(Color.BLUE));
-
+        LOGGER.info("Program close")
     }
 }
