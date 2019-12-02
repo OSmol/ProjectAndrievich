@@ -1,6 +1,6 @@
 # Maven
 target/
-dir/
+
 
 # IntelliJ project files
 *.iml

@@ -16,13 +16,10 @@ public class Logic5 {
                 sumOfDividers = sumOfDividers + divider;
             }
         }
-
         if (sumOfDividers == number) {
-            System.out.println(true);
-            System.out.println("Число совершенное");
+            return b;
         } else {
             b = false;
-            System.out.println("Число не совершенное." );
         }
         return b;
     }

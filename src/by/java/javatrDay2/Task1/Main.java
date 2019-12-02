@@ -1,41 +1,32 @@
 package javatrDay2.Task1;
 
+import javatrDay2.Task1.bean.Basket;
+import javatrDay2.Task1.exception.ServiceException;
+import javatrDay2.Task1.service.BasketService;
+import javatrDay2.Task1.util.Util;
 import javatrDay2.helper.ScannerHelper;
+import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 
 //создать класс Мяч. Создать класс Корзина. Наполнить корзину мячиками.
 //Определить вес мячиков в корзине
 //и количество синих мячиков
 public class Main {
+    public static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
-    public static List<Ball> generateBalls() {
-        List<Ball> list = new ArrayList<>();
-        list.add(new Ball(5, Color.BLUE, 5, 25));
-        list.add(new Ball(321, Color.BLUE, 7, 3));
-        list.add(new Ball(22, Color.WHITE, 8, 41));
-        list.add(new Ball(123, Color.RED, 1, 23));
-        list.add(new Ball(145, Color.RED, 36, 14));
-        return list;
-    }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ServiceException {
         Basket basket = new Basket();
         BasketService basketService = new BasketService(basket);
-        basketService.addBalls(generateBalls());
+        basketService.addBalls(Util.generateBalls());
 //определить вес мячиков
-        System.out.println("Общий вес всех мячей в корзине: ");
-        System.out.println(basketService.findWeightOfAllBallsInTheBusket());
+        LOGGER.info("Общий вес всех мячей в корзине: " + basketService.findWeightOfAllBallsInTheBasket());
 
 //определить количество синих мячиков и вывести список с синими мячиками на консоль
-        System.out.println("Enter color: ");
         String colourName = ScannerHelper.inputStringFromConsole();
-        System.out.println(basketService.findBallsByColor(colourName));
+        LOGGER.info("Enter color: " + basketService.findBallsByColor(colourName));
+        LOGGER.info("Количество мячей заданного цвета: " + basketService.findCountOfBallsByColour(colourName));
 
-        System.out.println("Количество мячей заданного цвета: ");
-        System.out.println(basketService.findCountOfBallsByColour(colourName));
-
- //       System.out.println(basketService.findBallsByColor(Color.BLUE));
+        //       System.out.println(basketService.findBallsByColor(Color.BLUE));
     }
 }

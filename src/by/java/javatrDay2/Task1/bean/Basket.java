@@ -1,4 +1,4 @@
-package javatrDay2.Task1;
+package javatrDay2.Task1.bean;
 
 import java.util.ArrayList;
 import java.util.List;

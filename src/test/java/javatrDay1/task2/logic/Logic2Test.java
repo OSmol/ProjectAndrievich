@@ -13,6 +13,4 @@ class Logic2Test {
         assertEquals(0, Logic2.countOfDaysThisYear(-2,-123));
         assertEquals(0, Logic2.countOfDaysThisYear(123,123));
     }
-
-
 }
