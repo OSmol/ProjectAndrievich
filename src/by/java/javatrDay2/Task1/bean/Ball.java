@@ -1,6 +1,6 @@
 package javatrDay2.Task1.bean;
 
-import javatrDay2.Task1.Color;
+import javatrDay2.Task1.util.Color;
 
 import java.util.Objects;
 

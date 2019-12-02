@@ -1,6 +1,5 @@
 package javatrDay2.Task1.util;
 
-import javatrDay2.Task1.Color;
 import javatrDay2.Task1.bean.Ball;
 
 import java.util.ArrayList;

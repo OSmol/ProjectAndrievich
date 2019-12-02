@@ -3,6 +3,7 @@ package javatrDay2.Task1;
 import javatrDay2.Task1.bean.Basket;
 import javatrDay2.Task1.exception.ServiceException;
 import javatrDay2.Task1.service.BasketService;
+import javatrDay2.Task1.util.Color;
 import javatrDay2.Task1.util.Util;
 import javatrDay2.helper.ScannerHelper;
 import org.apache.log4j.Logger;
@@ -24,9 +25,10 @@ public class Main {
 
 //определить количество синих мячиков и вывести список с синими мячиками на консоль
         String colourName = ScannerHelper.inputStringFromConsole();
-        LOGGER.info("Enter color: " + basketService.findBallsByColor(colourName));
-        LOGGER.info("Количество мячей заданного цвета: " + basketService.findCountOfBallsByColour(colourName));
+        LOGGER.info("Введите цвет. Список мячей цвета " + colourName + ": " + basketService.findBallsByColor(colourName));
+        LOGGER.info("Количество мячей цвета " + colourName + "  : " + basketService.findCountOfBallsByColour(colourName));
 
-        //       System.out.println(basketService.findBallsByColor(Color.BLUE));
+        LOGGER.info("Список мячей синего цвета: " + basketService.findBallsByColor(Color.BLUE));
+
     }
 }

@@ -1,6 +1,6 @@
 package javatrDay2.Task1.service;
 
-import javatrDay2.Task1.Color;
+import javatrDay2.Task1.util.Color;
 import javatrDay2.Task1.bean.Ball;
 import javatrDay2.Task1.bean.Basket;
 import javatrDay2.Task1.exception.ServiceException;
@@ -49,16 +49,16 @@ public class BasketService {
 
     public List<Ball> findBallsByColor(String color) throws ServiceException {
         LOGGER.debug("Call method findBallsByColor with color" + color);
-        List<Ball> list = null;
+        List<Ball> list;
         try {
-            list=new ArrayList<>();
+            list = new ArrayList<>();
             for (Ball ball : this.basket.getBalls()) {
                 String colorName = ball.getColor().name();
                 if (colorName.equalsIgnoreCase(color)) {
                     list.add(ball);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new ServiceException(e);
         }
 
@@ -66,14 +66,20 @@ public class BasketService {
         return list;
     }
 
-    public int findCountOfBallsByColour(String color) {
+    public int findCountOfBallsByColour(String color) throws ServiceException {
+        LOGGER.debug("Call method findCountOfBallsByColor with color" + color);
         int count = 0;
-        for (Ball ball : this.basket.getBalls()) {
-            String colorName = ball.getColor().name();
-            if (colorName.equalsIgnoreCase(color)) {
-                count++;
+        try {
+            for (Ball ball : this.basket.getBalls()) {
+                String colorName = ball.getColor().name();
+                if (colorName.equalsIgnoreCase(color)) {
+                    count++;
+                }
             }
+        } catch (Exception e) {
+            throw new ServiceException(e);
         }
+        LOGGER.debug("Count ball of this color info is: " + count);
         return count;
     }
 
