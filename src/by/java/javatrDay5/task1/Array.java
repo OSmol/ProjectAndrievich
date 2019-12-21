@@ -126,11 +126,22 @@ public class Array {
         }
         return min;
     }
-//Получить все простые числа находящиеся в массиве.
-    public int[] findSimpleNumberInArray(int[] mas) {
-        return mas;
+
+    //Получить все простые числа находящиеся в массиве.
+    public List findSimpleNumberInArray(int[] mas) {
+        List<Integer> myList = new ArrayList<>();
+        int prostoe;
+        int var = 2;
+        for (int i = 0; i < mas.length; i++) {
+            if ((mas[i] > 1) && (mas[i] % var != 0) && (var <= mas[i])) {
+                prostoe = mas[i];
+                myList.add(prostoe);
+            }
+        }
+        return myList;
     }
-//Получить все числа Фибонначчи находящиеся в массиве.
+
+    //Получить все числа Фибонначчи находящиеся в массиве.
     public int[] findFibonacci(int[] mas) {
         return mas;
     }

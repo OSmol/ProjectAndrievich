@@ -25,10 +25,11 @@ public class Main {
         System.out.println(Arrays.toString(array.sortBubble(array.getMas())));
         System.out.println(Arrays.toString(array.sortInsertion(array.getMas())));
         System.out.println(Arrays.toString(array.sortSelection(array.getMas())));
-        System.out.println(Arrays.toString(array.findSimpleNumberInArray(array.getMas())));
+    //    System.out.println(Arrays.toString(array.findSimpleNumberInArray(array.getMas())));
 
         System.out.println(array.maxMassive(array.getMas()));
         System.out.println(array.minMassive(array.getMas()));
+        System.out.println(array.findSimpleNumberInArray(array.getMas()));
        // System.out.println("Enter number of array and press Enter: ");
        // System.out.println(Arrays.toString(InputDateArray.inputFromConsole()));
       //  System.out.println(Arrays.toString(InputDateArray.inputFromFile()));

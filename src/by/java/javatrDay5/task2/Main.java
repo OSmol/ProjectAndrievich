@@ -1,4 +1,7 @@
 package javatrDay5.task2;
+
+import java.util.Arrays;
+
 /*
 Дан непрямоугольный целочисленный массив (jagged array). Реализовать алгоритм "пузырьковой" сортировки,
 таким образом, чтобы была возможность упорядочить строки матрицы:
@@ -9,6 +12,9 @@ package javatrDay5.task2;
  */
 public class Main {
     public static void main(String[] args) {
-
-    }
+        JaggedArray jaggedArray = new JaggedArray();
+        System.out.println(Arrays.deepToString(JaggedArrayHelper.createJaggedArray()));
+        System.out.println(Arrays.deepToString(jaggedArray.sortBubbleJaggedArrayDecreasingRowTotals(JaggedArrayHelper.createJaggedArray())));
+        System.out.println(jaggedArray);
+        }
 }
