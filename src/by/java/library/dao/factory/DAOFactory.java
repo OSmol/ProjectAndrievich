@@ -10,8 +10,8 @@ import library.dao.impl.SQLUserDAO;
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
 
-    private final BookDAO sqlBookImpl = new SQLBookDAO();
-    private final UserDAO sqlUserDao = new SQLUserDAO();
+    private final BookDAO sqlBookDAO = new SQLBookDAO();
+    private final UserDAO sqlUserDAO = new SQLUserDAO();
 
     private DAOFactory(){}
 
@@ -20,10 +20,10 @@ public class DAOFactory {
     }
 
     public BookDAO getSqlBookImpl() {
-        return sqlBookImpl;
+        return sqlBookDAO;
     }
 
     public UserDAO getSqlUserDao() {
-        return sqlUserDao;
+        return sqlUserDAO;
     }
 }

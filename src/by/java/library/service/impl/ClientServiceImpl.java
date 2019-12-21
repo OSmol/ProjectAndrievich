@@ -7,7 +7,7 @@ import library.service.exception.ServiceException;
 public class ClientServiceImpl implements ClientService {
 
     @Override
-    public void singIn(String login, char[] password) throws ServiceException {
+    public void signIn(String login, char[] password) throws ServiceException {
         //проверяем параметры
         if (login==null || login.isEmpty()){
             throw new ServiceException("Incorrect login");
@@ -15,7 +15,7 @@ public class ClientServiceImpl implements ClientService {
 }
 
     @Override
-    public void singOut(String login) throws ServiceException {
+    public void signOut(String login) throws ServiceException {
 
     }
 

@@ -11,9 +11,10 @@ public final class ServiceFactory {
     private final ClientService clientService = new ClientServiceImpl();
     private final LibraryService libraryService = new LibraryServiceImpl();
 
-    private ServiceFactory(){}
+    private ServiceFactory() {
+    }
 
-    public static ServiceFactory getInstance(){
+    public static ServiceFactory getInstance() {
         return instance;
     }
 
