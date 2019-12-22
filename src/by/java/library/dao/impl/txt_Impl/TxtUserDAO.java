@@ -1,10 +1,10 @@
-package library.dao.impl.sql;
+package library.dao.impl.txt_Impl;
 
 import library.bean.User;
 import library.dao.UserDAO;
 import library.dao.exception.DAOException;
 
-public class SQLUserDAO implements UserDAO {
+public class TxtUserDAO implements UserDAO {
 
     @Override
     public void signIn(String login, String password) throws DAOException {

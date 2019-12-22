@@ -1,10 +1,10 @@
-package library.dao.impl.sql;
+package library.dao.impl.txt_Impl;
 
 import library.bean.Book;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
 
-public class SQLBookDAO implements BookDAO {
+public class TxtBookDAO implements BookDAO {
     @Override
     public void addBook(Book book) throws DAOException {
 

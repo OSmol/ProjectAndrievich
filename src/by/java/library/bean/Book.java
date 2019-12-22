@@ -44,7 +44,7 @@ public class Book implements Serializable {
      * @param averageMark         - average book's mark
      * @param customer            - users who bought this book
      * @param price               - price of book
-     * @param delete              - meaning that the book is deleted or not
+     * @param delete              - meaning the book is deleted or not
      */
 
     public Book(int id, String title, String author, String publishingHouse, int year, String genre, String country, long isbn, int countOfPages, String language, String authorOfTranslation, String description, String averageMark, String customer, double price, boolean delete) {

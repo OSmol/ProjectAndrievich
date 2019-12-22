@@ -2,28 +2,42 @@ package library.dao.factory;
 
 import library.dao.BookDAO;
 
+import library.dao.CountryDAO;
+import library.dao.GenreDAO;
 import library.dao.UserDAO;
 
-import library.dao.impl.sql.SQLBookDAO;
-import library.dao.impl.sql.SQLUserDAO;
+import library.dao.impl.sql_Impl.SQLBookDAOImpl;
+import library.dao.impl.sql_Impl.SQLCountryDAOImpl;
+import library.dao.impl.sql_Impl.SQLGenreDAOImpl;
+import library.dao.impl.sql_Impl.SQLUserDAOImpl;
 
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
 
-    private final BookDAO sqlBookDAO = new SQLBookDAO();
-    private final UserDAO sqlUserDAO = new SQLUserDAO();
+    private final BookDAO sqlBookDAOImpl = new SQLBookDAOImpl();
+    private final UserDAO sqlUserDAOImpl = new SQLUserDAOImpl();
+    private final CountryDAO sqlCountryDAOImpl = new SQLCountryDAOImpl();
+    private final GenreDAO sqlGenreDAOImpl = new SQLGenreDAOImpl();
 
     private DAOFactory(){}
 
-    public static DAOFactory getInstance(){
+    public static DAOFactory getInstance() {
         return instance;
     }
 
-    public BookDAO getSqlBookImpl() {
-        return sqlBookDAO;
+    public BookDAO getSqlBookDAOImpl() {
+        return sqlBookDAOImpl;
     }
 
-    public UserDAO getSqlUserDao() {
-        return sqlUserDAO;
+    public UserDAO getSqlUserDAOImpl() {
+        return sqlUserDAOImpl;
+    }
+
+    public CountryDAO getSqlCountryDAOImpl() {
+        return sqlCountryDAOImpl;
+    }
+
+    public GenreDAO getSqlGenreDAOImpl() {
+        return sqlGenreDAOImpl;
     }
 }

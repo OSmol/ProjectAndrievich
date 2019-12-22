@@ -11,9 +11,7 @@ public abstract class User {
     private String email;
     private boolean block;
     private String locale;
-    private String role;
-    //  private Role user = new Role("User");
-    //   private Role admin = new Role("Admin");
+    private Role role;
 
     public User() {
     }
@@ -30,7 +28,7 @@ public abstract class User {
         this.name = name;
     }
 
-    public User(int id, String login, String password, String name, String email, boolean block, String locale) {
+    public User(int id, String login, String password, String name, String email, boolean block, String locale, Role role) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -40,20 +38,6 @@ public abstract class User {
         this.locale = locale;
     }
 
-    public static class User1 extends User {
-        public User1(String login, String password) {
-            super(login, password);
-            setRole("User1");
-        }
-    }
-
-    public static class Admin extends User {
-        public Admin(int id, String login, String password, String name, String email, boolean block, String locale) {
-            super(id,login, password, name, email, block, locale);
-            setRole("Admin");
-        }
-
-    }
 
     public int getId() {
         return id;
@@ -111,11 +95,11 @@ public abstract class User {
         this.locale = locale;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -130,12 +114,13 @@ public abstract class User {
                 Objects.equals(password, user.password) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(email, user.email) &&
-                Objects.equals(locale, user.locale);
+                Objects.equals(locale, user.locale) &&
+                role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, email, block, locale);
+        return Objects.hash(id, login, password, name, email, block, locale, role);
     }
 
     @Override
@@ -148,6 +133,11 @@ public abstract class User {
                 ", email='" + email + '\'' +
                 ", block=" + block +
                 ", locale='" + locale + '\'' +
+                ", role=" + role +
                 '}';
+    }
+
+    public enum Role {
+        USER, ADMIN
     }
 }
