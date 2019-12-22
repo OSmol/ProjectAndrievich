@@ -1,15 +1,15 @@
 package library.service.factory;
 
-import library.service.ClientService;
-import library.service.LibraryService;
-import library.service.impl.ClientServiceImpl;
-import library.service.impl.LibraryServiceImpl;
+import library.service.UserService;
+import library.service.BookService;
+import library.service.impl.UserServiceImpl;
+import library.service.impl.BookServiceImpl;
 
 public final class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
 
-    private final ClientService clientService = new ClientServiceImpl();
-    private final LibraryService libraryService = new LibraryServiceImpl();
+    private final UserService userService = new UserServiceImpl();
+    private final BookService bookService = new BookServiceImpl();
 
     private ServiceFactory() {
     }
@@ -18,11 +18,11 @@ public final class ServiceFactory {
         return instance;
     }
 
-    public ClientService getClientService() {
-        return clientService;
+    public UserService getUserService() {
+        return userService;
     }
 
-    public LibraryService getLibraryService() {
-        return libraryService;
+    public BookService getBookService() {
+        return bookService;
     }
 }
