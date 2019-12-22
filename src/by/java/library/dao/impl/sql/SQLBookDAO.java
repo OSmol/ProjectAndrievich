@@ -1,4 +1,4 @@
-package library.dao.impl;
+package library.dao.impl.sql;
 
 import library.bean.Book;
 import library.dao.BookDAO;

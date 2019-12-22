@@ -11,8 +11,5 @@ public class LibraryServiceImpl implements LibraryService {
 
     }
 
-    @Override
-    public void addEditedBook(Book book) throws ServiceException {
 
-    }
 }

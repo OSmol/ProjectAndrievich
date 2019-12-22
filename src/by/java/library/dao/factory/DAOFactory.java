@@ -4,8 +4,8 @@ import library.dao.BookDAO;
 
 import library.dao.UserDAO;
 
-import library.dao.impl.SQLBookDAO;
-import library.dao.impl.SQLUserDAO;
+import library.dao.impl.sql.SQLBookDAO;
+import library.dao.impl.sql.SQLUserDAO;
 
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();

@@ -1,5 +1,7 @@
 package library.bean;
 
+import library.Role;
+
 import java.util.Objects;
 
 public class User {
@@ -10,6 +12,7 @@ public class User {
     private String email;
     private boolean block;
     private String locale;
+    private Role role;
 
     public User() {
     }
