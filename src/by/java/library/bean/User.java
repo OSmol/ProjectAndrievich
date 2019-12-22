@@ -1,10 +1,9 @@
 package library.bean;
 
-import library.Role;
 
 import java.util.Objects;
 
-public class User {
+public abstract class User {
     private int id;
     private String login;
     private String password;
@@ -12,7 +11,9 @@ public class User {
     private String email;
     private boolean block;
     private String locale;
-    private Role role;
+    private String role;
+    //  private Role user = new Role("User");
+    //   private Role admin = new Role("Admin");
 
     public User() {
     }
@@ -37,6 +38,21 @@ public class User {
         this.name = name;
         this.block = block;
         this.locale = locale;
+    }
+
+    public static class User1 extends User {
+        public User1(String login, String password) {
+            super(login, password);
+            setRole("User1");
+        }
+    }
+
+    public static class Admin extends User {
+        public Admin(int id, String login, String password, String name, String email, boolean block, String locale) {
+            super(id,login, password, name, email, block, locale);
+            setRole("Admin");
+        }
+
     }
 
     public int getId() {
@@ -93,6 +109,14 @@ public class User {
 
     public void setLocale(String locale) {
         this.locale = locale;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
