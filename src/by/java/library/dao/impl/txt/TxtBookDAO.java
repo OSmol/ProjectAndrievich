@@ -8,11 +8,11 @@ import java.io.*;
 
 //сериализация
 public class TxtBookDAO implements BookDAO {
-    private static final String BOOKFILE = " ";
+    private static final String BOOKFILE = "src/by/resources/library/Input.txt";
 
 
     @Override
-    public boolean addBook(Book book) throws DAOException, IOException {
+    public boolean addBook(Book book) throws DAOException {
 
         boolean b = false;
         File file = new File(BOOKFILE);

@@ -11,9 +11,10 @@ import java.io.*;
 public class SQLBookDAOImpl implements BookDAO {
     private static Logger logger = Logger.getLogger(BookServiceImpl.class);
 
-    @Override
-    public void addBook(Book book) throws DAOException {
 
+    @Override
+    public boolean addBook(Book book) throws DAOException {
+        return false;
     }
 
     @Override
@@ -27,8 +28,8 @@ public class SQLBookDAOImpl implements BookDAO {
     }
 
     @Override
-    public void getBook(int idBook) throws DAOException {
-
+    public Book getBook(int idBook) throws DAOException {
+        return null;
     }
 
     @Override
@@ -36,4 +37,8 @@ public class SQLBookDAOImpl implements BookDAO {
 
     }
 
+    @Override
+    public void updateBook(Book book) throws DAOException {
+
+    }
 }

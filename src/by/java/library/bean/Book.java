@@ -13,8 +13,8 @@ public class Book implements Serializable {
     private Person author;
     private String publishingHouse;
     private int year;
-    private Set<Genre>genres=new HashSet<>();
-    private Set<Country> countries=new HashSet<>();
+    private Set<Genre> genres = new HashSet<>();
+    private Set<Country> countries = new HashSet<>();
     private long isbn;
     private int countOfPages;
     private String language;
@@ -37,22 +37,21 @@ public class Book implements Serializable {
      * @param author              - author of book
      * @param publishingHouse     - publishing house ob book
      * @param year                - year of publication of the book
-     * @param genres               - genre of book
-     * @param countries             - book publishing country
+     * @param genres              - genre of book
+     * @param countries           - book publishing country
      * @param isbn                - International Standard Book Number
      * @param countOfPages        - the number of pages in the book
      * @param language            - language of book text
      * @param authorOfTranslation - author of translation book
      * @param description         - description of book
-     * @param averageMark         - average book's mark
      * @param customer            - users who bought this book
      * @param price               - price of book
      * @param delete              - meaning the book is deleted or not
      */
 
-    public Book(int id, String title, String author, String publishingHouse, int year, Set<Genre> genres,
-                Set<Country> countries, long isbn, int countOfPages, String language, String authorOfTranslation,
-                String description, String customer, double price, boolean delete) {
+    public Book(int id, String title, Person author, String publishingHouse, int year, Set<Genre> genres,
+                Set<Country> countries, long isbn, int countOfPages, String language, Person authorOfTranslation,
+                String description, Person customer, double price, boolean delete) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -65,7 +64,7 @@ public class Book implements Serializable {
         this.language = language;
         this.authorOfTranslation = authorOfTranslation;
         this.description = description;
-               this.customer = customer;
+        this.customer = customer;
         this.price = price;
         this.delete = delete;
     }
@@ -86,13 +85,6 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     public Set<Genre> getGenres() {
         return genres;
@@ -166,13 +158,6 @@ public class Book implements Serializable {
         this.language = language;
     }
 
-    public String getAuthorOfTranslation() {
-        return authorOfTranslation;
-    }
-
-    public void setAuthorOfTranslation(String authorOfTranslation) {
-        this.authorOfTranslation = authorOfTranslation;
-    }
 
     public String getDescription() {
         return description;
@@ -182,19 +167,35 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public String getAverageMark() {
+    public Person getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Person author) {
+        this.author = author;
+    }
+
+    public Person getAuthorOfTranslation() {
+        return authorOfTranslation;
+    }
+
+    public void setAuthorOfTranslation(Person authorOfTranslation) {
+        this.authorOfTranslation = authorOfTranslation;
+    }
+
+    public double getAverageMark() {
         return averageMark;
     }
 
-    public void setAverageMark(String averageMark) {
+    public void setAverageMark(double averageMark) {
         this.averageMark = averageMark;
     }
 
-    public String getCustomer() {
+    public Person getCustomer() {
         return customer;
     }
 
-    public void setCustomer(String customer) {
+    public void setCustomer(Person customer) {
         this.customer = customer;
     }
 
@@ -215,6 +216,7 @@ public class Book implements Serializable {
                 year == book.year &&
                 isbn == book.isbn &&
                 countOfPages == book.countOfPages &&
+                Double.compare(book.averageMark, averageMark) == 0 &&
                 Double.compare(book.price, price) == 0 &&
                 delete == book.delete &&
                 Objects.equals(title, book.title) &&
@@ -225,7 +227,6 @@ public class Book implements Serializable {
                 Objects.equals(language, book.language) &&
                 Objects.equals(authorOfTranslation, book.authorOfTranslation) &&
                 Objects.equals(description, book.description) &&
-                Objects.equals(averageMark, book.averageMark) &&
                 Objects.equals(customer, book.customer);
     }
 
@@ -239,7 +240,7 @@ public class Book implements Serializable {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                ", author=" + author +
                 ", publishingHouse='" + publishingHouse + '\'' +
                 ", year=" + year +
                 ", genres=" + genres +
@@ -247,12 +248,13 @@ public class Book implements Serializable {
                 ", isbn=" + isbn +
                 ", countOfPages=" + countOfPages +
                 ", language='" + language + '\'' +
-                ", authorOfTranslation='" + authorOfTranslation + '\'' +
+                ", authorOfTranslation=" + authorOfTranslation +
                 ", description='" + description + '\'' +
-                ", averageMark='" + averageMark + '\'' +
-                ", customer='" + customer + '\'' +
+                ", averageMark=" + averageMark +
+                ", customer=" + customer +
                 ", price=" + price +
                 ", delete=" + delete +
                 '}';
     }
 }
+

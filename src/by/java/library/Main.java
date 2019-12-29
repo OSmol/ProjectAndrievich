@@ -2,8 +2,13 @@ package library;
 
 
 import library.bean.Book;
+import library.dao.exception.DAOException;
+import library.dao.impl.txt.TxtBookDAO;
 
+import java.io.IOException;
 import java.io.InvalidObjectException;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -19,9 +24,14 @@ import java.io.InvalidObjectException;
 Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, DAOException {
         Book book = new Book();
-//запуск сериализатора
 
+        book.setId(1);
+        TxtBookDAO txtBookDAO = new TxtBookDAO();
+     //   txtBookDAO.addBook(book);
+//запуск сериализатора
+        System.out.println(txtBookDAO.getBook(1).toString());
+;
     }
 }
