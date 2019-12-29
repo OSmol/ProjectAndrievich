@@ -10,10 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 public interface BookService {
-    void addBook(int id, String title, String author, String publishingHouse,
-                 int year, String[] genresID, String[] countriesID, long isbn,
-                 int countOfPages, String language, String authorOfTranslation,
-                 String description, String averageMark, String customer, double price) throws ServiceException;
+    void addBook(Book book) throws ServiceException;
+    void addBooks(List<Book>books) throws ServiceException;
     void editBook(int id, String title, String author, String publishingHouse,
                  int year, String[] genresID, String[] countriesID, long isbn,
                  int countOfPages, String language, String authorOfTranslation,
