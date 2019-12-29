@@ -54,9 +54,9 @@ public class TxtBookDAO implements BookDAO {
     }
 
     @Override
-    public Book getBook(int idBook, String filename) throws DAOException, InvalidObjectException {
+    public Book getBook(int idBook) throws DAOException, InvalidObjectException {
        // public Book deserialization(String filename) throws InvalidObjectException {
-            File file = new File(filename);
+            File file = new File(BOOKFILE);
             ObjectInputStream objectInputStream = null;
             try {
                 FileInputStream fileInputStream = new FileInputStream(file);
