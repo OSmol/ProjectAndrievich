@@ -8,13 +8,14 @@ import java.io.*;
 
 //сериализация
 public class TxtBookDAO implements BookDAO {
+    private static final String BOOKFILE = " ";
 
 
     @Override
-    public boolean addBook(Book book, String filename) throws DAOException {
+    public boolean addBook(Book book) throws DAOException {
 
             boolean b = false;
-            File file = new File(filename);
+            File file = new File(BOOKFILE);
             ObjectOutputStream objectOutputStream = null;
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
