@@ -1,9 +1,7 @@
-package library.dao.impl.sql_Impl;
+package library.dao.impl.sql;
 
 import library.bean.Country;
-import library.bean.Genre;
 import library.dao.CountryDAO;
-import library.dao.GenreDAO;
 import library.dao.exception.DAOException;
 
 import java.util.List;

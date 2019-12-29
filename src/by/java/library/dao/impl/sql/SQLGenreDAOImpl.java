@@ -1,4 +1,4 @@
-package library.dao.impl.sql_Impl;
+package library.dao.impl.sql;
 
 import library.bean.Genre;
 import library.dao.GenreDAO;

@@ -1,4 +1,4 @@
-package library.dao.impl.txt_Impl;
+package library.dao.impl.txt;
 
 import library.bean.User;
 import library.dao.UserDAO;

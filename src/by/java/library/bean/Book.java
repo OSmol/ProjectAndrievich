@@ -1,17 +1,20 @@
 package library.bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 public class Book implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String title;
     private String author;
     private String publishingHouse;
     private int year;
-    private String genre;
-    private String country;
+    private Set<Genre>genres=new HashSet<>();
+    private Set<Country> countries=new HashSet<>();
     private long isbn;
     private int countOfPages;
     private String language;
@@ -34,8 +37,8 @@ public class Book implements Serializable {
      * @param author              - author of book
      * @param publishingHouse     - publishing house ob book
      * @param year                - year of publication of the book
-     * @param genre               - genre of book
-     * @param country             - book publishing country
+     * @param genres               - genre of book
+     * @param countries             - book publishing country
      * @param isbn                - International Standard Book Number
      * @param countOfPages        - the number of pages in the book
      * @param language            - language of book text
@@ -47,14 +50,14 @@ public class Book implements Serializable {
      * @param delete              - meaning the book is deleted or not
      */
 
-    public Book(int id, String title, String author, String publishingHouse, int year, String genre, String country, long isbn, int countOfPages, String language, String authorOfTranslation, String description, String averageMark, String customer, double price, boolean delete) {
+    public Book(int id, String title, String author, String publishingHouse, int year, Set<Genre> genres, Set<Country> countries, long isbn, int countOfPages, String language, String authorOfTranslation, String description, String averageMark, String customer, double price, boolean delete) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publishingHouse = publishingHouse;
         this.year = year;
-        this.genre = genre;
-        this.country = country;
+        this.genres = genres;
+        this.countries = countries;
         this.isbn = isbn;
         this.countOfPages = countOfPages;
         this.language = language;
@@ -90,20 +93,20 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public String getGenre() {
-        return genre;
+    public Set<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
     }
 
-    public String getCountry() {
-        return country;
+    public Set<Country> getCountries() {
+        return countries;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountries(Set<Country> countries) {
+        this.countries = countries;
     }
 
     public int getYear() {
@@ -194,6 +197,14 @@ public class Book implements Serializable {
         this.customer = customer;
     }
 
+    public void addGenre(Genre genre) {
+        this.genres.add(genre);
+    }
+
+    public void addCountry(Country country) {
+        this.countries.add(country);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -208,8 +219,8 @@ public class Book implements Serializable {
                 Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
                 Objects.equals(publishingHouse, book.publishingHouse) &&
-                Objects.equals(genre, book.genre) &&
-                Objects.equals(country, book.country) &&
+                Objects.equals(genres, book.genres) &&
+                Objects.equals(countries, book.countries) &&
                 Objects.equals(language, book.language) &&
                 Objects.equals(authorOfTranslation, book.authorOfTranslation) &&
                 Objects.equals(description, book.description) &&
@@ -219,7 +230,7 @@ public class Book implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, publishingHouse, year, genre, country, isbn, countOfPages, language, authorOfTranslation, description, averageMark, customer, price, delete);
+        return Objects.hash(id, title, author, publishingHouse, year, genres, countries, isbn, countOfPages, language, authorOfTranslation, description, averageMark, customer, price, delete);
     }
 
     @Override
@@ -230,8 +241,8 @@ public class Book implements Serializable {
                 ", author='" + author + '\'' +
                 ", publishingHouse='" + publishingHouse + '\'' +
                 ", year=" + year +
-                ", genre='" + genre + '\'' +
-                ", country='" + country + '\'' +
+                ", genres=" + genres +
+                ", countries=" + countries +
                 ", isbn=" + isbn +
                 ", countOfPages=" + countOfPages +
                 ", language='" + language + '\'' +

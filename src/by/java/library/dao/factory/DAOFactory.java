@@ -6,10 +6,10 @@ import library.dao.CountryDAO;
 import library.dao.GenreDAO;
 import library.dao.UserDAO;
 
-import library.dao.impl.sql_Impl.SQLBookDAOImpl;
-import library.dao.impl.sql_Impl.SQLCountryDAOImpl;
-import library.dao.impl.sql_Impl.SQLGenreDAOImpl;
-import library.dao.impl.sql_Impl.SQLUserDAOImpl;
+import library.dao.impl.sql.SQLBookDAOImpl;
+import library.dao.impl.sql.SQLCountryDAOImpl;
+import library.dao.impl.sql.SQLGenreDAOImpl;
+import library.dao.impl.sql.SQLUserDAOImpl;
 
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();

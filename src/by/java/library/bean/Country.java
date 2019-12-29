@@ -1,8 +1,9 @@
 package library.bean;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Country {
+public class Country implements Serializable {
     private int id;
     private String name;
 
