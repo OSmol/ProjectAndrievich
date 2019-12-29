@@ -6,6 +6,7 @@ import library.dao.exception.DAOException;
 //сериализация
 public class TxtBookDAO implements BookDAO {
 
+
     @Override
     public void addBook(Book book) throws DAOException {
 
@@ -17,13 +18,12 @@ public class TxtBookDAO implements BookDAO {
     }
 
     @Override
-    public void delete(Book book) throws DAOException {
+    public void deleteBook(Book book) throws DAOException {
 
     }
 
     @Override
     public void getBook(int idBook) throws DAOException {
-
 
     }
 
@@ -31,6 +31,4 @@ public class TxtBookDAO implements BookDAO {
     public void getAllBooks(Book book) throws DAOException {
 
     }
-
-
 }
