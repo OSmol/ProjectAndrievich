@@ -9,4 +9,5 @@ public interface BookDAO {
     void deleteBook(Book book)throws DAOException;
     void getBook(int idBook) throws DAOException;
     void getAllBooks(Book book) throws DAOException;
+    void updateBook(Book book) throws DAOException;
 }

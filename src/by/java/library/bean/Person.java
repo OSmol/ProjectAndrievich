@@ -6,11 +6,11 @@ import java.util.Objects;
 import java.util.Set;
 
 
-public class Book implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Person implements Serializable {
+
     private int id;
     private String title;
-    private Person author;
+    private String author;
     private String publishingHouse;
     private int year;
     private Set<Genre>genres=new HashSet<>();
@@ -18,15 +18,15 @@ public class Book implements Serializable {
     private long isbn;
     private int countOfPages;
     private String language;
-    private Person authorOfTranslation;
+    private String authorOfTranslation;
     private String description;
-    private double averageMark;
-    private Person customer;
+    private String averageMark;
+    private String customer;
     private double price;
     private boolean delete;
 
 
-    public Book() {
+    public Person() {
     }
 
     /**
@@ -50,9 +50,7 @@ public class Book implements Serializable {
      * @param delete              - meaning the book is deleted or not
      */
 
-    public Book(int id, String title, String author, String publishingHouse, int year, Set<Genre> genres,
-                Set<Country> countries, long isbn, int countOfPages, String language, String authorOfTranslation,
-                String description, String customer, double price, boolean delete) {
+    public Person(int id, String title, String author, String publishingHouse, int year, Set<Genre> genres, Set<Country> countries, long isbn, int countOfPages, String language, String authorOfTranslation, String description, String averageMark, String customer, double price, boolean delete) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -65,7 +63,8 @@ public class Book implements Serializable {
         this.language = language;
         this.authorOfTranslation = authorOfTranslation;
         this.description = description;
-               this.customer = customer;
+        this.averageMark = averageMark;
+        this.customer = customer;
         this.price = price;
         this.delete = delete;
     }
@@ -210,7 +209,7 @@ public class Book implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Book book = (Book) o;
+        Person book = (Person) o;
         return id == book.id &&
                 year == book.year &&
                 isbn == book.isbn &&
