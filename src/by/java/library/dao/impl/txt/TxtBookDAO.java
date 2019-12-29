@@ -54,7 +54,7 @@ public class TxtBookDAO implements BookDAO {
     }
 
     @Override
-    public Book getBook(int idBook) throws DAOException, InvalidObjectException {
+    public Book getBook(int idBook) throws DAOException, IOException, ClassNotFoundException {
         // public Book deserialization(String filename) throws InvalidObjectException {
         File file = new File(BOOKFILE);
         ObjectInputStream objectInputStream = null;
@@ -63,20 +63,21 @@ public class TxtBookDAO implements BookDAO {
             objectInputStream = new ObjectInputStream(fileInputStream);
             return (Book) objectInputStream.readObject();
         } catch (ClassNotFoundException ce) {
-            System.err.println("Класс не существует: " + ce);
+            throw new ClassNotFoundException("Класс не существует");
         } catch (FileNotFoundException e) {
-            System.err.println("Файл для десериализации не существует: " + e);
+            throw new FileNotFoundException("Файл для десериализации не существует: ")
         } catch (InvalidClassException ioe) {
-            System.err.println("Несовпадение версий классов: " + ioe);
+            throw new InvalidClassException("Несовпадение версий классов: ");
         } catch (IOException ioe) {
-            System.err.println("Общая IO ошибка: " + ioe);
+            throw new IOException("Общая IO ошибка: ");
         } finally {
-            try {
-                if (objectInputStream != null) {
+            if (objectInputStream != null) {
+                try {
                     objectInputStream.close();
+
+                } catch (IOException e) {
+                    System.err.println("ошибка закрытия потока ");
                 }
-            } catch (IOException e) {
-                System.err.println("ошибка закрытия потока ");
             }
         }
         throw new InvalidObjectException("объект не восстановлен");
