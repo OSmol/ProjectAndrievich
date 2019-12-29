@@ -54,7 +54,7 @@ public class TxtBookDAO implements BookDAO {
     }
 
     @Override
-    public Book getBook(int idBook) throws DAOException, IOException, ClassNotFoundException {
+    public Book getBook(int idBook) throws DAOException {
         // public Book deserialization(String filename) throws InvalidObjectException {
         File file = new File(BOOKFILE);
         ObjectInputStream objectInputStream = null;
@@ -63,13 +63,13 @@ public class TxtBookDAO implements BookDAO {
             objectInputStream = new ObjectInputStream(fileInputStream);
             return (Book) objectInputStream.readObject();
         } catch (ClassNotFoundException ce) {
-            throw new ClassNotFoundException("Класс не существует");
+            throw new DAOException("Класс не существует", ce);
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Файл для десериализации не существует: ")
+            throw new DAOException("Файл для десериализации не существует: ",e);
         } catch (InvalidClassException ioe) {
-            throw new InvalidClassException("Несовпадение версий классов: ");
+            throw new DAOException("Несовпадение версий классов: ",ioe);
         } catch (IOException ioe) {
-            throw new IOException("Общая IO ошибка: ");
+            throw new DAOException("Общая IO ошибка: ",ioe);
         } finally {
             if (objectInputStream != null) {
                 try {
@@ -80,7 +80,6 @@ public class TxtBookDAO implements BookDAO {
                 }
             }
         }
-        throw new InvalidObjectException("объект не восстановлен");
     }
 
 
