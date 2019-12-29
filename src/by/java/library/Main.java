@@ -1,6 +1,6 @@
 package library;
 
-import library.serializator.Serializator;
+
 import library.bean.Book;
 
 import java.io.InvalidObjectException;
@@ -22,16 +22,6 @@ public class Main {
     public static void main(String[] args) {
         Book book = new Book();
 //запуск сериализатора
-        String file = "/src/by/resources/library/Input.txt";
-        Serializator serializator = new Serializator();
-        serializator.serialization(book, file);
-        // Book.genre = "History";
-        Book result = null;
-        try {
-            result = serializator.deserialization(file);
-        } catch (InvalidObjectException e) {
-            //
-        }
-        System.out.println(result);
+
     }
 }

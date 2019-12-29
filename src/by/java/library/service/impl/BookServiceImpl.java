@@ -20,6 +20,16 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void addBook(Book book) throws ServiceException {
+
+    }
+
+    @Override
+    public void addBooks(List<Book> books) throws ServiceException {
+
+    }
+
+    @Override
     public void editBook(int id, String title, String author, String publishingHouse,
                          int year, String[] genresID, String[] countriesID, long isbn,
                          int countOfPages, String language, String authorOfTranslation,

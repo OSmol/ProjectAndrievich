@@ -3,11 +3,13 @@ package library.dao.impl.sql;
 import library.bean.Book;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
+import library.service.impl.BookServiceImpl;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 
 public class SQLBookDAOImpl implements BookDAO {
-
+    private static Logger logger = Logger.getLogger(BookServiceImpl.class);
 
     @Override
     public void addBook(Book book) throws DAOException {
