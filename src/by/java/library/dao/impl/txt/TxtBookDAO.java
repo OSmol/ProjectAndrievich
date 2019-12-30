@@ -84,16 +84,15 @@ public class TxtBookDAO implements BookDAO {
                 objectOutputStream.writeObject(books);
 
             } catch (NotSerializableException e) {
-                System.err.println("file don't suggesting serialization" + e);
+                throw new DAOException("file don't suggesting serialization" + e);
             } catch (IOException e) {
-                System.err.println("file cant be create" + e);
+                throw new DAOException("file cant be create" + e);
             } finally {
                 if (objectOutputStream != null) {
                     try {
                         objectOutputStream.close();
                     } catch (IOException e) {
-                        ///
-                        System.err.println("error of closing stream" + e);
+                        //
                     }
                 }
             }
@@ -109,9 +108,9 @@ public class TxtBookDAO implements BookDAO {
                 objectOutputStream.writeObject(list);
 
             } catch (NotSerializableException e) {
-                System.err.println("file don't suggesting serialization" + e);
+                throw new DAOException("file don't suggesting serialization" + e);
             } catch (IOException e) {
-                System.err.println("file cant be create" + e);
+                throw new DAOException("file cant be create" + e);
             } finally {
                 if (objectOutputStream != null) {
                     try {
