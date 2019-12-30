@@ -1,13 +1,7 @@
 package library.service.factory;
 
-import library.service.CountryService;
-import library.service.GenreService;
-import library.service.UserService;
-import library.service.BookService;
-import library.service.impl.CountryServiceImpl;
-import library.service.impl.GenreServiceImpl;
-import library.service.impl.UserServiceImpl;
-import library.service.impl.BookServiceImpl;
+import library.service.*;
+import library.service.impl.*;
 
 public final class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
@@ -16,6 +10,7 @@ public final class ServiceFactory {
     private final BookService bookService = new BookServiceImpl();
     private final GenreService genreService = new GenreServiceImpl();
     private final CountryService countryService = new CountryServiceImpl();
+    private final PersonService personService = new PersonServiceImpl();
 
     private ServiceFactory() {
     }
@@ -38,5 +33,8 @@ public final class ServiceFactory {
 
     public CountryService getCountryService() {
         return countryService;
+    }
+    public PersonService getPersonService(){
+        return personService;
     }
 }

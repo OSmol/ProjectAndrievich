@@ -1,15 +1,8 @@
 package library.dao.factory;
 
-import library.dao.BookDAO;
+import library.dao.*;
 
-import library.dao.CountryDAO;
-import library.dao.GenreDAO;
-import library.dao.UserDAO;
-
-import library.dao.impl.sql.SQLBookDAOImpl;
-import library.dao.impl.sql.SQLCountryDAOImpl;
-import library.dao.impl.sql.SQLGenreDAOImpl;
-import library.dao.impl.sql.SQLUserDAOImpl;
+import library.dao.impl.sql.*;
 
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
@@ -18,6 +11,7 @@ public class DAOFactory {
     private final UserDAO sqlUserDAOImpl = new SQLUserDAOImpl();
     private final CountryDAO sqlCountryDAOImpl = new SQLCountryDAOImpl();
     private final GenreDAO sqlGenreDAOImpl = new SQLGenreDAOImpl();
+    private final PersonDAO sqlpersonDAOImpl = new SQLPersonDAOImpl();
 
     private DAOFactory(){}
 
@@ -39,5 +33,9 @@ public class DAOFactory {
 
     public GenreDAO getSqlGenreDAOImpl() {
         return sqlGenreDAOImpl;
+    }
+
+    public PersonDAO getSqlpersonDAOImpl(){
+        return sqlpersonDAOImpl;
     }
 }

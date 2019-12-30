@@ -4,11 +4,12 @@ import library.bean.Book;
 import library.dao.exception.DAOException;
 import library.service.BookService;
 import library.service.exception.ServiceException;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-
+    private static Logger logger = Logger.getLogger(BookServiceImpl.class);
 
     @Override
     public void addBook(Book book)
