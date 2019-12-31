@@ -8,9 +8,9 @@ import java.io.InvalidClassException;
 import java.io.InvalidObjectException;
 
 public interface BookDAO {
-    boolean addBook(Book book) throws DAOException;
-    void deleteBook(long idBook) throws DAOException;
-    void deleteBook(Book book)throws DAOException;
+    void addBook(Book book) throws DAOException;
+    void deleteBook(int idBook) throws DAOException;
+   // void deleteBook(Book book)throws DAOException;
     Book getBook(int idBook) throws DAOException;
     void getAllBooks(Book book) throws DAOException;
     void updateBook(Book book) throws DAOException;

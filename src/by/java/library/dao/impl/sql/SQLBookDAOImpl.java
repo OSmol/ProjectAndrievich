@@ -13,8 +13,8 @@ public class SQLBookDAOImpl implements BookDAO {
 
 
     @Override
-    public boolean addBook(Book book) throws DAOException {
-        return false;
+    public void addBook(Book book) throws DAOException {
+
     }
 
     @Override

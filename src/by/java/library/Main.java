@@ -31,7 +31,9 @@ public class Main {
         TxtBookDAO txtBookDAO = new TxtBookDAO();
      //   txtBookDAO.addBook(book);
 //запуск сериализатора
-        System.out.println(txtBookDAO.getBook(1).toString());
+   //     System.out.println(txtBookDAO.getBook(1).toString());
+    //    System.out.println(txtBookDAO.createListOfBooks());
+        System.out.println(txtBookDAO.getBooks());
 ;
     }
 }
