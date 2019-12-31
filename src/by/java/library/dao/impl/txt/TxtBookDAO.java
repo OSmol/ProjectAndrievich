@@ -125,18 +125,18 @@ public class TxtBookDAO implements BookDAO {
     }
 
 
-
     @Override
     public void deleteBook(int idBook) throws DAOException {
         List<Book> list = getBooks();
         if (list == null) {
-            throw new DAOException("List empty");}
-        else {
-                for (Book book:list){
-                  long  idName = book.getId();
-                    if (idName==idBook){
-                        list.remove(book);
-
+            throw new DAOException("List empty");
+        } else {
+            for (Book book : list) {
+                long idName = book.getId();
+                if (idName == idBook) {
+                    list.remove(book);
+                }
+            }
 
             File file = new File(BOOKFILE);
             ObjectOutputStream objectOutputStream = null;
@@ -164,6 +164,20 @@ public class TxtBookDAO implements BookDAO {
         }
     }
 
+    @Override
+    public Book getBook(int idBook) throws DAOException {
+        return null;
+    }
+
+    @Override
+    public void getAllBooks(Book book) throws DAOException {
+
+    }
+
+    @Override
+    public void updateBook(Book book) throws DAOException {
+
+    }
 
 
-}}}
+}
