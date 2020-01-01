@@ -1,4 +1,4 @@
-package library.service.impl;
+package library.service.impl.sql;
 
 import library.bean.Book;
 import library.dao.exception.DAOException;
@@ -8,29 +8,10 @@ import org.apache.log4j.Logger;
 
 import java.util.List;
 
-public class BookServiceImpl implements BookService {
-    private static Logger logger = Logger.getLogger(BookServiceImpl.class);
-
-    @Override
-    public void addBook(Book book)
-            throws ServiceException {
-
-    }
-
-    @Override
-    public void addBooks(List<Book> books) throws ServiceException {
-
-    }
+public class SQLBookServiceImpl implements BookService {
+    private static Logger logger = Logger.getLogger(SQLBookServiceImpl.class);
 
 
-    @Override
-    public void editBook(int id, String title, String author, String publishingHouse,
-                         int year, String[] genresID, String[] countriesID, long isbn,
-                         int countOfPages, String language, String authorOfTranslation,
-                         String description, String averageMark, String customer, double price)
-            throws ServiceException {
-
-    }
 
     @Override
     public List<Book> findBookByName(String nameBook) throws DAOException {

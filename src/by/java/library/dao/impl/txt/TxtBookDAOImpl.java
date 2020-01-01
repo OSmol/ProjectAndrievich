@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //сериализация
-public class TxtBookDAO implements BookDAO {
+public class TxtBookDAOImpl implements BookDAO {
     private static final String BOOKFILE = "src/by/resources/library/Input.txt";
 
 

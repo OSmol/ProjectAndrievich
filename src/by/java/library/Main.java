@@ -3,12 +3,9 @@ package library;
 
 import library.bean.Book;
 import library.dao.exception.DAOException;
-import library.dao.impl.txt.TxtBookDAO;
+import library.dao.impl.txt.TxtBookDAOImpl;
 
 import java.io.IOException;
-import java.io.InvalidObjectException;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -28,7 +25,7 @@ public class Main {
         Book book = new Book();
 
         book.setId(1);
-        TxtBookDAO txtBookDAO = new TxtBookDAO();
+        TxtBookDAOImpl txtBookDAO = new TxtBookDAOImpl();
      //   txtBookDAO.addBook(book);
 //запуск сериализатора
    //     System.out.println(txtBookDAO.getBook(1).toString());

@@ -1,16 +1,24 @@
 package library.service.factory;
 
 import library.service.*;
-import library.service.impl.*;
+import library.service.impl.sql.*;
+import library.service.impl.txt.*;
 
 public final class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
 
-    private final UserService userService = new UserServiceImpl();
-    private final BookService bookService = new BookServiceImpl();
-    private final GenreService genreService = new GenreServiceImpl();
-    private final CountryService countryService = new CountryServiceImpl();
-    private final PersonService personService = new PersonServiceImpl();
+    private final SQLUserServiceImpl sqlUserService = new SQLUserServiceImpl();
+    private final SQLBookServiceImpl sqlBookService = new SQLBookServiceImpl();
+    private final SQLGenreServiceImpl sqlGenreService = new SQLGenreServiceImpl();
+    private final SQLCountryServiceImpl sqlCountryService = new SQLCountryServiceImpl();
+    private final SQLPersonServiceImpl sqlPersonService = new SQLPersonServiceImpl();
+
+    private final TxtUserServiceImpl txtUserService = new TxtUserServiceImpl();
+    private final TxtBookServiceImpl txtBookService = new TxtBookServiceImpl();
+    private final TxtGenreServiceImpl txtGenreService = new TxtGenreServiceImpl();
+    private final TxtCountryServiceImpl txtCountryService = new TxtCountryServiceImpl();
+    private final TxtPersonServiceImpl txtPersonService = new TxtPersonServiceImpl();
+
 
     private ServiceFactory() {
     }
@@ -19,22 +27,43 @@ public final class ServiceFactory {
         return instance;
     }
 
-    public UserService getUserService() {
-        return userService;
+    public SQLUserServiceImpl getSqlUserService() {
+        return sqlUserService;
     }
 
-    public BookService getBookService() {
-        return bookService;
+    public SQLBookServiceImpl getSqlBookService() {
+        return sqlBookService;
     }
 
-    public GenreService getGenreService() {
-        return genreService;
+    public SQLGenreServiceImpl getSqlGenreService() {
+        return sqlGenreService;
     }
 
-    public CountryService getCountryService() {
-        return countryService;
+    public SQLCountryServiceImpl getSqlCountryService() {
+        return sqlCountryService;
     }
-    public PersonService getPersonService(){
-        return personService;
+
+    public SQLPersonServiceImpl getSqlPersonService() {
+        return sqlPersonService;
+    }
+
+    public TxtUserServiceImpl getTxtUserService() {
+        return txtUserService;
+    }
+
+    public TxtBookServiceImpl getTxtBookService() {
+        return txtBookService;
+    }
+
+    public TxtGenreServiceImpl getTxtGenreService() {
+        return txtGenreService;
+    }
+
+    public TxtCountryServiceImpl getTxtCountryService() {
+        return txtCountryService;
+    }
+
+    public TxtPersonServiceImpl getTxtPersonService() {
+        return txtPersonService;
     }
 }

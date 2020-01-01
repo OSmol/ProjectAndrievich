@@ -1,10 +1,10 @@
-package library.service.impl;
+package library.service.impl.txt;
 
 import library.bean.User;
 import library.service.UserService;
 import library.service.exception.ServiceException;
 
-public class UserServiceImpl implements UserService {
+public class TxtUserServiceImpl implements UserService {
 
     @Override
     public void signIn(String login, char[] password) throws ServiceException {
