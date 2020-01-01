@@ -13,33 +13,6 @@ public class TxtBookDAOImpl implements BookDAO {
     private static final String BOOKFILE = "src/by/resources/library/Input.txt";
 
 
-    public List<Book> createListOfBooks() {
-        List<Book> books = new ArrayList<>();
-        File file = new File(BOOKFILE);
-        ObjectOutputStream objectOutputStream = null;
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(books);
-
-        } catch (NotSerializableException e) {
-            System.err.println("file don't suggesting serialization" + e);
-        } catch (IOException e) {
-            System.err.println("file cant be create" + e);
-        } finally {
-            if (objectOutputStream != null) {
-                try {
-                    objectOutputStream.close();
-                } catch (IOException e) {
-                    ///
-                    System.err.println("error of closing stream" + e);
-                }
-            }
-
-        }
-        return books;
-    }
 
     public List<Book> getBooks() throws DAOException {// public Book deserialization(String filename) throws InvalidObjectException {
 
