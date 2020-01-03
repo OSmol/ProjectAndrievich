@@ -2,6 +2,7 @@ package library.bean;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ public class Book implements Serializable {
     private Person customer;
     private double price;
     private boolean delete;
+    private List<User>users;
 
 
     public Book() {
@@ -48,10 +50,10 @@ public class Book implements Serializable {
      * @param price               - price of book
      * @param delete              - meaning the book is deleted or not
      */
-
-    public Book(int id, String title, Person author, String publishingHouse, int year, Set<Genre> genres,
-                Set<Country> countries, long isbn, int countOfPages, String language, Person authorOfTranslation,
-                String description, Person customer, double price, boolean delete) {
+    public Book(int id, String title, Person author, String publishingHouse, int year,
+                Set<Genre> genres, Set<Country> countries, long isbn, int countOfPages,
+                String language, Person authorOfTranslation, String description, double averageMark,
+                Person customer, double price, boolean delete, List<User> users) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -64,9 +66,11 @@ public class Book implements Serializable {
         this.language = language;
         this.authorOfTranslation = authorOfTranslation;
         this.description = description;
+        this.averageMark = averageMark;
         this.customer = customer;
         this.price = price;
         this.delete = delete;
+        this.users = users;
     }
 
     public int getId() {
@@ -85,6 +89,29 @@ public class Book implements Serializable {
         this.title = title;
     }
 
+    public Person getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Person author) {
+        this.author = author;
+    }
+
+    public String getPublishingHouse() {
+        return publishingHouse;
+    }
+
+    public void setPublishingHouse(String publishingHouse) {
+        this.publishingHouse = publishingHouse;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     public Set<Genre> getGenres() {
         return genres;
@@ -100,38 +127,6 @@ public class Book implements Serializable {
 
     public void setCountries(Set<Country> countries) {
         this.countries = countries;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public boolean isDelete() {
-        return delete;
-    }
-
-    public void setDelete(boolean delete) {
-        this.delete = delete;
-    }
-
-    public String getPublishingHouse() {
-        return publishingHouse;
-    }
-
-    public void setPublishingHouse(String publishingHouse) {
-        this.publishingHouse = publishingHouse;
     }
 
     public long getIsbn() {
@@ -158,6 +153,13 @@ public class Book implements Serializable {
         this.language = language;
     }
 
+    public Person getAuthorOfTranslation() {
+        return authorOfTranslation;
+    }
+
+    public void setAuthorOfTranslation(Person authorOfTranslation) {
+        this.authorOfTranslation = authorOfTranslation;
+    }
 
     public String getDescription() {
         return description;
@@ -165,22 +167,6 @@ public class Book implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Person getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Person author) {
-        this.author = author;
-    }
-
-    public Person getAuthorOfTranslation() {
-        return authorOfTranslation;
-    }
-
-    public void setAuthorOfTranslation(Person authorOfTranslation) {
-        this.authorOfTranslation = authorOfTranslation;
     }
 
     public double getAverageMark() {
@@ -199,12 +185,28 @@ public class Book implements Serializable {
         this.customer = customer;
     }
 
-    public void addGenre(Genre genre) {
-        this.genres.add(genre);
+    public double getPrice() {
+        return price;
     }
 
-    public void addCountry(Country country) {
-        this.countries.add(country);
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -227,12 +229,15 @@ public class Book implements Serializable {
                 Objects.equals(language, book.language) &&
                 Objects.equals(authorOfTranslation, book.authorOfTranslation) &&
                 Objects.equals(description, book.description) &&
-                Objects.equals(customer, book.customer);
+                Objects.equals(customer, book.customer) &&
+                Objects.equals(users, book.users);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, publishingHouse, year, genres, countries, isbn, countOfPages, language, authorOfTranslation, description, averageMark, customer, price, delete);
+        return Objects.hash(id, title, author, publishingHouse, year, genres, countries,
+                isbn, countOfPages, language, authorOfTranslation, description, averageMark,
+                customer, price, delete, users);
     }
 
     @Override
@@ -254,6 +259,7 @@ public class Book implements Serializable {
                 ", customer=" + customer +
                 ", price=" + price +
                 ", delete=" + delete +
+                ", users=" + users +
                 '}';
     }
 }

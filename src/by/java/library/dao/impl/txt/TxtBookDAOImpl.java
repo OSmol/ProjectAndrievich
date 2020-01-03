@@ -8,13 +8,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//сериализация
 public class TxtBookDAOImpl implements BookDAO {
     private static final String BOOKFILE = "src/by/resources/library/Input.txt";
 
-
-
-    public List<Book> getBooks() throws DAOException {// public Book deserialization(String filename) throws InvalidObjectException {
+    public List<Book> getBooks() throws DAOException {
 
         File file = new File(BOOKFILE);
         ObjectInputStream objectInputStream = null;

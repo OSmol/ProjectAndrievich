@@ -2,6 +2,8 @@ package library;
 
 
 import library.bean.Book;
+import library.bean.User;
+import library.dao.BookUserDAO;
 import library.dao.exception.DAOException;
 import library.dao.impl.txt.TxtBookDAOImpl;
 
@@ -23,14 +25,17 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException, DAOException {
         Book book = new Book();
-
+        User user = new User();
+        BookUserDAO bookUserDAO = new BookUserDAO();
+        bookUserDAO.createUser(user, book);
+        bookUserDAO.loadUsersByName(user.getName());
         book.setId(1);
         TxtBookDAOImpl txtBookDAO = new TxtBookDAOImpl();
-     //   txtBookDAO.addBook(book);
+        //   txtBookDAO.addBook(book);
 //запуск сериализатора
-   //     System.out.println(txtBookDAO.getBook(1).toString());
-    //    System.out.println(txtBookDAO.createListOfBooks());
+        //     System.out.println(txtBookDAO.getBook(1).toString());
+        //    System.out.println(txtBookDAO.createListOfBooks());
         System.out.println(txtBookDAO.getBooks());
-;
+        ;
     }
 }

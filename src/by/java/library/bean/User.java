@@ -1,9 +1,13 @@
 package library.bean;
 
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.*;
 
-public class User {
+public class User implements Serializable {
+
     private int id;
     private String login;
     private String password;
@@ -12,6 +16,7 @@ public class User {
     private boolean block;
     private String locale;
     private Role role;
+    private List<Book> books;
 
     public User() {
     }
@@ -28,7 +33,8 @@ public class User {
         this.name = name;
     }
 
-    public User(int id, String login, String password, String name, String email, boolean block, String locale, Role role) {
+    public User(int id, String login, String password, String name, String email, boolean block,
+                String locale, Role role, List<Book>books) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -36,8 +42,8 @@ public class User {
         this.name = name;
         this.block = block;
         this.locale = locale;
+        this.books=books;
     }
-
 
     public int getId() {
         return id;
@@ -103,6 +109,14 @@ public class User {
         this.role = role;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,12 +129,13 @@ public class User {
                 Objects.equals(name, user.name) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(locale, user.locale) &&
-                role == user.role;
+                role == user.role &&
+                Objects.equals(books, user.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, email, block, locale, role);
+        return Objects.hash(id, login, password, name, email, block, locale, role, books);
     }
 
     @Override
@@ -134,6 +149,7 @@ public class User {
                 ", block=" + block +
                 ", locale='" + locale + '\'' +
                 ", role=" + role +
+                ", books=" + books +
                 '}';
     }
 
