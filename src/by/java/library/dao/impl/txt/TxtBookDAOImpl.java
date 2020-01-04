@@ -94,6 +94,11 @@ public class TxtBookDAOImpl implements BookDAO {
         }
     }
 
+    @Override
+    public void editBook(Book book) throws DAOException {
+
+    }
+
 
     @Override
     public void deleteBook(int idBook) throws DAOException {
@@ -135,14 +140,16 @@ public class TxtBookDAOImpl implements BookDAO {
     }
 
     @Override
+    public void deleteBook(Book book) throws DAOException {
+
+    }
+
+    @Override
     public Book getBook(int idBook) throws DAOException {
         return null;
     }
 
-    @Override
-    public void getAllBooks(Book book) throws DAOException {
 
-    }
 
     @Override
     public void updateBook(Book book) throws DAOException {
