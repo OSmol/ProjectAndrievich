@@ -3,13 +3,19 @@ package library.dao.impl.txt;
 import library.bean.Book;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
+import library.service.impl.txt.TxtBookServiceImpl;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class TxtBookDAOImpl implements BookDAO {
     private static final String BOOKFILE = "src/by/resources/library/Input.txt";
+    private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
 
     private Object readFile() throws DAOException {
         File file = new File(BOOKFILE);
@@ -32,7 +38,7 @@ public class TxtBookDAOImpl implements BookDAO {
                     objectInputStream.close();
 
                 } catch (IOException e) {
-                    System.err.println("ошибка закрытия потока ");
+                    logger.info("Error");
                 }
             }
         }
@@ -60,9 +66,9 @@ public class TxtBookDAOImpl implements BookDAO {
                 }
             }
         }
-
     }
 
+    @Override
     public List<Book> getBooks() throws DAOException {
         return (List<Book>) readFile();
     }
@@ -70,7 +76,7 @@ public class TxtBookDAOImpl implements BookDAO {
     @Override
     public void addBook(Book book) throws DAOException {
         List<Book> list = getBooks();
-        if (list == null) {
+        if (list == null || list.isEmpty()) {
             List<Book> books = new ArrayList<>();
             books.add(book);
             writeFile(books);
@@ -84,7 +90,7 @@ public class TxtBookDAOImpl implements BookDAO {
     @Override
     public void deleteBook(int idBook) throws DAOException {
         List<Book> list = getBooks();
-        if (list == null) {
+        if (list == null || list.isEmpty()) {
             throw new DAOException("List empty");
         } else {
             for (Book book : list) {
@@ -100,7 +106,7 @@ public class TxtBookDAOImpl implements BookDAO {
     @Override
     public void deleteBook(Book book) throws DAOException {
         List<Book> list = getBooks();
-        if (list == null) {
+        if (list == null || list.isEmpty()) {
             throw new DAOException("List empty");
         } else {
             list.remove(book);
@@ -108,12 +114,11 @@ public class TxtBookDAOImpl implements BookDAO {
         writeFile(list);
     }
 
-
     @Override
     public Book getBook(int idBook) throws DAOException {
         List<Book> list = getBooks();
         //  List<Book>booklist=new ArrayList<>();
-        if (list == null) {
+        if (list == null || list.isEmpty()) {
             throw new DAOException("List empty");
         } else {
             for (Book book : list) {
@@ -122,7 +127,6 @@ public class TxtBookDAOImpl implements BookDAO {
                     return book;
                 }
             }
-
         }
         return null;
     }
@@ -130,7 +134,7 @@ public class TxtBookDAOImpl implements BookDAO {
     @Override
     public void updateBook(Book book) throws DAOException {
         List<Book> list = getBooks();
-        if (list == null) {
+        if (CollectionUtils.isNotEmpty(list)) {
             throw new DAOException("List empty");
         } else {
             int bookId = book.getId();
