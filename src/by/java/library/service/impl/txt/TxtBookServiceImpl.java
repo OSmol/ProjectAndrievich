@@ -15,7 +15,7 @@ import java.util.Set;
 public class TxtBookServiceImpl implements BookService {
     private static Logger logger = Logger.getLogger(TxtBookServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
-
+//передать бин
     @Override
     public void addBook(String title, Person author, String publishingHouse, int year, Set<Genre> genres,
                         Set<Country> countries, long isbn, int countOfPages, String language, Person authorOfTranslation,
