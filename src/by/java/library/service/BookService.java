@@ -13,22 +13,18 @@ import java.util.Set;
 
 public interface BookService {
 
+// преобразование типов в контроллере
+    void addBook(Book book) throws ServiceException;
 
-    void addBook(String title, Person author, String publishingHouse, int year, Set<Genre> genres,
-                 Set<Country> countries, long isbn, int countOfPages, String language, Person authorOfTranslation,
-                 String description, double price) throws ServiceException;
+    void updateBook(Book book) throws ServiceException;
 
-    void editBook(String title, Person author, String publishingHouse, int year, Set<Genre> genres,
-                  Set<Country> countries, long isbn, int countOfPages, String language, Person authorOfTranslation,
-                  String description, double price) throws ServiceException;
-
-    Book getBook(String idBook) throws ServiceException, DAOException;
+    Book getBook(int idBook) throws ServiceException, DAOException;
 
     List<Book> findBookByName(String nameBook) throws ServiceException;
 
     List<Book> findBookByAuthor(String authorBook) throws ServiceException;
 
-    List<Book> findBookByGenre(String genre) throws ServiceException;
+    List<Book> findBookByGenre(Genre genre) throws ServiceException;
 
     List<Book> sortBookByName(String nameBook) throws ServiceException;
 

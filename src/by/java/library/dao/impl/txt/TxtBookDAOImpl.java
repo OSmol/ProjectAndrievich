@@ -75,15 +75,23 @@ public class TxtBookDAOImpl implements BookDAO {
 
     @Override
     public void addBook(Book book) throws DAOException {
+        if (book.getId() != 0) {
+            throw new DAOException("book have id and cant be add in list");
+        }
         List<Book> list = getBooks();
+
         if (list == null || list.isEmpty()) {
+            int generateID = 1;
+            book.setId(generateID);
             List<Book> books = new ArrayList<>();
+
             books.add(book);
             writeFile(books);
         } else {
+            int generate = generateIdBook(list);
+            book.setId(generate);
             list.add(book);
             writeFile(list);
-
         }
     }
 
@@ -103,6 +111,16 @@ public class TxtBookDAOImpl implements BookDAO {
         }
     }
 
+    private int generateIdBook(List<Book> list) {
+        int max = list.get(0).getId();
+        for (Book book : list) {
+            if (book.getId() > max) {
+                max = book.getId();
+            }
+        }
+        return max + 1;
+    }
+
     @Override
     public void deleteBook(Book book) throws DAOException {
         List<Book> list = getBooks();
@@ -117,7 +135,6 @@ public class TxtBookDAOImpl implements BookDAO {
     @Override
     public Book getBook(int idBook) throws DAOException {
         List<Book> list = getBooks();
-        //  List<Book>booklist=new ArrayList<>();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List empty");
         } else {

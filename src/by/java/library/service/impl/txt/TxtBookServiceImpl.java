@@ -1,7 +1,6 @@
 package library.service.impl.txt;
 
 import library.bean.*;
-import library.dao.BookDAO;
 import library.dao.exception.DAOException;
 import library.dao.factory.DAOFactory;
 import library.service.BookService;
@@ -10,64 +9,31 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class TxtBookServiceImpl implements BookService {
     private static Logger logger = Logger.getLogger(TxtBookServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
-//передать бин
+
+    //передать бин
     @Override
-    public void addBook(String title, Person author, String publishingHouse, int year, Set<Genre> genres,
-                        Set<Country> countries, long isbn, int countOfPages, String language, Person authorOfTranslation,
-                        String description, double price) throws ServiceException {
-        Book book = new Book();
-        BookDAO bookDAO1 = daoFactory.getTxtBookDAO();
-        book.setTitle(title);
-        book.setAuthor(author);
-        book.setPublishingHouse(publishingHouse);
-        book.setYear(year);
-        book.setGenres(genres);
-        book.setCountries(countries);
-        book.setIsbn(isbn);
-        book.setCountOfPages(countOfPages);
-        book.setLanguage(language);
-        book.setAuthorOfTranslation(authorOfTranslation);
-        book.setDescription(description);
-        book.setPrice(price);
+    public void addBook(Book book) throws ServiceException {
 
     }
 
     @Override
-    public void editBook(String title, Person author, String publishingHouse, int year, Set<Genre> genres,
-                         Set<Country> countries, long isbn, int countOfPages, String language,
-                         Person authorOfTranslation, String description, double price)
-            throws ServiceException {
-        Book book = new Book();
-        BookDAO bookDAO1 = daoFactory.getTxtBookDAO();
-        book.setTitle(title);
-        book.setAuthor(author);
-        book.setPublishingHouse(publishingHouse);
-        book.setYear(year);
-        book.setGenres(genres);
-        book.setCountries(countries);
-        book.setIsbn(isbn);
-        book.setCountOfPages(countOfPages);
-        book.setLanguage(language);
-        book.setAuthorOfTranslation(authorOfTranslation);
-        book.setDescription(description);
-        book.setPrice(price);
+    public void updateBook(Book book) throws ServiceException {
+
     }
 
+
     @Override
-    public Book getBook(String idBook) throws ServiceException, DAOException {
-        Book book;
+    public Book getBook(int idBook) throws ServiceException, DAOException {
         try {
-            int id = Integer.parseInt(idBook);
-            book = daoFactory.getTxtBookDAO().getBook(id);
+            return daoFactory.getTxtBookDAO().getBook(idBook);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return book;
+
     }
 
     @Override
@@ -93,7 +59,7 @@ public class TxtBookServiceImpl implements BookService {
 
 
     @Override
-    public List<Book> findBookByGenre(String genre) throws ServiceException {
+    public List<Book> findBookByGenre(Genre genre) throws ServiceException {
         List<Book> list = new ArrayList<>();
      /*   for (book:getBook().getGenres(){
             Set<Genre> genreName = book.getGenres();
@@ -107,7 +73,7 @@ public class TxtBookServiceImpl implements BookService {
 
     @Override
     public List<Book> sortBookByName(String nameBook) throws ServiceException {
-        List<Book>list=null;
+        List<Book> list = null;
 
 
         return list;
