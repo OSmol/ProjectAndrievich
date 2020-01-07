@@ -18,7 +18,7 @@ public interface BookService {
 
     void updateBook(Book book) throws ServiceException;
 
-    Book getBook(int idBook) throws ServiceException, DAOException;
+    Book getBook(int idBook) throws ServiceException;
 
     List<Book> findBookByName(String nameBook) throws ServiceException;
 

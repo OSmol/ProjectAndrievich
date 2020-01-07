@@ -3,14 +3,11 @@ package library.dao.impl.txt;
 import library.bean.Book;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
-import library.service.impl.txt.TxtBookServiceImpl;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class TxtBookDAOImpl implements BookDAO {

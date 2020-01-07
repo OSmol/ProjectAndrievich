@@ -1,4 +1,4 @@
-package library.service.impl.sql;
+package library.service.impl;
 
 import library.bean.Genre;
 import library.service.GenreService;
@@ -6,7 +6,7 @@ import library.service.exception.ServiceException;
 
 import java.util.List;
 
-public class SQLGenreServiceImpl implements GenreService {
+public class GenreServiceImpl implements GenreService {
     @Override
     public List<Genre> getAll() throws ServiceException {
         return null;
