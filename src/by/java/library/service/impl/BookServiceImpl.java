@@ -138,7 +138,7 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public List<Book> sortBookByYear(int year) throws ServiceException {
+    public List<Book> sortBookByYear() throws ServiceException {
         logger.debug("BookServiceImpl.sortBookByYear - run");
         List<Book> list;
         try {

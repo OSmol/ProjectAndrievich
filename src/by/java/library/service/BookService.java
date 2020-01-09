@@ -28,7 +28,7 @@ public interface BookService {
 
     List<Book> sortBookByName() throws ServiceException;
 
-    List<Book> sortBookByYear(int year) throws ServiceException;
+    List<Book> sortBookByYear() throws ServiceException;
 
     List<Book> sortBookByRating(String averageMark) throws ServiceException;
 
