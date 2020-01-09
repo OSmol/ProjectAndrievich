@@ -26,9 +26,11 @@ public interface BookService {
 
     List<Book> findBookByGenre(Genre genre) throws ServiceException;
 
-    List<Book> sortBookByName(String nameBook) throws ServiceException;
+    List<Book> sortBookByName(List<Book>list) throws ServiceException;
 
     List<Book> sortBookByDate(String date) throws ServiceException;
 
     List<Book> sortBookByRating(String averageMark) throws ServiceException;
+
+
 }

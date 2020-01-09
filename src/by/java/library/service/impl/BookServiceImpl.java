@@ -8,9 +8,7 @@ import library.service.BookService;
 import library.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class BookServiceImpl implements BookService {
     private static Logger logger = Logger.getLogger(BookServiceImpl.class);
@@ -96,13 +94,11 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public List<Book> sortBookByName(String nameBook) throws ServiceException {
-        List<Book> list = null;
-
-
+    public List<Book> sortBookByName (List<Book>list) throws ServiceException {
+        list.sort(Comparator.comparing(Book::getTitle));
         return list;
-
     }
+
 
     @Override
     public List<Book> sortBookByDate(String date) throws ServiceException {
