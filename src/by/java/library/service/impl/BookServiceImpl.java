@@ -104,7 +104,7 @@ public class BookServiceImpl implements BookService {
         try {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
             for (Book book : list) {
-                String genreName = String.valueOf(book.getGenres());
+                String genreName = book.getGenres();
                 if (genre.getName().equalsIgnoreCase(genreName)) {
                     listBooksByGenre.add(book);
                 } else {
@@ -120,7 +120,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> sortBookByName() throws ServiceException {
-        logger.debug("BookServiceImpl.findBookByGenre - run");
+        logger.debug("BookServiceImpl.sortBookByName - run");
         List<Book> list;
         try {
             list = daoFactory.getTxtBookDAO().getBooks();
@@ -128,7 +128,7 @@ public class BookServiceImpl implements BookService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        logger.debug("BookServiceImpl.findBookByGenre - Book sort");
+        logger.debug("BookServiceImpl.sortBookByName - Book sort");
         return list;
     }
 
