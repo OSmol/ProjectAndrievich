@@ -125,11 +125,13 @@ public class BookServiceImpl implements BookService {
         try {
             list = daoFactory.getTxtBookDAO().getBooks();
             list.sort(new Book.NameComparator());
+            return list;
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        logger.debug("BookServiceImpl.sortBookByName - Book sort");
-        return list;
+        finally {
+            logger.debug("BookServiceImpl.sortBookByName - Book sort");
+        }
     }
 
 
