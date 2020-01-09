@@ -104,11 +104,12 @@ public class BookServiceImpl implements BookService {
         try {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
             for (Book book : list) {
-                String genreName = book.getGenres();
-                if (genre.getName().equalsIgnoreCase(genreName)) {
-                    listBooksByGenre.add(book);
-                } else {
-                    logger.debug("BookServiceImpl.findBookByGenre - Book not found");
+                for (Genre genre1 : book.getGenres()) {
+                    if (genre.getName().equalsIgnoreCase(genre1.getName())) {
+                        listBooksByGenre.add(book);
+                    } else {
+                        logger.debug("BookServiceImpl.findBookByGenre - Book not found");
+                    }
                 }
             }
         } catch (DAOException e) {
