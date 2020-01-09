@@ -58,26 +58,28 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book findBookByName(String nameBook) throws ServiceException {
+    public List<Book> findBookByName(String nameBook) throws ServiceException {//возвр лист
         logger.debug("BookServiceImpl.findBookByName - run");
+        List<Book> listBooksByName = new ArrayList<>();
         try {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
             for (Book book : list) {
-                String title = String.valueOf(book.getAuthor());
+                String title = book.getTitle();
                 if (title.equalsIgnoreCase(nameBook)) {
-                    logger.debug("BookServiceImpl.findBookByName - Book found");
-                    return book;
+                    listBooksByName.add(book);
                 }
             }
+            return listBooksByName;
         } catch (DAOException e) {
             throw new ServiceException(e);
+        } finally {
+            logger.debug("BookServiceImpl.findBookByName - Book found");
         }
-        return null;
     }
 
     @Override
     public List<Book> findBookByAuthor(String authorBook) throws ServiceException {
-        logger.debug("BookServiceImpl.findBookByName - run");
+        logger.debug("BookServiceImpl.findBookByAuthor - run");
         List<Book> listBooksByAuthor = new ArrayList<>();
         try {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
@@ -111,11 +113,12 @@ public class BookServiceImpl implements BookService {
                     }
                 }
             }
+            return listBooksByGenre;
         } catch (DAOException e) {
             throw new ServiceException(e);
+        } finally {
+            logger.debug("BookServiceImpl.findBookByGenre - Book found");
         }
-        logger.debug("BookServiceImpl.findBookByGenre - Book found");
-        return listBooksByGenre;
     }
 
     @Override
@@ -128,16 +131,25 @@ public class BookServiceImpl implements BookService {
             return list;
         } catch (DAOException e) {
             throw new ServiceException(e);
-        }
-        finally {
+        } finally {
             logger.debug("BookServiceImpl.sortBookByName - Book sort");
         }
     }
 
 
     @Override
-    public List<Book> sortBookByDate(String date) throws ServiceException {
-        return null;
+    public List<Book> sortBookByYear(int year) throws ServiceException {
+        logger.debug("BookServiceImpl.sortBookByYear - run");
+        List<Book> list;
+        try {
+            list = daoFactory.getTxtBookDAO().getBooks();
+            list.sort(new Book.YearComparator());
+            return list;
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        } finally {
+            logger.debug("BookServiceImpl.sortBookByYear - Book sort");
+        }
     }
 
     @Override

@@ -20,7 +20,7 @@ public interface BookService {
 
     Book getBook(int idBook) throws ServiceException;
 
-    Book findBookByName(String nameBook) throws ServiceException;
+    List<Book> findBookByName(String nameBook) throws ServiceException;
 
     List<Book> findBookByAuthor(String authorBook) throws ServiceException;
 
@@ -28,7 +28,7 @@ public interface BookService {
 
     List<Book> sortBookByName() throws ServiceException;
 
-    List<Book> sortBookByDate(String date) throws ServiceException;
+    List<Book> sortBookByYear(int year) throws ServiceException;
 
     List<Book> sortBookByRating(String averageMark) throws ServiceException;
 

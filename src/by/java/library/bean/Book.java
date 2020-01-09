@@ -1,5 +1,9 @@
 package library.bean;
 
+import library.dao.exception.DAOException;
+import library.service.exception.ServiceException;
+import library.service.impl.BookServiceImpl;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -22,7 +26,7 @@ public class Book implements Serializable {
     private Person customer;
     private double price;
     private boolean delete;
-    private List<User>users;
+    private List<User> users;
 
 
     public Book() {
@@ -264,6 +268,15 @@ public class Book implements Serializable {
         @Override
         public int compare(Book o1, Book o2) {
             return o1.getTitle().compareTo(o2.getTitle());
+        }
+    }
+
+    public static class YearComparator implements Comparator<Book> {
+        @Override
+        public int compare(Book o1, Book o2) {
+            Integer a = o1.getYear();
+            Integer b = o2.getYear();
+            return a.compareTo(b);
         }
     }
 }
