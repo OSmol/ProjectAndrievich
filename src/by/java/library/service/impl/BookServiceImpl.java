@@ -6,7 +6,6 @@ import library.dao.exception.DAOException;
 import library.dao.factory.DAOFactory;
 import library.service.BookService;
 import library.service.exception.ServiceException;
-import library.service.helper.ComparatorHelperBook;
 import org.apache.log4j.Logger;
 
 import java.util.*;
@@ -104,8 +103,8 @@ public class BookServiceImpl implements BookService {
         try {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
             for (Book book : list) {
-                for (Genre genre1 : book.getGenres()) {
-                    if (genre.getName().equalsIgnoreCase(genre1.getName())) {
+                for (Genre genreName : book.getGenres()) {
+                    if (genre.getName().equalsIgnoreCase(genreName.getName())) {
                         listBooksByGenre.add(book);
                     } else {
                         logger.debug("BookServiceImpl.findBookByGenre - Book not found");
@@ -125,7 +124,7 @@ public class BookServiceImpl implements BookService {
         List<Book> list;
         try {
             list = daoFactory.getTxtBookDAO().getBooks();
-            list.sort(new ComparatorHelperBook());
+            list.sort(new Book.NameComparator());
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

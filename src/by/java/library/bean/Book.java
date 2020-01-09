@@ -1,10 +1,7 @@
 package library.bean;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 public class Book implements Serializable {
@@ -261,6 +258,13 @@ public class Book implements Serializable {
                 ", delete=" + delete +
                 ", users=" + users +
                 '}';
+    }
+
+    public static class NameComparator implements Comparator<Book> {
+        @Override
+        public int compare(Book o1, Book o2) {
+            return o1.getTitle().compareTo(o2.getTitle());
+        }
     }
 }
 
