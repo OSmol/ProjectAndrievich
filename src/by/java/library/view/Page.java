@@ -1,5 +1,9 @@
 package library.view;
 
+import library.service.exception.ServiceException;
+
+import java.util.Map;
+
 public interface Page {
-    void run();
+    Map<String, String> run() throws ServiceException;
 }

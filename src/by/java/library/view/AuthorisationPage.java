@@ -3,6 +3,7 @@ package library.view;
 import javatrDay5.helper.ScannerHelper;
 import library.controller.command.Command;
 import library.controller.command.impl.RegistrationCommand;
+import library.service.exception.ServiceException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class AuthorisationPage implements Page {
     private Page mainPage = new MainPage();
 
     @Override
-    public void run() {
+    public void run() throws ServiceException {
         Command command = new RegistrationCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
