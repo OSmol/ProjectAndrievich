@@ -15,7 +15,7 @@ public class AuthorisationPage implements Page {
     private Page mainPage = new MainPage();
 
     @Override
-    public void run() throws ServiceException {
+    public Map<String, String> run() throws ServiceException {
         Command command = new RegistrationCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
@@ -25,5 +25,6 @@ public class AuthorisationPage implements Page {
         parameters.put("login", login);
         parameters.put("password", password);
         command.execute(parameters);
+        return null;
     }
 }

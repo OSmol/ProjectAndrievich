@@ -6,6 +6,8 @@ import library.bean.User;
 import library.dao.BookUserDAO;
 import library.dao.exception.DAOException;
 import library.dao.impl.txt.TxtBookDAOImpl;
+import library.service.exception.ServiceException;
+import library.view.RegistrationPage;
 
 import java.io.IOException;
 
@@ -23,11 +25,11 @@ import java.io.IOException;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) throws IOException, DAOException {
+    public static void main(String[] args) throws IOException, DAOException, ServiceException {
         Book book = new Book();
         User user = new User();
         BookUserDAO bookUserDAO = new BookUserDAO();
-        bookUserDAO.createUser(user, book);
+       /* bookUserDAO.createUser(user, book);
         bookUserDAO.loadUsersByName(user.getName());
         book.setId(1);
         TxtBookDAOImpl txtBookDAO = new TxtBookDAOImpl();
@@ -35,7 +37,9 @@ public class Main {
 //запуск сериализатора
         //     System.out.println(txtBookDAO.getBook(1).toString());
         //    System.out.println(txtBookDAO.createListOfBooks());
-        System.out.println(txtBookDAO.getBooks());
-        ;
+        System.out.println(txtBookDAO.getBooks());*/
+
+        RegistrationPage registrationPage = new RegistrationPage();
+        registrationPage.run();
     }
 }

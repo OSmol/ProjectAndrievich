@@ -17,22 +17,24 @@ public class TxtSecurityDAOImpl implements SecurityDAO {
     private static Logger logger = Logger.getLogger(TxtSecurityDAOImpl.class);
 
     @Override
-    public Map<String, String> registerUser(Security security) {
+    public Map<String, String> registerUser(Security security) throws DAOException {
         String login = security.getLogin();
         String password = security.getPassword();
         Map<String, String> map = new HashMap<>();
         map.put(login, password);
-
+        readFile();
+        writeFile(map);
         return map;
     }
 
-    private Object readFile() throws DAOException {
+    private Map<String,String> readFile() throws DAOException {
         File file = new File(BOOKFILE);
         ObjectInputStream objectInputStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            return objectInputStream.readObject();
+
+            return (Map<String, String>) objectInputStream.readObject();
         } catch (ClassNotFoundException ce) {
             throw new DAOException("Класс не существует", ce);
         } catch (FileNotFoundException e) {
@@ -53,14 +55,14 @@ public class TxtSecurityDAOImpl implements SecurityDAO {
         }
     }
 
-    private void writeFile(Security security) throws DAOException {
+    private void writeFile(Map<String, String> map) throws DAOException {
         File file = new File(BOOKFILE);
         ObjectOutputStream objectOutputStream = null;
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(security);
+            objectOutputStream.writeObject(map);
 
         } catch (NotSerializableException e) {
             throw new DAOException("file don't suggesting serialization" + e);

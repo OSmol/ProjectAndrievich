@@ -1,8 +1,10 @@
 package library.view;
 
+import java.util.Map;
+
 public class MainPage implements Page{
     @Override
-    public void run() {
-
+    public Map<String, String> run() {
+return null;
     }
 }
