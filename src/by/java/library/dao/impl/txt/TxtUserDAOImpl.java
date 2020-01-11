@@ -7,6 +7,8 @@ import library.dao.exception.DAOException;
 import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TxtUserDAOImpl implements UserDAO {
@@ -27,9 +29,10 @@ public class TxtUserDAOImpl implements UserDAO {
         List<User> list = getAll();
         if (list == null || list.isEmpty()) {
             int generateId = 1;
+            list = new ArrayList<>();
             user.setId(generateId);
             list.add(user);
-            writeUserInFile(user);
+            writeListInFile(list);
         }
     }
 
@@ -39,11 +42,14 @@ public class TxtUserDAOImpl implements UserDAO {
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
         } else {
-            for (User user : list) {
-                String login1 = user.getLogin();
-                if (login1.equals(login)) {
-                    list.remove(user);
-                }
+            Iterator<User> iterator = list.iterator();
+            if (iterator.hasNext()) {
+                do {
+                    User user = iterator.next();
+                    if (user.getLogin().equalsIgnoreCase(login)) {
+                        iterator.remove();
+                    }
+                } while (iterator.hasNext());
             }
         }
     }
@@ -67,12 +73,12 @@ public class TxtUserDAOImpl implements UserDAO {
         } else {
             for (User user : list) {
                 String loginName = user.getLogin();
-                if (loginName == login) {
+                if (loginName.equals(login)) {
                     return user;
                 }
             }
         }
-        return null;
+        return null;//замена на Optional.null (Java8), тк нельзя возвращать null из метода, тк может привести к NullPointer
     }
 
     @Override
@@ -82,9 +88,10 @@ public class TxtUserDAOImpl implements UserDAO {
             throw new DAOException("List is empty");
         } else {
             int idUser = user.getId();
-            for (User user1 : list) {
+            for (int i = 0; i < list.size(); i++) {
+                User user1 = list.get(i);
                 if (user1.getId() == idUser) {
-                    user1 = user;
+                    list.set(i, user1) ;
                 }
             }
         }
@@ -113,30 +120,6 @@ public class TxtUserDAOImpl implements UserDAO {
 
                 } catch (IOException e) {
                     logger.info("Error");
-                }
-            }
-        }
-    }
-
-    private void writeUserInFile(User user) throws DAOException {
-        File file = new File(BOOKFILE);
-        ObjectOutputStream objectOutputStream = null;
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(user);
-
-        } catch (NotSerializableException e) {
-            throw new DAOException("file don't suggesting serialization" + e);
-        } catch (IOException e) {
-            throw new DAOException("file cant be create" + e);
-        } finally {
-            if (objectOutputStream != null) {
-                try {
-                    objectOutputStream.close();
-                } catch (IOException e) {
-                    //
                 }
             }
         }
