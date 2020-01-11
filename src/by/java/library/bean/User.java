@@ -9,8 +9,7 @@ import java.util.Objects;
 public class User implements Serializable {
 
     private int id;
-    private String login;
-    private String password;
+    private Security security;
     private String name;
     private String email;
     private boolean block;
@@ -22,27 +21,28 @@ public class User implements Serializable {
     }
 
     public User(String login, String password) {
-        this.login = login;
-        this.password = password;
+        this.security = new Security(login, password);
     }
 
     public User(String login, String password, String name, String email) {
-        this.login = login;
-        this.password = password;
+        this.security = new Security(login, password);
         this.email = email;
         this.name = name;
     }
 
     public User(int id, String login, String password, String name, String email, boolean block,
-                String locale, Role role, List<Book>books) {
+                String locale, Role role, List<Book> books) {
         this.id = id;
-        this.login = login;
-        this.password = password;
+        this.security = new Security(login, password);
         this.email = email;
         this.name = name;
         this.block = block;
         this.locale = locale;
-        this.books=books;
+        this.books = books;
+    }
+
+    public User(Security security) {
+        this.security = security;
     }
 
     public int getId() {
@@ -54,20 +54,14 @@ public class User implements Serializable {
     }
 
     public String getLogin() {
-        return login;
+        return security.getLogin();
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     public String getPassword() {
-        return password;
+        return security.getPassword();
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getName() {
         return name;
@@ -124,8 +118,7 @@ public class User implements Serializable {
         User user = (User) o;
         return id == user.id &&
                 block == user.block &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password) &&
+                Objects.equals(security, user.security) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(locale, user.locale) &&
@@ -135,15 +128,14 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, email, block, locale, role, books);
+        return Objects.hash(id, security, name, email, block, locale, role, books);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                ", security=" + security +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", block=" + block +
@@ -155,5 +147,56 @@ public class User implements Serializable {
 
     public enum Role {
         USER, ADMIN
+    }
+
+    public static class Security {
+        private String login;
+        private String password;
+
+        public Security() {
+        }
+
+        Security(String login, String password) {
+            this.login = login;
+            this.password = password;
+        }
+
+        public String getLogin() {
+            return login;
+        }
+
+        public void setLogin(String login) {
+            this.login = login;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Security security = (Security) o;
+            return Objects.equals(login, security.login) &&
+                    Objects.equals(password, security.password);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(login, password);
+        }
+
+        @Override
+        public String toString() {
+            return "Security{" +
+                    "login='" + login + '\'' +
+                    ", password='" + password + '\'' +
+                    '}';
+        }
     }
 }

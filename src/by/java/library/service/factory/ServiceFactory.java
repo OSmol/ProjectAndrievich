@@ -19,7 +19,7 @@ public class ServiceFactory {
         return instance;
     }
 
-    public UserServiceImpl getUserServiceImpl() {
+    public library.service.impl.UserServiceImpl getUserServiceImpl() {
         return UserServiceImpl;
     }
 

@@ -1,15 +1,26 @@
 package library.dao;
 
+import library.bean.Book;
 import library.bean.User;
 import library.dao.exception.DAOException;
 
+import java.util.List;
+
+/*
+название методов должно отображать работу с файлом, так как на Дао я работаю с файлом.
+названия методов не должны отображать бизнес логику (сервис)
+ */
 public interface UserDAO {
-    void signIn(String login, String password) throws DAOException;
-    void registration (User user) throws DAOException;
-    void signUp(User user) throws DAOException;
-    void blockedUser(int id) throws DAOException;
-    void unblockedUser(int id) throws DAOException;
-    void findUser (String login) throws DAOException;
-    void setUserAccess(int id) throws DAOException;
-    void setAdminAccess(int id) throws DAOException;
+    List<User> getAll() throws DAOException;
+
+    void add(User user) throws DAOException;
+
+    void delete(String login) throws DAOException;
+
+    void delete(User user) throws DAOException;
+
+    User get(String login) throws DAOException;
+
+    void update(User user) throws DAOException;
+
 }

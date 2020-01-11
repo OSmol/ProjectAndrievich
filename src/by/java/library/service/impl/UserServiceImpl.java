@@ -4,13 +4,12 @@ import library.bean.User;
 import library.dao.UserDAO;
 import library.dao.exception.DAOException;
 import library.dao.factory.DAOFactory;
+import library.service.SecurityService;
 import library.service.UserService;
 import library.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
-import java.util.Map;
-
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements SecurityService, UserService {
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
     private DAOFactory daoFactory = DAOFactory.getInstance();
 
@@ -28,16 +27,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registration(Map<String, String> map) throws ServiceException {
+    public void registration(User.Security security) throws ServiceException {
         logger.debug("UserServiceImpl.registration()");
-        User user = new User();
+        User user = new User(security);
         UserDAO userDAO = daoFactory.getTxtUserDAO();
         try {
-            //user =
-            userDAO.registration(user);
+            userDAO.add(user);
         } catch (DAOException e) {
             throw new ServiceException(e);
+        } finally {
+            logger.debug("UserServiceImpl.registration()");
         }
-        logger.debug("UserServiceImpl.registration()");
+    }
+
+    @Override
+    public void delete() {
+
     }
 }

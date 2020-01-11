@@ -4,45 +4,38 @@ import library.bean.User;
 import library.dao.UserDAO;
 import library.dao.exception.DAOException;
 
+import java.util.List;
+
 public class TxtUserDAOImpl implements UserDAO {
 
+
     @Override
-    public void signIn(String login, String password) throws DAOException {
+    public List<User> getAll() throws DAOException {
+        return null;
+    }
+
+    @Override
+    public void add(User user) throws DAOException {
+//написать запись в файл
+    }
+
+    @Override
+    public void delete(String login) throws DAOException {
 
     }
 
     @Override
-    public void registration(User user) throws DAOException {
+    public void delete(User user) throws DAOException {
 
     }
 
     @Override
-    public void signUp(User user) throws DAOException {
-
+    public User get(String login) throws DAOException {
+        return null;
     }
 
     @Override
-    public void blockedUser(int id) throws DAOException {
-
-    }
-
-    @Override
-    public void unblockedUser(int id) throws DAOException {
-
-    }
-
-    @Override
-    public void findUser(String login) throws DAOException {
-
-    }
-
-    @Override
-    public void setUserAccess(int id) throws DAOException {
-
-    }
-
-    @Override
-    public void setAdminAccess(int id) throws DAOException {
+    public void update(User user) throws DAOException {
 
     }
 }
