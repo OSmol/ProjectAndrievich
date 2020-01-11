@@ -33,6 +33,9 @@ public class TxtUserDAOImpl implements UserDAO {
             user.setId(generateId);
             list.add(user);
             writeListInFile(list);
+        }else {
+            list.add(user);
+            writeListInFile(list);
         }
     }
 
