@@ -1,6 +1,5 @@
 package library.dao;
 
-import library.bean.Book;
 import library.bean.User;
 import library.dao.exception.DAOException;
 
