@@ -1,6 +1,5 @@
 package library.dao.impl.txt;
 
-import library.bean.Book;
 import library.bean.User;
 import library.dao.UserDAO;
 import library.dao.exception.DAOException;
@@ -32,10 +31,12 @@ public class TxtUserDAOImpl implements UserDAO {
             list = new ArrayList<>();
             user.setId(generateId);
             list.add(user);
-            writeListInFile(list);
-        }else {
+            writeFile(list);
+        } else {
+            int generate = generateIdUser(list);
+            user.setId(generate);
             list.add(user);
-            writeListInFile(list);
+            writeFile(list);
         }
     }
 
@@ -65,7 +66,7 @@ public class TxtUserDAOImpl implements UserDAO {
         } else {
             list.remove(user);
         }
-        writeListInFile(list);
+        writeFile(list);
     }
 
     @Override
@@ -94,11 +95,11 @@ public class TxtUserDAOImpl implements UserDAO {
             for (int i = 0; i < list.size(); i++) {
                 User user1 = list.get(i);
                 if (user1.getId() == idUser) {
-                    list.set(i, user1) ;
+                    list.set(i, user1);
                 }
             }
         }
-        writeListInFile(list);
+        writeFile(list);
     }
 
     private Object readFile() throws DAOException {
@@ -128,7 +129,7 @@ public class TxtUserDAOImpl implements UserDAO {
         }
     }
 
-    private void writeListInFile(List<User> list) throws DAOException {
+    private void writeFile(List<User> list) throws DAOException {
         File file = new File(BOOKFILE);
         ObjectOutputStream objectOutputStream = null;
         FileOutputStream fileOutputStream = null;
@@ -150,6 +151,16 @@ public class TxtUserDAOImpl implements UserDAO {
                 }
             }
         }
+    }
+
+    private int generateIdUser(List<User> list) {
+        int max = list.get(0).getId();
+        for (User user : list) {
+            if (user.getId() > max) {
+                max = user.getId();
+            }
+        }
+        return max + 1;
     }
 }
 
