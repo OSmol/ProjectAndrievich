@@ -7,6 +7,8 @@ import library.dao.factory.DAOFactory;
 import library.service.SecurityService;
 import library.service.UserService;
 import library.service.exception.ServiceException;
+import library.service.util.PasswordValidator;
+import library.service.util.exception.UtilException;
 import org.apache.log4j.Logger;
 
 public class UserServiceImpl implements SecurityService, UserService {
@@ -32,8 +34,10 @@ public class UserServiceImpl implements SecurityService, UserService {
         User user = new User(security);
         UserDAO userDAO = daoFactory.getTxtUserDAO();
         try {
+            PasswordValidator.isEmptyString(security.getPassword());
+            PasswordValidator.matchPassword(security.getPassword());
             userDAO.add(user);
-        } catch (DAOException e) {
+        } catch (DAOException | UtilException e) {
             throw new ServiceException(e);
         } finally {
             logger.debug("UserServiceImpl.registration()");
