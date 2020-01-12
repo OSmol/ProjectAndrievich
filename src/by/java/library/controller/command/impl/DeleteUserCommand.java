@@ -8,10 +8,9 @@ import org.apache.log4j.Logger;
 
 import java.util.Map;
 
-public class SignInCommand implements Command {
-    private static Logger logger = Logger.getLogger(SignInCommand.class);
+public class DeleteUserCommand implements Command {
+    private static Logger logger = Logger.getLogger(DeleteUserCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-
 
     @Override
     public Response execute(Map<String, String> parameters) throws ServiceException {

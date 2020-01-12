@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 
 import java.util.Map;
 
-public class SignInCommand implements Command {
-    private static Logger logger = Logger.getLogger(SignInCommand.class);
+public class SortBookByRatingCommand implements Command {
+    private static Logger logger = Logger.getLogger(SortBookByRatingCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
 

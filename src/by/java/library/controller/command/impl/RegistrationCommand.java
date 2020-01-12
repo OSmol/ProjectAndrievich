@@ -1,6 +1,7 @@
 package library.controller.command.impl;
 
 import library.bean.User;
+import library.controller.Response;
 import library.controller.command.Command;
 import library.service.SecurityService;
 import library.service.exception.ServiceException;
@@ -15,25 +16,29 @@ public class RegistrationCommand implements Command {
     private User.Security security = new User.Security();
 
     @Override
-    public Map<Object, Object> execute(Map<String, String> parameters) throws ServiceException {
+    public Response execute(Map<String, String> parameters) {
         String login = parameters.get("login");
         String password = parameters.get("password");
-
+        Response response = new Response();
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
-            System.out.println("Enter login and password");
+            response.setErrorMessage("Enter login and password");
+            response.setResponseCode(403);
+            return response;
         }
         security.setLogin(login);
         security.setPassword(password);
 
-//создать эксепшен
         try {
             SecurityService securityService = serviceFactory.getUserServiceImpl();
             securityService.registration(security);
+            response.setResponseCode(201);
+            return response;
 
         } catch (ServiceException e) {
-            throw new ServiceException(e);
+            response.setErrorMessage(e.getMessage());
+            response.setResponseCode(501);
+            return response;
         }
-        return null;
     }
 }
 

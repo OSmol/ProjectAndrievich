@@ -1,6 +1,7 @@
 package library.view;
 
 import javatrDay5.helper.ScannerHelper;
+import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.RegistrationCommand;
 import library.service.exception.ServiceException;
@@ -22,8 +23,12 @@ public class RegistrationPage implements Page {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("login", login);
         parameters.put("password", password);
-        command.execute(parameters);
-    return parameters;
+        Response response = command.execute(parameters);
+        System.out.println(response.getResponseCode());
+        if (response.getResponseCode()==501){
+            System.out.println(response.getErrorMessage());
+        }
+        return parameters;
     }
 
 }
