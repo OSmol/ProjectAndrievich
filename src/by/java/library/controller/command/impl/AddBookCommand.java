@@ -23,7 +23,7 @@ public class AddBookCommand implements Command {
         String authorSurname = parameters.get("authorSurname");
         int year = Integer.parseInt(parameters.get("year"));
         Response response = new Response();
-        if (bookName == null || authorName == null || bookName.isEmpty() || authorName.isEmpty() || authorSurname.isEmpty() || authorSurname.isEmpty()) {
+        if (bookName == null || authorName == null || bookName.isEmpty() || authorName.isEmpty() || authorSurname==null || authorSurname.isEmpty()) {
             response.setErrorMessage("Enter login and password");
             response.setResponseCode(403);
             return response;
