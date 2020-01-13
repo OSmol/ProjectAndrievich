@@ -30,7 +30,7 @@ public interface BookService {
 
     List<Book> sortBookByYear() throws ServiceException;
 
-    List<Book> sortBookByRating(String averageMark) throws ServiceException;
+    List<Book> sortBookByRating(double averageMark) throws ServiceException;
 
 
 }

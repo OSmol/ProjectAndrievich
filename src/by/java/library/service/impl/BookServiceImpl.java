@@ -153,7 +153,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> sortBookByRating(String averageMark) throws ServiceException {
+    public List<Book> sortBookByRating(double averageMark) throws ServiceException {
         return null;
     }
 }

@@ -16,7 +16,7 @@ public class UserServiceImpl implements SecurityService, UserService {
     private DAOFactory daoFactory = DAOFactory.getInstance();
 
     @Override
-    public void signIn(String login, char[] password) throws ServiceException {
+    public void signIn(String login, String password) throws ServiceException {
         //проверяем параметры
         if (login == null || login.isEmpty()) {
             throw new ServiceException("Incorrect login");

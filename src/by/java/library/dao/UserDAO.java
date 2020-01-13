@@ -2,10 +2,11 @@ package library.dao;
 
 import library.bean.User;
 import library.dao.exception.DAOException;
-
 import java.util.List;
 
 /*
+слой доступа к данным
+
 название методов должно отображать работу с файлом, так как на Дао я работаю с файлом.
 названия методов не должны отображать бизнес логику (сервис)
  */
