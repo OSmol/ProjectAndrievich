@@ -9,6 +9,7 @@ import library.dao.impl.txt.TxtBookDAOImpl;
 import library.service.exception.ServiceException;
 import library.view.AddPage;
 import library.view.RegistrationPage;
+import library.view.SignInPage;
 import library.view.SortBookByNamePage;
 
 import java.io.IOException;
@@ -33,7 +34,8 @@ public class Main {
      //   registrationPage.run();
       //  AddPage addPage=new AddPage();
      //   addPage.run();
-        SortBookByNamePage page=new SortBookByNamePage();
+      //  SortBookByNamePage page=new SortBookByNamePage();
+        SignInPage page=new SignInPage();
         page.run();
     }
 }
