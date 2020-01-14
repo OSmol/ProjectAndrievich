@@ -10,30 +10,32 @@ import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class SortBookByNameCommand implements Command {
     private static Logger logger = Logger.getLogger(SignInCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private User.Security security = new User.Security();
-    private Book book = new Book();
+
 
     @Override
-    public Response execute(Map<String, String> parameters) {
-        String login = parameters.get("login");
-        String password = parameters.get("password");
+    public Response execute(Map<String, String> parameters) throws ServiceException {
+        logger.debug("SortBookByNameCommand");
+        BookService bookService = serviceFactory.getBookServiceImpl();
+        String title = parameters.get("title");
+
+
         Response response = new Response();
-        if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
+        if (title == null || title.isEmpty()) {
             response.setErrorMessage("Enter login and password");
             response.setResponseCode(403);
             return response;
         }
-        security.setLogin(login);
-        security.setPassword(password);
-
+        Book book = new Book();
+        book.setTitle(title);
         try {
-            BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.sortBookByName();
+            List<Book> list = bookService.sortBookByName();
             response.setResponseCode(201);
             return response;
 

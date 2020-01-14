@@ -1,10 +1,6 @@
 package library.view;
 
 import javatrDay5.helper.ScannerHelper;
-import library.bean.Country;
-import library.bean.Genre;
-import library.bean.Person;
-import library.bean.User;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.AddBookCommand;
@@ -20,8 +16,8 @@ public class AddPage implements Page {
     public Map<String, String> run() throws ServiceException {
         Command command = new AddBookCommand();
 
-        System.out.println("Enter id: ");
-        String id = String.valueOf(ScannerHelper.inputInt());
+      //  System.out.println("Enter id: ");
+     //   String id = String.valueOf(ScannerHelper.inputInt());
         System.out.println("Enter title: ");
         String title = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter author: ");
@@ -30,11 +26,11 @@ public class AddPage implements Page {
         String publishingHouse = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter year: ");
         String year = String.valueOf(ScannerHelper.inputInt());
-        System.out.println("Enter genre: ");
-        String genre = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter country: ");
-        String country = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter isbn: ");
+      //  System.out.println("Enter genre: ");
+     //   String genre = ScannerHelper.inputStringFromConsole();
+      //  System.out.println("Enter country: ");
+     //   String country = ScannerHelper.inputStringFromConsole();
+       System.out.println("Enter isbn: ");
         String isbn = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter countOfPages: ");
         String countOfPages = String.valueOf(ScannerHelper.inputInt());
@@ -50,13 +46,13 @@ public class AddPage implements Page {
         String price = String.valueOf(ScannerHelper.inputInt());
 
         Map<String, String> parameters = new HashMap<String, String>();
-        parameters.put("id", id);
+     //   parameters.put("id", id);
         parameters.put("title", title);
         parameters.put("author", author);
         parameters.put("publishingHouse", publishingHouse);
         parameters.put("year", year);
-        parameters.put("genre", genre);
-        parameters.put("country", country);
+     //   parameters.put("genre", genre);
+     //   parameters.put("country", country);
         parameters.put("isbn", isbn);
         parameters.put("countOfPages", countOfPages);
         parameters.put("language", language);

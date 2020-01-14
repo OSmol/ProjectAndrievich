@@ -1,6 +1,7 @@
 package library.controller.command.impl;
 
 import library.bean.Book;
+import library.bean.Person;
 import library.bean.User;
 import library.controller.Response;
 import library.controller.command.Command;
@@ -12,27 +13,59 @@ import org.apache.log4j.Logger;
 import java.util.Map;
 
 public class UpdateBookCommand implements Command {
-    private static Logger logger = Logger.getLogger(SignInCommand.class);
+    private static Logger logger = Logger.getLogger(AddBookCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private User.Security security = new User.Security();
-    private Book book = new Book();
 
     @Override
     public Response execute(Map<String, String> parameters) {
-        String login = parameters.get("login");
-        String password = parameters.get("password");
+        //  String id = parameters.get("id");
+        String title = parameters.get("title");
+        String author = parameters.get("author");
+        String publishingHouse = parameters.get("publishingHouse");
+        String year = parameters.get("year");
+        //   Set<Genre> genre = parameters.get("genre");
+        //  Set<Country>country = parameters.get("country");
+        String isbn = parameters.get("isbn");
+        String countOfPages = parameters.get("countOfPages");
+        String language = parameters.get("language");
+        String authorOfTranslation = parameters.get("authorOfTranslation");
+        String description = parameters.get("description");
+        String averageMark = parameters.get("averageMark");
+        String price = parameters.get("price");
+
         Response response = new Response();
-        if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
+        if (title == null || title.isEmpty()
+                || author == null || author.isEmpty()
+                || publishingHouse == null || publishingHouse.isEmpty()
+                || year == null || year.isEmpty()
+                || isbn == null || isbn.isEmpty()
+                || countOfPages == null || countOfPages.isEmpty()
+                || language == null || language.isEmpty()
+                || authorOfTranslation == null || authorOfTranslation.isEmpty()
+                || description == null || description.isEmpty()
+                || averageMark == null || averageMark.isEmpty()
+                || price == null || price.isEmpty()) {
             response.setErrorMessage("Enter login and password");
             response.setResponseCode(403);
             return response;
         }
-        security.setLogin(login);
-        security.setPassword(password);
-
+        Book book = new Book();
+        //   book.setId(Integer.parseInt(id));
+        book.setTitle(title);
+        book.setAuthor(new Person(1, author, author));
+        book.setPublishingHouse(publishingHouse);
+        book.setYear(Integer.parseInt(year));
+        // book.setGenres(genre);
+        //  book.setCountries(country);
+        book.setIsbn(Long.parseLong(isbn));
+        book.setCountOfPages(Integer.parseInt(countOfPages));
+        book.setLanguage(language);
+        book.setAuthorOfTranslation(new Person(1, authorOfTranslation, authorOfTranslation));
+        book.setDescription(description);
+        book.setAverageMark(Double.parseDouble(averageMark));
+        book.setPrice(Double.parseDouble(price));
         try {
-            BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.updateBook(book);
+            serviceFactory.getBookServiceImpl().updateBook(book);
             response.setResponseCode(201);
             return response;
 

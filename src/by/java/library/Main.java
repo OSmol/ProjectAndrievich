@@ -7,6 +7,7 @@ import library.bean.User;
 import library.dao.exception.DAOException;
 import library.dao.impl.txt.TxtBookDAOImpl;
 import library.service.exception.ServiceException;
+import library.view.AddPage;
 import library.view.RegistrationPage;
 
 import java.io.IOException;
@@ -27,8 +28,10 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException, DAOException, ServiceException {
 
-        RegistrationPage registrationPage = new RegistrationPage();
-        registrationPage.run();
+     //   RegistrationPage registrationPage = new RegistrationPage();
+     //   registrationPage.run();
+        AddPage addPage=new AddPage();
+        addPage.run();
 
     }
 }
