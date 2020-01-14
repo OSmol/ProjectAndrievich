@@ -23,26 +23,21 @@ public class SortBookByNameCommand implements Command {
     public Response execute(Map<String, String> parameters) throws ServiceException {
         logger.debug("SortBookByNameCommand");
         BookService bookService = serviceFactory.getBookServiceImpl();
-        String title = parameters.get("title");
 
+        String title = parameters.get("title");
+        List<Book> list = bookService.sortBookByName();
 
         Response response = new Response();
-        if (title == null || title.isEmpty()) {
+        if (list == null || list.isEmpty()) {
             response.setErrorMessage("Enter login and password");
             response.setResponseCode(403);
             return response;
         }
         Book book = new Book();
-        book.setTitle(title);
-        try {
-            List<Book> list = bookService.sortBookByName();
-            response.setResponseCode(201);
-            return response;
+        list.set(1, book);
 
-        } catch (ServiceException e) {
-            response.setErrorMessage(e.getMessage());
-            response.setResponseCode(501);
-            return response;
-        }
+        response.setResponseCode(201);
+        return response;
+
     }
 }
