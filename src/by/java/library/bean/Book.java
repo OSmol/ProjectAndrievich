@@ -279,6 +279,7 @@ public class Book implements Serializable {
     public enum BookType {
         PAPERBOOK("Paper book"), EBOOK("eBook");
         String name;
+
         BookType(String name) {
             this.name = name;
         }

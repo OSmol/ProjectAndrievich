@@ -51,4 +51,21 @@ public class Genre implements Serializable {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public enum GenreType {
+        DETECTIVE("Detective"), HISTORICAL("Historical"), CHILDREN_LITERATURE("Children literature"),
+        FEMALE_ROMANCE("Female romance"), HOUSING("Housing"), DRAMATURGY("Dramaturgy"), ART("Art"),
+        FANTASY("Fantasy"), POETRY("Poetry"), SCIENCE("Science"), EDUCATION("Education"),
+        ADVENTURES("Adventures"), RELIGION("Religion");
+
+        String name;
+
+        GenreType(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
 }
