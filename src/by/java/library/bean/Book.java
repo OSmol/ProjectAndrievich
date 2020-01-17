@@ -1,9 +1,5 @@
 package library.bean;
 
-import library.dao.exception.DAOException;
-import library.service.exception.ServiceException;
-import library.service.impl.BookServiceImpl;
-
 import java.io.Serializable;
 import java.util.*;
 
@@ -277,6 +273,18 @@ public class Book implements Serializable {
             Integer a = o1.getYear();
             Integer b = o2.getYear();
             return a.compareTo(b);
+        }
+    }
+
+    public enum BookType {
+        PAPERBOOK("Paper book"), EBOOK("eBook");
+        String name;
+        BookType(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
         }
     }
 }

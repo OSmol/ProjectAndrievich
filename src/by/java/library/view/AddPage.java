@@ -1,6 +1,7 @@
 package library.view;
 
 import javatrDay5.helper.ScannerHelper;
+import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.AddBookCommand;
@@ -13,7 +14,7 @@ public class AddPage implements Page {
     private Page mainPage = new MainPage();
 
     @Override
-    public Map<String, String> run() throws ServiceException {
+    public Request run() throws ServiceException {
         Command command = new AddBookCommand();
 
       //  System.out.println("Enter id: ");
@@ -60,11 +61,12 @@ public class AddPage implements Page {
         parameters.put("description", description);
         parameters.put("averageMark", averageMark);
         parameters.put("price", price);
-        Response response = command.execute(parameters);
+        Request request=new Request();
+        Response response = command.execute(request);
         System.out.println(response.getResponseCode());
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
-        return parameters;
+        return request;
     }
 }

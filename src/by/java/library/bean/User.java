@@ -11,11 +11,12 @@ public class User implements Serializable {
     private int id;
     private Security security;
     private String name;
-    private String email;
+    private Email email;
     private boolean block;
     private String locale;
-    private Role role;
+    private UserRole userRole;
     private List<Book> books;
+
 
     public User() {
     }
@@ -24,14 +25,14 @@ public class User implements Serializable {
         this.security = new Security(login, password);
     }
 
-    public User(String login, String password, String name, String email) {
+    public User(String login, String password, String name, Email email) {
         this.security = new Security(login, password);
         this.email = email;
         this.name = name;
     }
 
-    public User(int id, String login, String password, String name, String email, boolean block,
-                String locale, Role role, List<Book> books) {
+    public User(int id, String login, String password, String name, Email email, boolean block,
+                String locale, UserRole userRole, List<Book> books) {
         this.id = id;
         this.security = new Security(login, password);
         this.email = email;
@@ -71,11 +72,11 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
 
@@ -95,12 +96,12 @@ public class User implements Serializable {
         this.locale = locale;
     }
 
-    public Role getRole() {
-        return role;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setUserRole(UserRole role) {
+        this.userRole = role;
     }
 
     public List<Book> getBooks() {
@@ -122,13 +123,13 @@ public class User implements Serializable {
                 Objects.equals(name, user.name) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(locale, user.locale) &&
-                role == user.role &&
+                userRole == user.userRole &&
                 Objects.equals(books, user.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, security, name, email, block, locale, role, books);
+        return Objects.hash(id, security, name, email, block, locale, userRole, books);
     }
 
     @Override
@@ -140,13 +141,22 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", block=" + block +
                 ", locale='" + locale + '\'' +
-                ", role=" + role +
+                ", role=" + userRole +
                 ", books=" + books +
                 '}';
     }
 
-    public enum Role {
-        USER, ADMIN
+    public enum UserRole {
+        ADMIN("admin"), USER("user");
+        private String name;
+
+        UserRole(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 
     public static class Security {
