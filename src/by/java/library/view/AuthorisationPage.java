@@ -6,11 +6,6 @@ import library.controller.command.Command;
 import library.controller.command.impl.RegistrationCommand;
 import library.service.exception.ServiceException;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 public class AuthorisationPage implements Page {
     private Page page = new RegistrationPage();
     private Page mainPage = new MainPage();
