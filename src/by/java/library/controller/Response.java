@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Response {
-    private Map<Object, Object> map = new HashMap();
+    private Map<Object, Object> body = new HashMap();
     private String errorMessage;
     private int responseCode;
 
@@ -22,6 +22,14 @@ public class Response {
 
     public void setResponseCode(int responseCode) {
         this.responseCode = responseCode;
+    }
+
+    public Map<Object, Object> getBody() {
+        return body;
+    }
+
+    public void setBody(Map<Object, Object> body) {
+        this.body = body;
     }
 }
 

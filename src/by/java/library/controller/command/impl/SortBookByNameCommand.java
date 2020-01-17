@@ -24,7 +24,7 @@ public class SortBookByNameCommand implements Command {
         logger.debug("SortBookByNameCommand");
         BookService bookService = serviceFactory.getBookServiceImpl();
 
-        String title = parameters.get("title");
+
         List<Book> list = bookService.sortBookByName();
 
         Response response = new Response();
@@ -33,10 +33,8 @@ public class SortBookByNameCommand implements Command {
             response.setResponseCode(403);
             return response;
         }
-        Book book = new Book();
-        list.set(1, book);
-
         response.setResponseCode(201);
+        response.getBody().put("title", list);
         return response;
 
     }
