@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TxtUserDAOImpl implements UserDAO {
-    private static final String BOOKFILE = "src/by/resources/library/Data.txt";
+    private static final String BOOKFILE = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtUserDAOImpl.class);
 
 
