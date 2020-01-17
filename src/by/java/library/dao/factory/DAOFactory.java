@@ -17,6 +17,9 @@ public class DAOFactory {
     private final TxtCountryDAOImpl txtCountryDAO = new TxtCountryDAOImpl();
     private final TxtGenreDAOImpl txtGenreDAO = new TxtGenreDAOImpl();
     private final TxtPersonDAOImpl txtPersonDAO = new TxtPersonDAOImpl();
+    private final TxtEmailDAOImpl txtEmailDAO = new TxtEmailDAOImpl();
+    private final TxtLetterDAOImpl txtLetterDAO = new TxtLetterDAOImpl();
+    private final TxtLibraryDAOImpl txtLibraryDAO= new TxtLibraryDAOImpl();
 
 
     private DAOFactory(){}
@@ -63,5 +66,17 @@ public class DAOFactory {
 
     public TxtPersonDAOImpl getTxtPersonDAO() {
         return txtPersonDAO;
+    }
+
+    public TxtEmailDAOImpl getTxtEmailDAO() {
+        return txtEmailDAO;
+    }
+
+    public TxtLetterDAOImpl getTxtLetterDAO() {
+        return txtLetterDAO;
+    }
+
+    public TxtLibraryDAOImpl getTxtLibraryDAO() {
+        return txtLibraryDAO;
     }
 }
