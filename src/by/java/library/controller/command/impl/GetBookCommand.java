@@ -2,6 +2,7 @@ package library.controller.command.impl;
 
 import library.bean.Book;
 import library.bean.User;
+import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.service.BookService;
@@ -18,9 +19,9 @@ public class GetBookCommand implements Command {
     private User.Security security = new User.Security();
 
     @Override
-    public Response execute(Map<String, String> parameters) {
-        String login = parameters.get("login");
-        String password = parameters.get("password");
+    public Response execute(Request request) {
+        String login = String.valueOf(request.getBody().get("login"));
+        String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
             response.setErrorMessage("Enter login and password");

@@ -3,6 +3,7 @@ package library.controller.command.impl;
 import library.bean.Book;
 import library.bean.Person;
 import library.bean.User;
+import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.service.BookService;
@@ -17,21 +18,21 @@ public class UpdateBookCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     @Override
-    public Response execute(Map<String, String> parameters) {
+    public Response execute(Request request) {
         //  String id = parameters.get("id");
-        String title = parameters.get("title");
-        String author = parameters.get("author");
-        String publishingHouse = parameters.get("publishingHouse");
-        String year = parameters.get("year");
-        //   Set<Genre> genre = parameters.get("genre");
+        String title = String.valueOf(request.getBody().get("title"));
+        String author = String.valueOf(request.getBody().get("author"));
+        String publishingHouse = String.valueOf(request.getBody().get("publishingHouse"));
+        String year = String.valueOf(request.getBody().get("year"));
+        // Set<Genre> genre =request.getBody().get("genre");
         //  Set<Country>country = parameters.get("country");
-        String isbn = parameters.get("isbn");
-        String countOfPages = parameters.get("countOfPages");
-        String language = parameters.get("language");
-        String authorOfTranslation = parameters.get("authorOfTranslation");
-        String description = parameters.get("description");
-        String averageMark = parameters.get("averageMark");
-        String price = parameters.get("price");
+        String isbn = String.valueOf(request.getBody().get("isbn"));
+        String countOfPages = String.valueOf(request.getBody().get("countOfPages"));
+        String language = String.valueOf(request.getBody().get("language"));
+        String authorOfTranslation = String.valueOf(request.getBody().get("authorOfTranslation"));
+        String description = String.valueOf(request.getBody().get("description"));
+        String averageMark = String.valueOf(request.getBody().get("averageMark"));
+        String price = String.valueOf(request.getBody().get("price"));
 
         Response response = new Response();
         if (title == null || title.isEmpty()

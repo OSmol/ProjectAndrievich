@@ -2,6 +2,7 @@ package library.controller.command.impl;
 
 import library.bean.Book;
 import library.bean.User;
+import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.service.BookService;
@@ -20,7 +21,7 @@ public class SortBookByNameCommand implements Command {
 
 
     @Override
-    public Response execute(Map<String, String> parameters) throws ServiceException {
+    public Response execute(Request request) throws ServiceException {
         logger.debug("SortBookByNameCommand");
         BookService bookService = serviceFactory.getBookServiceImpl();
 
