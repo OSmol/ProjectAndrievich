@@ -1,20 +1,7 @@
 package library;
 
 
-import library.bean.Book;
 import library.bean.User;
-
-import library.dao.exception.DAOException;
-import library.dao.impl.txt.TxtBookDAOImpl;
-import library.service.exception.ServiceException;
-import library.service.util.PasswordUtils;
-import library.view.AddPage;
-import library.view.RegistrationPage;
-import library.view.SignInPage;
-import library.view.SortBookByNamePage;
-
-import java.io.IOException;
-
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -30,15 +17,8 @@ import java.io.IOException;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) throws IOException, DAOException, ServiceException {
+    public static void main(String[] args) {
+      MainMenu.getMainOptions(User.UserRole.ADMIN);
 
-     //   RegistrationPage registrationPage = new RegistrationPage();
-     //   registrationPage.run();
-      //  AddPage addPage=new AddPage();
-     //   addPage.run();
-      //  SortBookByNamePage page=new SortBookByNamePage();
-     //   SignInPage page=new SignInPage();
-     //   page.run();
-        PasswordUtils.verifyUserPassword("111", "111");
     }
 }
