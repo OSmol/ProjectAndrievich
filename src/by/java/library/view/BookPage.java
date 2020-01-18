@@ -1,17 +1,17 @@
 package library.view;
 
 import javatrDay5.helper.ScannerHelper;
+import library.bean.Book;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.AddBookCommand;
+import library.controller.command.impl.SortBookByNameCommand;
 import library.service.exception.ServiceException;
 
-public class AddPage implements Page {
+import java.util.List;
 
-    private Page mainPage = new MainPage();
-
-    @Override
+public class BookPage {
     public Request run() throws ServiceException {
         Command command = new AddBookCommand();
 
@@ -67,4 +67,18 @@ public class AddPage implements Page {
         }
         return request;
     }
+    public Request sortBookByName() throws ServiceException {
+        Command command = new SortBookByNameCommand();
+        Request request = new Request();
+        Response response = command.execute(request);
+
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+            System.out.println(response.getResponseCode());
+        } else {
+            List<Book> list = (List<Book>) response.getBody().get("title");
+        }
+        return request;
+    }
 }
+
