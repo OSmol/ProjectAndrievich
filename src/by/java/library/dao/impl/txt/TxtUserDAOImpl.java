@@ -162,6 +162,14 @@ public class TxtUserDAOImpl implements UserDAO {
         }
         return max + 1;
     }
+
+    public static boolean isAdmin(User user){
+        return user.getUserRole()== User.UserRole.ADMIN;
+    }
+
+    public static boolean isUserExist(String login){
+       return true;
+    }
 }
 
 

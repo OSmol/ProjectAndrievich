@@ -7,12 +7,14 @@ import library.bean.User;
 import library.dao.exception.DAOException;
 import library.dao.impl.txt.TxtBookDAOImpl;
 import library.service.exception.ServiceException;
+import library.service.util.PasswordUtils;
 import library.view.AddPage;
 import library.view.RegistrationPage;
 import library.view.SignInPage;
 import library.view.SortBookByNamePage;
 
 import java.io.IOException;
+
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -35,7 +37,8 @@ public class Main {
       //  AddPage addPage=new AddPage();
      //   addPage.run();
       //  SortBookByNamePage page=new SortBookByNamePage();
-        SignInPage page=new SignInPage();
-        page.run();
+     //   SignInPage page=new SignInPage();
+     //   page.run();
+        PasswordUtils.verifyUserPassword("111", "111");
     }
 }
