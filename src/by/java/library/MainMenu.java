@@ -26,18 +26,14 @@ public class MainMenu {
     private static boolean entrance() {
         User user = new User();
         List<Book> books = new ArrayList<>();
-        while (user == null) {
-            System.out.print("Enter login: ");
-            String username = user.getLogin();
-            System.out.print("Enter password: ");
-            String password = user.getPassword();
+
 
             if(user == null) {
                 System.out.println("Wrong login or password. Try again.");
-            }
-        }
 
-        return true;
-    }
+
+
+
+    }return true;
 
 }
