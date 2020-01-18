@@ -21,7 +21,7 @@ public class TxtUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void add(User user) throws DAOException {
+    public boolean add(User user) throws DAOException {
         if (user.getId() != 0) {
             throw new DAOException("book have id and cant be add in list");
         }
@@ -38,6 +38,7 @@ public class TxtUserDAOImpl implements UserDAO {
             list.add(user);
             writeFile(list);
         }
+        return false;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class TxtUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void delete(User user) throws DAOException {
+    public boolean delete(User user) throws DAOException {
         List<User> list = getAll();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
@@ -67,6 +68,7 @@ public class TxtUserDAOImpl implements UserDAO {
             list.remove(user);
         }
         writeFile(list);
+        return false;
     }
 
     @Override

@@ -2,6 +2,7 @@ package library.dao;
 
 import library.bean.User;
 import library.dao.exception.DAOException;
+
 import java.util.List;
 
 /*
@@ -13,11 +14,11 @@ import java.util.List;
 public interface UserDAO {
     List<User> getAll() throws DAOException;
 
-    void add(User user) throws DAOException;
+    boolean add(User user) throws DAOException;
 
     void delete(String login) throws DAOException;
 
-    void delete(User user) throws DAOException;
+    boolean delete(User user) throws DAOException;
 
     User get(String login) throws DAOException;
 

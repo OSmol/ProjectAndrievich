@@ -23,6 +23,7 @@ public class Book implements Serializable {
     private double price;
     private boolean delete;
     private List<User> users;
+    private BookType bookType;
 
 
     public Book() {
@@ -50,7 +51,7 @@ public class Book implements Serializable {
     public Book(int id, String title, Person author, String publishingHouse, int year,
                 Set<Genre> genres, Set<Country> countries, long isbn, int countOfPages,
                 String language, Person authorOfTranslation, String description, double averageMark,
-                Person customer, double price, boolean delete, List<User> users) {
+                Person customer, double price, boolean delete, List<User> users, BookType bookType) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -68,6 +69,7 @@ public class Book implements Serializable {
         this.price = price;
         this.delete = delete;
         this.users = users;
+        this.bookType=bookType;
     }
 
     public int getId() {
@@ -206,6 +208,14 @@ public class Book implements Serializable {
         this.users = users;
     }
 
+    public BookType getBookType() {
+        return bookType;
+    }
+
+    public void setBookType(BookType bookType) {
+        this.bookType = bookType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -227,14 +237,13 @@ public class Book implements Serializable {
                 Objects.equals(authorOfTranslation, book.authorOfTranslation) &&
                 Objects.equals(description, book.description) &&
                 Objects.equals(customer, book.customer) &&
-                Objects.equals(users, book.users);
+                Objects.equals(users, book.users) &&
+                bookType == book.bookType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, publishingHouse, year, genres, countries,
-                isbn, countOfPages, language, authorOfTranslation, description, averageMark,
-                customer, price, delete, users);
+        return Objects.hash(id, title, author, publishingHouse, year, genres, countries, isbn, countOfPages, language, authorOfTranslation, description, averageMark, customer, price, delete, users, bookType);
     }
 
     @Override
@@ -257,6 +266,7 @@ public class Book implements Serializable {
                 ", price=" + price +
                 ", delete=" + delete +
                 ", users=" + users +
+                ", bookType=" + bookType +
                 '}';
     }
 

@@ -16,8 +16,9 @@ public class SQLUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void add(User user) throws DAOException {
+    public boolean add(User user) throws DAOException {
 
+        return false;
     }
 
     @Override
@@ -26,8 +27,9 @@ public class SQLUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void delete(User user) throws DAOException {
+    public boolean delete(User user) throws DAOException {
 
+        return false;
     }
 
     @Override

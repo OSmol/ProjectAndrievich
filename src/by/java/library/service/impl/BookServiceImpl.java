@@ -1,6 +1,7 @@
 package library.service.impl;
 
-import library.bean.*;
+import library.bean.Book;
+import library.bean.Genre;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
 import library.dao.factory.DAOFactory;
@@ -8,15 +9,15 @@ import library.service.BookService;
 import library.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookServiceImpl implements BookService {
     private static Logger logger = Logger.getLogger(BookServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
 
 
-    //передать бин
-    @Override
+        @Override
     public void addBook(Book book) throws ServiceException {
         logger.debug("BookServiceImpl.addMovie - run");
         BookDAO txtBookDAO = daoFactory.getTxtBookDAO();
