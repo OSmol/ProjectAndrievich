@@ -1,6 +1,10 @@
 package library;
 
+import library.bean.Book;
 import library.bean.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainMenu {
     private static String getMainOptions(User.UserRole userRole) {
@@ -18,6 +22,22 @@ public class MainMenu {
         sb.append("9. Change user\n");
         sb.append("0. To finish work.\n");
         return sb.toString();
+    }
+    private static boolean entrance() {
+        User user = new User();
+        List<Book> books = new ArrayList<>();
+        while (user == null) {
+            System.out.print("Enter login: ");
+            String username = user.getLogin();
+            System.out.print("Enter password: ");
+            String password = user.getPassword();
+
+            if(user == null) {
+                System.out.println("Wrong login or password. Try again.");
+            }
+        }
+
+        return true;
     }
 
 }
