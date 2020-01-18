@@ -2,6 +2,7 @@ package library;
 
 import library.bean.Book;
 import library.bean.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class MainMenu {
             sb.append("6. Delete user.\n");
         } else {
             sb.append("3. Suggest an administrator to add a book.\n");
-        }
+        } //hgghj
         sb.append("9. Change user\n");
         sb.append("0. To finish work.\n");
        System.out.println(sb.toString());
