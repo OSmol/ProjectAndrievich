@@ -11,15 +11,13 @@ import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
-import java.util.Map;
-
 public class FindBookByGenreCommand implements Command {
     private static Logger logger = Logger.getLogger(FindBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private User.Security security = new User.Security();
 
     @Override
-    public Response execute(Request request) {
+    public boolean execute(Request request) {
         String login = String.valueOf(request.getBody().get("login"));
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();

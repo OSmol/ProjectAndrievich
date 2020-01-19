@@ -4,16 +4,12 @@ import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
-import library.service.SecurityService;
 import library.service.UserService;
-import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
-import java.util.Map;
-
 public class DeleteUserCommand implements Command {
-    private static Logger logger = Logger.getLogger(SignInCommand.class);
+    private static Logger logger = Logger.getLogger(DeleteUserCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private User.Security security = new User.Security();
 

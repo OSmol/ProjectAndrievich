@@ -2,16 +2,12 @@ package library.controller.command.impl;
 
 import library.bean.Book;
 import library.bean.Person;
-import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
-import library.service.BookService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
-
-import java.util.Map;
 
 public class UpdateBookCommand implements Command {
     private static Logger logger = Logger.getLogger(AddBookCommand.class);

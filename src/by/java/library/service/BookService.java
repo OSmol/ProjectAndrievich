@@ -1,15 +1,9 @@
 package library.service;
 
 import library.bean.Book;
-import library.bean.Country;
-import library.bean.Genre;
-import library.bean.Person;
-import library.dao.exception.DAOException;
 import library.service.exception.ServiceException;
 
-
 import java.util.List;
-import java.util.Set;
 
 public interface BookService {
 
@@ -20,11 +14,13 @@ public interface BookService {
 
     Book getBook(int idBook) throws ServiceException;
 
+    void deleteBook(Book book) throws ServiceException;
+
     List<Book> findBookByName(String nameBook) throws ServiceException;
 
     List<Book> findBookByAuthor(String authorBook) throws ServiceException;
 
-    List<Book> findBookByGenre(Genre genre) throws ServiceException;
+    List<Book> findBookByGenre(String genre) throws ServiceException;
 
     List<Book> sortBookByName() throws ServiceException;
 

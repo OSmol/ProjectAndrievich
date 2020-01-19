@@ -1,8 +1,6 @@
 package library;
 
 
-import library.bean.User;
-
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
 Требования:
@@ -18,7 +16,7 @@ import library.bean.User;
  */
 public class Main {
     public static void main(String[] args) {
-      MainMenu.getMainOptions(User.UserRole.ADMIN);
+
 
     }
 }

@@ -31,7 +31,7 @@ public class BookPage implements Page {
         sb.append("5. Register a new user.\n");
         sb.append("6. Delete user.\n");
         sb.append("7. Update book. \n");
-        sb.append("8. Find user. \n")
+        sb.append("8. Find user. \n");
         sb.append("9. Change user\n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
@@ -84,57 +84,50 @@ public class BookPage implements Page {
         }
     }
 
-    private Response findBook(Request request) {
+    private void findBook(Request request) {
         FindBookByNameCommand nameCommand = new FindBookByNameCommand();
         if (!nameCommand.execute(request)) {
             System.out.println("Error in request, try again.");
         }
-        return null;
     }
 
-    private Response addBooks(Request request) {
+    private void addBooks(Request request) {
         AddBookCommand bookCommand = new AddBookCommand();
         if (bookCommand.execute(request)) {
             System.out.println("Book added!");
         } else {
             System.out.println("Book already in the catalog.");
         }
-        return null;
     }
 
-    private Response removeBook(Request request) {
-        return null;
+    private void removeBook(Request request) {
+        DeleteBookCommand bookCommand=new DeleteBookCommand();
+        bookCommand.execute(request);
     }
 
-    private Response updateBook(Request request) {
+    private void updateBook(Request request) {
         UpdateBookCommand bookCommand = new UpdateBookCommand();
         bookCommand.execute(request);
-        return null;
     }
 
-    private Response registerUser(Request request) {
+    private void registerUser(Request request) {
        RegistrationCommand command= new RegistrationCommand();
        command.execute(request);
         System.out.println("User registered.");
-        return null;
     }
 
-    private Response deleteUser() {
+    private void deleteUser() {
         System.out.println();
         new DeleteUserCommand();
-        return null;
     }
 
-    private Response findUser() {
-        return null;
+    private void findUser() {
     }
 
-    private Response updateUser() {
-        return null;
+    private void updateUser() {
     }
 
-    private Response finishWork() {
-        return null;
+    private void finishWork() {
     }
 
 
@@ -164,10 +157,10 @@ public class BookPage implements Page {
         String publishingHouse = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter year: ");
         String year = String.valueOf(ScannerHelper.inputInt());
-        //  System.out.println("Enter genre: ");
-        //   String genre = ScannerHelper.inputStringFromConsole();
-        //  System.out.println("Enter country: ");
-        //   String country = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter genre: ");
+        String genre = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter country: ");
+        String country = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter isbn: ");
         String isbn = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter countOfPages: ");
@@ -189,8 +182,8 @@ public class BookPage implements Page {
         request.getBody().put("author", author);
         request.getBody().put("publishingHouse", publishingHouse);
         request.getBody().put("year", year);
-        //   parameters.put("genre", genre);
-        //   parameters.put("country", country);
+        request.getBody().put("genre", genre);
+        request.getBody().put("country", country);
         request.getBody().put("isbn", isbn);
         request.getBody().put("countOfPages", countOfPages);
         request.getBody().put("language", language);

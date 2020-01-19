@@ -6,12 +6,9 @@ import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.service.BookService;
-import library.service.SecurityService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
-
-import java.util.Map;
 
 public class GetBookCommand implements Command {
     private static Logger logger = Logger.getLogger(GetBookCommand.class);
@@ -19,7 +16,7 @@ public class GetBookCommand implements Command {
     private User.Security security = new User.Security();
 
     @Override
-    public Response execute(Request request) {
+    public boolean execute(Request request) {
         String login = String.valueOf(request.getBody().get("login"));
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();

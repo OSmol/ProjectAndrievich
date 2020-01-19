@@ -1,7 +1,6 @@
 package library.service.impl;
 
 import library.bean.Book;
-import library.bean.Genre;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
 import library.dao.factory.DAOFactory;
@@ -17,7 +16,7 @@ public class BookServiceImpl implements BookService {
     private final DAOFactory daoFactory = DAOFactory.getInstance();
 
 
-        @Override
+    @Override
     public void addBook(Book book) throws ServiceException {
         logger.debug("BookServiceImpl.addMovie - run");
         BookDAO txtBookDAO = daoFactory.getTxtBookDAO();
@@ -50,8 +49,20 @@ public class BookServiceImpl implements BookService {
     public Book getBook(int idBook) throws ServiceException {
         logger.debug("BookServiceImpl.getBook - run");
         try {
-            logger.debug("BookServiceImpl.updateMovie - Book got");
+            logger.debug("BookServiceImpl.updateBook - Book got");
             return daoFactory.getTxtBookDAO().getBook(idBook);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+    }
+
+    @Override
+    public void deleteBook(Book book) throws ServiceException {
+        logger.debug("BookServiceImpl.deleteBook - run");
+        try {
+            logger.debug("BookServiceImpl.deleteBook - Book deleted");
+            daoFactory.getTxtBookDAO().deleteBook(book);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -100,20 +111,20 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public List<Book> findBookByGenre(Genre genre) throws ServiceException {
+    public List<Book> findBookByGenre(String genre) throws ServiceException {
         logger.debug("BookServiceImpl.findBookByGenre - run");
         List<Book> listBooksByGenre = new ArrayList<>();
         try {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
             for (Book book : list) {
-                for (Genre genreName : book.getGenres()) {
-                    if (genre.getName().equalsIgnoreCase(genreName.getName())) {
+                String genreName = book.getGenre();
+                    if (genre.equalsIgnoreCase(genreName)) {
                         listBooksByGenre.add(book);
                     } else {
                         logger.debug("BookServiceImpl.findBookByGenre - Book not found");
                     }
                 }
-            }
+
             return listBooksByGenre;
         } catch (DAOException e) {
             throw new ServiceException(e);

@@ -9,8 +9,6 @@ import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
-import java.util.Map;
-
 public class SignOutCommand implements Command {
 
     private static Logger logger = Logger.getLogger(SignOutCommand.class);
@@ -18,7 +16,7 @@ public class SignOutCommand implements Command {
     private User.Security security = new User.Security();
 
     @Override
-    public Response execute(Request request) throws ServiceException {
+    public boolean execute(Request request) throws ServiceException {
         String login = String.valueOf(request.getBody().get("login"));
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();

@@ -1,19 +1,15 @@
 package library.controller.command.impl;
 
 import library.bean.Book;
-import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.service.BookService;
-import library.service.SecurityService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class SortBookByNameCommand implements Command {
     private static Logger logger = Logger.getLogger(SignInCommand.class);
@@ -21,7 +17,7 @@ public class SortBookByNameCommand implements Command {
 
 
     @Override
-    public Response execute(Request request) throws ServiceException {
+    public boolean execute(Request request) throws ServiceException {
         logger.debug("SortBookByNameCommand");
         BookService bookService = serviceFactory.getBookServiceImpl();
 
