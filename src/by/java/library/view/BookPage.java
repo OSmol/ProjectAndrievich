@@ -80,7 +80,7 @@ public class BookPage implements Page {
     private void showBook(Request request) {
         GetBookCommand bookCommand = new GetBookCommand();
         bookCommand.execute(request);
-          //  System.out.println("The catalog is empty.\n");
+           System.out.println("This book show.\n");
 
     }
 
