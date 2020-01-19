@@ -10,6 +10,7 @@ import library.service.exception.ServiceException;
 
 import java.util.List;
 import java.util.Scanner;
+
 /*
 работаю с реквестом и респонсом, не могу вызвать дао, сервис, могу вызвать на 1 приватном методе 1 контроллер
 в этом  классе предпол работа с пользователем, поэтому дб много соут
@@ -25,7 +26,7 @@ public class BookPage implements Page {
         sb.append("1. View books in the catalog.\n");
         sb.append("2. Find a book in the catalog.\n");
         sb.append("3. Add a book to the catalog.\n");
-      //  sb.append("3. Suggest an administrator to add a book.\n");
+        //  sb.append("3. Suggest an administrator to add a book.\n");
         sb.append("4. Remove book from catalog.\n");
         sb.append("5. Register a new user.\n");
         sb.append("6. Delete user.\n");
@@ -35,42 +36,107 @@ public class BookPage implements Page {
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-            String result = sc.next();
-            switch (result){
-                case "1":
-                    new GetBookCommand();
-                    break;
-                case "2":
-                    new FindBookByNameCommand();
-                    break;
-                case "3":
-                    new AddBookCommand();
-                    break;
-                case "4":
-                    //deleteBook
-                    break;
-                case "5":
-                    new RegistrationCommand();
-                    break;
-                case "6":
-                    new DeleteUserCommand();
-                    break;
-                case "7":
-                    new UpdateBookCommand();
-                    break;
-                case "8":
-                    //find user
-                    break;
-                case "9":
-                    //update User
-                    break;
-                case "0":
-                    //finish work
-                    break;
-            }
+        String result = sc.next();
+        Response response = new Response();
+        Request request = new Request();
+        switch (result) {
+            case "1":
+                showBook(request);
+
+                break;
+            case "2":
+                findBook(request);
+
+                break;
+            case "3":
+                addBooks(request);
+                break;
+            case "4":
+                removeBook(request);
+                break;
+            case "5":
+                registerUser(request);
+                break;
+            case "6":
+                deleteUser();
+                break;
+            case "7":
+                updateBook(request);
+                break;
+            case "8":
+                findUser();
+                break;
+            case "9":
+                updateUser();
+                break;
+            case "0":
+                finishWork();
+                break;
+        }
 
         return null;
     }
+
+    private void showBook(Request request) {
+        GetBookCommand bookCommand = new GetBookCommand();
+        if (!bookCommand.execute(request)) {
+            System.out.println("The catalog is empty.\n");
+        }
+    }
+
+    private Response findBook(Request request) {
+        FindBookByNameCommand nameCommand = new FindBookByNameCommand();
+        if (!nameCommand.execute(request)) {
+            System.out.println("Error in request, try again.");
+        }
+        return null;
+    }
+
+    private Response addBooks(Request request) {
+        AddBookCommand bookCommand = new AddBookCommand();
+        if (bookCommand.execute(request)) {
+            System.out.println("Book added!");
+        } else {
+            System.out.println("Book already in the catalog.");
+        }
+        return null;
+    }
+
+    private Response removeBook(Request request) {
+        return null;
+    }
+
+    private Response updateBook(Request request) {
+        UpdateBookCommand bookCommand = new UpdateBookCommand();
+        bookCommand.execute(request);
+        return null;
+    }
+
+    private Response registerUser(Request request) {
+       RegistrationCommand command= new RegistrationCommand();
+       command.execute(request);
+        System.out.println("User registered.");
+        return null;
+    }
+
+    private Response deleteUser() {
+        System.out.println();
+        new DeleteUserCommand();
+        return null;
+    }
+
+    private Response findUser() {
+        return null;
+    }
+
+    private Response updateUser() {
+        return null;
+    }
+
+    private Response finishWork() {
+        return null;
+    }
+
 
     private Request sortBookByName() throws ServiceException {
         Command command = new SortBookByNameCommand();

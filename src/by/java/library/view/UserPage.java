@@ -1,60 +1,23 @@
 package library.view;
 
-import javatrDay5.helper.ScannerHelper;
+import library.bean.User;
 import library.controller.Request;
-import library.controller.Response;
-import library.controller.command.Command;
-import library.controller.command.impl.RegistrationCommand;
 import library.service.exception.ServiceException;
 
-public class UserPage {
-    public Request authorisation() throws ServiceException {
-        Command command = new RegistrationCommand();
-        System.out.println("Enter login: ");
-        String login = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter password: ");
-        String password = ScannerHelper.inputStringFromConsole();
-        Request request=new Request();
-        request.getBody().put("login", login);
-        request.getBody().put("password", password);
-        command.execute(request);
-        return null;
-    }
-
-    public Request registration() throws ServiceException {
-        Command command = new RegistrationCommand();
-        System.out.println("Enter login: ");
-        String login = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter password: ");
-        String password = ScannerHelper.inputStringFromConsole();
-        Request request = new Request();
-        request.getBody().put("login", login);
-        request.getBody().put("password", password);
-
-        Response response = command.execute(request);
-        System.out.println(response.getResponseCode());
-        if (response.getResponseCode()==501){
-            System.out.println(response.getErrorMessage());
+public class UserPage implements Page {
+    @Override
+    public Request run() throws ServiceException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nAvailable options:\n");
+        if (userRole == User.UserRole.ADMIN) {
+            sb.append("5. Register a new user.\n");
+            sb.append("6. Delete user.\n");
+        } else {
+            sb.append("3. Suggest an administrator to add a book.\n");
         }
-        return request;
-    }
-    public Request signIn() throws ServiceException {
-        Command command = new RegistrationCommand();
-        System.out.println("Enter login: ");
-        String login = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter password: ");
-        String password = ScannerHelper.inputStringFromConsole();
-        Request request=new Request();
-        request.getBody().put("login", login);
-        request.getBody().put("password", password);
-        Response response = command.execute(request);
-        System.out.println(response.getResponseCode());
-        if (response.getResponseCode() == 501) {
-            System.out.println(response.getErrorMessage());
-        }
-        return request;
-    }
-    public Request signOut() throws ServiceException {
+        sb.append("9. Change user\n");
+        sb.append("0. To finish work.\n");
+        System.out.println(sb.toString());
         return null;
     }
 }
