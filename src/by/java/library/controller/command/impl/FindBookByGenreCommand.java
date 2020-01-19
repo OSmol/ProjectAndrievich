@@ -1,7 +1,7 @@
 package library.controller.command.impl;
 
 import library.bean.Book;
-import library.bean.Genre;
+
 import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
@@ -17,7 +17,7 @@ public class FindBookByGenreCommand implements Command {
     private User.Security security = new User.Security();
 
     @Override
-    public boolean execute(Request request) {
+    public Response execute(Request request) {
         String login = String.valueOf(request.getBody().get("login"));
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();
@@ -32,7 +32,7 @@ public class FindBookByGenreCommand implements Command {
         try {
             Book book = new Book();
             BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.findBookByGenre(new Genre());
+            bookService.findBookByGenre(book.getGenre());
             response.setResponseCode(201);
             return response;
 

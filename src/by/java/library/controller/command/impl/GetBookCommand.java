@@ -16,7 +16,7 @@ public class GetBookCommand implements Command {
     private User.Security security = new User.Security();
 
     @Override
-    public boolean execute(Request request) {
+    public Response execute(Request request) {
         String login = String.valueOf(request.getBody().get("login"));
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();

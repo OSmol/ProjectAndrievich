@@ -17,7 +17,7 @@ public class SortBookByNameCommand implements Command {
 
 
     @Override
-    public boolean execute(Request request) throws ServiceException {
+    public Response execute(Request request) throws ServiceException {
         logger.debug("SortBookByNameCommand");
         BookService bookService = serviceFactory.getBookServiceImpl();
 

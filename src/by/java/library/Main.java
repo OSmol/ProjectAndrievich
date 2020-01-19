@@ -1,6 +1,8 @@
 package library;
 
 
+import library.view.BookPage;
+
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
 Требования:
@@ -16,7 +18,8 @@ package library;
  */
 public class Main {
     public static void main(String[] args) {
-
+        BookPage bookPage=new BookPage();
+        bookPage.run();
 
     }
 }

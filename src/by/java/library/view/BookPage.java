@@ -58,7 +58,7 @@ public class BookPage implements Page {
                 registerUser(request);
                 break;
             case "6":
-                deleteUser();
+                deleteUser(request);
                 break;
             case "7":
                 updateBook(request);
@@ -79,29 +79,27 @@ public class BookPage implements Page {
 
     private void showBook(Request request) {
         GetBookCommand bookCommand = new GetBookCommand();
-        if (!bookCommand.execute(request)) {
-            System.out.println("The catalog is empty.\n");
-        }
+        bookCommand.execute(request);
+          //  System.out.println("The catalog is empty.\n");
+
     }
 
     private void findBook(Request request) {
         FindBookByNameCommand nameCommand = new FindBookByNameCommand();
-        if (!nameCommand.execute(request)) {
-            System.out.println("Error in request, try again.");
-        }
+        nameCommand.execute(request);
+           // System.out.println("Error in request, try again.");
+
     }
 
     private void addBooks(Request request) {
         AddBookCommand bookCommand = new AddBookCommand();
-        if (bookCommand.execute(request)) {
+        bookCommand.execute(request);
             System.out.println("Book added!");
-        } else {
-            System.out.println("Book already in the catalog.");
-        }
+
     }
 
     private void removeBook(Request request) {
-        DeleteBookCommand bookCommand=new DeleteBookCommand();
+        DeleteBookCommand bookCommand = new DeleteBookCommand();
         bookCommand.execute(request);
     }
 
@@ -111,14 +109,15 @@ public class BookPage implements Page {
     }
 
     private void registerUser(Request request) {
-       RegistrationCommand command= new RegistrationCommand();
-       command.execute(request);
+        RegistrationCommand command = new RegistrationCommand();
+        command.execute(request);
         System.out.println("User registered.");
     }
 
-    private void deleteUser() {
+    private void deleteUser(Request request) {
         System.out.println();
-        new DeleteUserCommand();
+        DeleteUserCommand deleteUserCommand = new DeleteUserCommand();
+        deleteUserCommand.execute(request);
     }
 
     private void findUser() {

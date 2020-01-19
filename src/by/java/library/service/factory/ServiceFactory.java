@@ -7,8 +7,7 @@ public class ServiceFactory {
 
     private final library.service.impl.UserServiceImpl UserServiceImpl = new UserServiceImpl();
     private final library.service.impl.BookServiceImpl BookServiceImpl = new BookServiceImpl();
-    private final library.service.impl.GenreServiceImpl GenreServiceImpl = new GenreServiceImpl();
-    private final library.service.impl.CountryServiceImpl CountryServiceImpl = new CountryServiceImpl();
+
     private final library.service.impl.PersonServiceImpl PersonServiceImpl = new PersonServiceImpl();
 
 
@@ -27,13 +26,7 @@ public class ServiceFactory {
         return BookServiceImpl;
     }
 
-    public GenreServiceImpl getGenreServiceImpl() {
-        return GenreServiceImpl;
-    }
 
-    public CountryServiceImpl getCountryServiceImpl() {
-        return CountryServiceImpl;
-    }
 
     public PersonServiceImpl getPersonServiceImpl() {
         return PersonServiceImpl;

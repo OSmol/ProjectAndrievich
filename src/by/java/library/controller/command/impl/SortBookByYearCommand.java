@@ -17,7 +17,7 @@ public class SortBookByYearCommand implements Command {
     private Book book = new Book();
 
     @Override
-    public boolean execute(Request request) {
+    public Response execute(Request request) {
         String login = String.valueOf(request.getBody().get("login"));
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();

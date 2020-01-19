@@ -15,7 +15,7 @@ public class AddBookCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     @Override
-    public boolean execute(Request request) {
+    public Response execute(Request request) {
         //  String id = parameters.get("id");
         String title = String.valueOf(request.getBody().get("title"));
         String author = String.valueOf(request.getBody().get("author"));
