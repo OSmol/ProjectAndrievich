@@ -12,7 +12,7 @@ public class Book implements Serializable {
     private String publishingHouse;
     private int year;
     private Set<Genre> genres = new HashSet<>();
-    private Set<Country> countries = new HashSet<>();
+    private String country;
     private long isbn;
     private int countOfPages;
     private String language;
@@ -38,7 +38,7 @@ public class Book implements Serializable {
      * @param publishingHouse     - publishing house ob book
      * @param year                - year of publication of the book
      * @param genres              - genre of book
-     * @param countries           - book publishing country
+     * @param country           - book publishing country
      * @param isbn                - International Standard Book Number
      * @param countOfPages        - the number of pages in the book
      * @param language            - language of book text
@@ -49,7 +49,7 @@ public class Book implements Serializable {
      * @param delete              - meaning the book is deleted or not
      */
     public Book(int id, String title, Person author, String publishingHouse, int year,
-                Set<Genre> genres, Set<Country> countries, long isbn, int countOfPages,
+                Set<Genre> genres, String country, long isbn, int countOfPages,
                 String language, Person authorOfTranslation, String description, double averageMark,
                 Person customer, double price, boolean delete, List<User> users, BookType bookType) {
         this.id = id;
@@ -58,7 +58,7 @@ public class Book implements Serializable {
         this.publishingHouse = publishingHouse;
         this.year = year;
         this.genres = genres;
-        this.countries = countries;
+        this.country = country;
         this.isbn = isbn;
         this.countOfPages = countOfPages;
         this.language = language;
@@ -120,12 +120,12 @@ public class Book implements Serializable {
         this.genres = genres;
     }
 
-    public Set<Country> getCountries() {
-        return countries;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCountries(Set<Country> countries) {
-        this.countries = countries;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public long getIsbn() {
@@ -232,7 +232,7 @@ public class Book implements Serializable {
                 Objects.equals(author, book.author) &&
                 Objects.equals(publishingHouse, book.publishingHouse) &&
                 Objects.equals(genres, book.genres) &&
-                Objects.equals(countries, book.countries) &&
+                Objects.equals(country, book.country) &&
                 Objects.equals(language, book.language) &&
                 Objects.equals(authorOfTranslation, book.authorOfTranslation) &&
                 Objects.equals(description, book.description) &&
@@ -243,7 +243,7 @@ public class Book implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, publishingHouse, year, genres, countries, isbn, countOfPages, language, authorOfTranslation, description, averageMark, customer, price, delete, users, bookType);
+        return Objects.hash(id, title, author, publishingHouse, year, genres, country, isbn, countOfPages, language, authorOfTranslation, description, averageMark, customer, price, delete, users, bookType);
     }
 
     @Override
@@ -255,7 +255,7 @@ public class Book implements Serializable {
                 ", publishingHouse='" + publishingHouse + '\'' +
                 ", year=" + year +
                 ", genres=" + genres +
-                ", countries=" + countries +
+                ", countries=" + country +
                 ", isbn=" + isbn +
                 ", countOfPages=" + countOfPages +
                 ", language='" + language + '\'' +
