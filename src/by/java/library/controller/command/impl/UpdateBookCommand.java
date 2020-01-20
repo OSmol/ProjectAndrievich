@@ -20,8 +20,8 @@ public class UpdateBookCommand implements Command {
         String author = String.valueOf(request.getBody().get("author"));
         String publishingHouse = String.valueOf(request.getBody().get("publishingHouse"));
         String year = String.valueOf(request.getBody().get("year"));
-        // Set<Genre> genre =request.getBody().get("genre");
-        //  Set<Country>country = parameters.get("country");
+        String genre = String.valueOf(request.getBody().get("genre"));
+        String country = String.valueOf(request.getBody().get("country"));
         String isbn = String.valueOf(request.getBody().get("isbn"));
         String countOfPages = String.valueOf(request.getBody().get("countOfPages"));
         String language = String.valueOf(request.getBody().get("language"));
@@ -52,8 +52,8 @@ public class UpdateBookCommand implements Command {
         book.setAuthor(new Person(1, author, author));
         book.setPublishingHouse(publishingHouse);
         book.setYear(Integer.parseInt(year));
-        // book.setGenres(genre);
-        //  book.setCountries(country);
+        book.setGenre(genre);
+        book.setCountry(country);
         book.setIsbn(Long.parseLong(isbn));
         book.setCountOfPages(Integer.parseInt(countOfPages));
         book.setLanguage(language);

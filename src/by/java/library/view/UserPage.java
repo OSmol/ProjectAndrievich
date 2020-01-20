@@ -1,15 +1,19 @@
 package library.view;
 
+import javatrDay5.helper.ScannerHelper;
 import library.controller.Request;
 import library.controller.Response;
+import library.controller.command.Command;
 import library.controller.command.impl.DeleteUserCommand;
 import library.controller.command.impl.RegistrationCommand;
+import library.controller.command.impl.UpdateUserCommand;
+import library.service.exception.ServiceException;
 
 import java.util.Scanner;
 
 public class UserPage implements Page {
     @Override
-    public Request run() {
+    public Request run() throws ServiceException {
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
         sb.append("5. Register a new user.\n");
@@ -30,10 +34,10 @@ public class UserPage implements Page {
                 deleteUser(request);
                 break;
             case "8":
-                findUser();
+                findUser(request);
                 break;
             case "9":
-                updateUser();
+                updateUser(request);
                 break;
             case "0":
                 finishWork();
@@ -44,22 +48,44 @@ public class UserPage implements Page {
     }
 
 
-    private void registerUser(Request request) {
-        RegistrationCommand command = new RegistrationCommand();
-        command.execute(request);
+    private void registerUser(Request request) throws ServiceException {
+        Command command = new RegistrationCommand();
+        System.out.println("Enter name: ");
+        String name = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter email: ");
+        String email = ScannerHelper.inputStringFromConsole();
+        request.getBody().put("name", name);
+        request.getBody().put("email", email);
+        Response response = command.execute(request);
+        System.out.println(response.getResponseCode());
         System.out.println("User registered.");
     }
 
-    private void deleteUser(Request request) {
-        System.out.println();
-        DeleteUserCommand deleteUserCommand = new DeleteUserCommand();
-        deleteUserCommand.execute(request);
+    private void deleteUser(Request request) throws ServiceException {
+
+        Command deleteUserCommand = new DeleteUserCommand();
+        System.out.println("Enter id user");
+        int id = ScannerHelper.inputInt();
+        request.getBody().put("id", id);
+        Response response = deleteUserCommand.execute(request);
+        System.out.println(response.getResponseCode());
     }
 
-    private void findUser() {
+    private void findUser(Request request) throws ServiceException {
+        Command command = new DeleteUserCommand();
+        System.out.println("Enter login user");
+        String login = ScannerHelper.inputStringFromConsole();
+        request.getBody().put("login", login);
+        Response response = command.execute(request);
+        System.out.println(response.getResponseCode());
     }
 
-    private void updateUser() {
+    private void updateUser(Request request) throws ServiceException {
+        Command command = new UpdateUserCommand();
+        System.out.println("Enter id user");
+        int id = ScannerHelper.inputInt();
+        request.getBody().put("id", id);
+        Response response = command.execute(request);
     }
 
     private void finishWork() {

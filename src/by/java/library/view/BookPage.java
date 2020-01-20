@@ -63,7 +63,9 @@ public class BookPage implements Page {
         System.out.println("Enter id book");
         int idBook = sc.nextInt();
         request.getBody().put("idBook", idBook);
-        bookCommand.execute(request);
+        Response response = bookCommand.execute(request);
+        System.out.println(response.getErrorMessage());
+        System.out.println(response.getResponseCode());
         System.out.println("This book show.\n");
     }
 
@@ -72,7 +74,9 @@ public class BookPage implements Page {
         System.out.println("Enter book name");
         String bookName = sc.nextLine();
         request.getBody().put("bookName", bookName);
-        nameCommand.execute(request);
+        Response response = nameCommand.execute(request);
+        System.out.println(response.getErrorMessage());
+        System.out.println(response.getResponseCode());
         // System.out.println("Error in request, try again.");
 
     }
@@ -133,11 +137,13 @@ public class BookPage implements Page {
 
 
     private void removeBook(Request request) throws ServiceException {
-       Command bookCommand = new DeleteBookCommand();
+        Command bookCommand = new DeleteBookCommand();
         System.out.println("Enter id book");
         int id = sc.nextInt();
         request.getBody().put("id", id);
-        bookCommand.execute(request);
+        Response response = bookCommand.execute(request);
+        System.out.println(response.getErrorMessage());
+        System.out.println(response.getResponseCode());
     }
 
     private void updateBook(Request request) throws ServiceException {
@@ -145,7 +151,9 @@ public class BookPage implements Page {
         System.out.println("Enter id book");
         int id = sc.nextInt();
         request.getBody().put("id", id);
-        bookCommand.execute(request);
+        Response response = bookCommand.execute(request);
+        System.out.println(response.getErrorMessage());
+        System.out.println(response.getResponseCode());
     }
 
 

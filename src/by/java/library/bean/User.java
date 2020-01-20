@@ -7,7 +7,6 @@ import java.util.Objects;
 
 
 public class User implements Serializable {
-
     private int id;
     private Security security;
     private String name;
