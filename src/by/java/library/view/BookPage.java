@@ -26,13 +26,8 @@ public class BookPage implements Page {
         sb.append("1. View books in the catalog.\n");
         sb.append("2. Find a book in the catalog.\n");
         sb.append("3. Add a book to the catalog.\n");
-        //  sb.append("3. Suggest an administrator to add a book.\n");
         sb.append("4. Remove book from catalog.\n");
-        sb.append("5. Register a new user.\n");
-        sb.append("6. Delete user.\n");
         sb.append("7. Update book. \n");
-        sb.append("8. Find user. \n");
-        sb.append("9. Change user\n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
@@ -42,11 +37,9 @@ public class BookPage implements Page {
         switch (result) {
             case "1":
                 showBook(request);
-
                 break;
             case "2":
                 findBook(request);
-
                 break;
             case "3":
                 addBooks(request);
@@ -55,51 +48,40 @@ public class BookPage implements Page {
                 removeBook(request);
                 break;
             case "5":
-                registerUser(request);
-                break;
-            case "6":
-                deleteUser(request);
-                break;
-            case "7":
                 updateBook(request);
-                break;
-            case "8":
-                findUser();
-                break;
-            case "9":
-                updateUser();
                 break;
             case "0":
                 finishWork();
                 break;
         }
-
         return null;
     }
 
     private void showBook(Request request) {
         GetBookCommand bookCommand = new GetBookCommand();
         bookCommand.execute(request);
-           System.out.println("This book show.\n");
-
+        System.out.println("This book show.\n");
     }
 
     private void findBook(Request request) {
         FindBookByNameCommand nameCommand = new FindBookByNameCommand();
         nameCommand.execute(request);
-           // System.out.println("Error in request, try again.");
+        // System.out.println("Error in request, try again.");
 
     }
 
     private void addBooks(Request request) {
         AddBookCommand bookCommand = new AddBookCommand();
         bookCommand.execute(request);
-            System.out.println("Book added!");
-
+        System.out.println("Book added!");
     }
 
     private void removeBook(Request request) {
         DeleteBookCommand bookCommand = new DeleteBookCommand();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter id book");
+        int id = sc.nextInt();
+        request.getBody().put("id", id);
         bookCommand.execute(request);
     }
 
@@ -108,23 +90,6 @@ public class BookPage implements Page {
         bookCommand.execute(request);
     }
 
-    private void registerUser(Request request) {
-        RegistrationCommand command = new RegistrationCommand();
-        command.execute(request);
-        System.out.println("User registered.");
-    }
-
-    private void deleteUser(Request request) {
-        System.out.println();
-        DeleteUserCommand deleteUserCommand = new DeleteUserCommand();
-        deleteUserCommand.execute(request);
-    }
-
-    private void findUser() {
-    }
-
-    private void updateUser() {
-    }
 
     private void finishWork() {
     }
