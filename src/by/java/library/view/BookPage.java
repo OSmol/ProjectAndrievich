@@ -17,9 +17,10 @@ import java.util.Scanner;
 задача: написать бук пэйдж
  */
 public class BookPage implements Page {
+    Scanner sc = new Scanner(System.in);
 
     @Override
-    public Request run() {
+    public Request run() throws ServiceException {
 
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
@@ -30,7 +31,7 @@ public class BookPage implements Page {
         sb.append("7. Update book. \n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
-        Scanner sc = new Scanner(System.in);
+
         String result = sc.next();
         Response response = new Response();
         Request request = new Request();
@@ -57,58 +58,26 @@ public class BookPage implements Page {
         return null;
     }
 
-    private void showBook(Request request) {
-        GetBookCommand bookCommand = new GetBookCommand();
+    private void showBook(Request request) throws ServiceException {
+        Command bookCommand = new GetBookCommand();
+        System.out.println("Enter id book");
+        int idBook = sc.nextInt();
+        request.getBody().put("idBook", idBook);
         bookCommand.execute(request);
         System.out.println("This book show.\n");
     }
 
-    private void findBook(Request request) {
-        FindBookByNameCommand nameCommand = new FindBookByNameCommand();
+    private void findBook(Request request) throws ServiceException {
+        Command nameCommand = new FindBookByNameCommand();
+        System.out.println("Enter book name");
+        String bookName = sc.nextLine();
+        request.getBody().put("bookName", bookName);
         nameCommand.execute(request);
         // System.out.println("Error in request, try again.");
 
     }
 
-    private void addBooks(Request request) {
-        AddBookCommand bookCommand = new AddBookCommand();
-        bookCommand.execute(request);
-        System.out.println("Book added!");
-    }
-
-    private void removeBook(Request request) {
-        DeleteBookCommand bookCommand = new DeleteBookCommand();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter id book");
-        int id = sc.nextInt();
-        request.getBody().put("id", id);
-        bookCommand.execute(request);
-    }
-
-    private void updateBook(Request request) {
-        UpdateBookCommand bookCommand = new UpdateBookCommand();
-        bookCommand.execute(request);
-    }
-
-
-    private void finishWork() {
-    }
-
-
-    private Request sortBookByName() throws ServiceException {
-        Command command = new SortBookByNameCommand();
-        Request request = new Request();
-        Response response = command.execute(request);
-        if (response.getResponseCode() == 501) {
-            System.out.println(response.getErrorMessage());
-            System.out.println(response.getResponseCode());
-        } else {
-            List<Book> list = (List<Book>) response.getBody().get("title");
-        }
-        return request;
-    }
-
-    public Request addBook() throws ServiceException {
+    private void addBooks(Request request) throws ServiceException {
         Command command = new AddBookCommand();
 
         //  System.out.println("Enter id: ");
@@ -140,8 +109,6 @@ public class BookPage implements Page {
         System.out.println("Enter price: ");
         String price = String.valueOf(ScannerHelper.inputInt());
 
-        Request request = new Request();
-
         request.getBody().put("title", title);
         request.getBody().put("author", author);
         request.getBody().put("publishingHouse", publishingHouse);
@@ -161,7 +128,44 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
+        // return request;
+    }
+
+
+    private void removeBook(Request request) throws ServiceException {
+       Command bookCommand = new DeleteBookCommand();
+        System.out.println("Enter id book");
+        int id = sc.nextInt();
+        request.getBody().put("id", id);
+        bookCommand.execute(request);
+    }
+
+    private void updateBook(Request request) throws ServiceException {
+        Command bookCommand = new UpdateBookCommand();
+        System.out.println("Enter id book");
+        int id = sc.nextInt();
+        request.getBody().put("id", id);
+        bookCommand.execute(request);
+    }
+
+
+    private void finishWork() {
+    }
+
+
+    private Request sortBookByName() throws ServiceException {
+        Command command = new SortBookByNameCommand();
+        Request request = new Request();
+        Response response = command.execute(request);
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+            System.out.println(response.getResponseCode());
+        } else {
+            List<Book> list = (List<Book>) response.getBody().get("title");
+        }
         return request;
     }
 }
+
+
 
