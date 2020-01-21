@@ -2,6 +2,7 @@ package library;
 
 
 import library.view.BookPage;
+import library.view.UserPage;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -18,8 +19,9 @@ import library.view.BookPage;
  */
 public class Main {
     public static void main(String[] args) {
-        BookPage bookPage=new BookPage();
-        bookPage.run();
-
+        BookPage bookPage = new BookPage();
+        UserPage userPage = new UserPage();
+       bookPage.run();
+        //userPage.run();
     }
 }

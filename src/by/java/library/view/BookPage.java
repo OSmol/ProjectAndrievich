@@ -6,7 +6,6 @@ import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.*;
-import library.service.exception.ServiceException;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class BookPage implements Page {
     Scanner sc = new Scanner(System.in);
 
     @Override
-    public Request run() throws ServiceException {
+    public Request run() {
 
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
@@ -28,7 +27,7 @@ public class BookPage implements Page {
         sb.append("2. Find a book in the catalog.\n");
         sb.append("3. Add a book to the catalog.\n");
         sb.append("4. Remove book from catalog.\n");
-        sb.append("7. Update book. \n");
+        sb.append("5. Update book. \n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
 
@@ -58,7 +57,7 @@ public class BookPage implements Page {
         return null;
     }
 
-    private void showBook(Request request) throws ServiceException {
+    private void showBook(Request request) {
         Command bookCommand = new GetBookCommand();
         System.out.println("Enter id book");
         int idBook = sc.nextInt();
@@ -69,7 +68,7 @@ public class BookPage implements Page {
         System.out.println("This book show.\n");
     }
 
-    private void findBook(Request request) throws ServiceException {
+    private void findBook(Request request) {
         Command nameCommand = new FindBookByNameCommand();
         System.out.println("Enter book name");
         String bookName = sc.nextLine();
@@ -81,7 +80,7 @@ public class BookPage implements Page {
 
     }
 
-    private void addBooks(Request request) throws ServiceException {
+    private void addBooks(Request request) {
         Command command = new AddBookCommand();
 
         //  System.out.println("Enter id: ");
@@ -136,7 +135,7 @@ public class BookPage implements Page {
     }
 
 
-    private void removeBook(Request request) throws ServiceException {
+    private void removeBook(Request request) {
         Command bookCommand = new DeleteBookCommand();
         System.out.println("Enter id book");
         int id = sc.nextInt();
@@ -146,7 +145,7 @@ public class BookPage implements Page {
         System.out.println(response.getResponseCode());
     }
 
-    private void updateBook(Request request) throws ServiceException {
+    private void updateBook(Request request) {
         Command bookCommand = new UpdateBookCommand();
         System.out.println("Enter id book");
         int id = sc.nextInt();
@@ -154,6 +153,9 @@ public class BookPage implements Page {
         Response response = bookCommand.execute(request);
         System.out.println(response.getErrorMessage());
         System.out.println(response.getResponseCode());
+        System.out.println((List<Book>) response.getBody().get("id"));;
+
+
     }
 
 
@@ -161,7 +163,7 @@ public class BookPage implements Page {
     }
 
 
-    private Request sortBookByName() throws ServiceException {
+    private Request sortBookByName() {
         Command command = new SortBookByNameCommand();
         Request request = new Request();
         Response response = command.execute(request);

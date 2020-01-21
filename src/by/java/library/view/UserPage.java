@@ -7,13 +7,12 @@ import library.controller.command.Command;
 import library.controller.command.impl.DeleteUserCommand;
 import library.controller.command.impl.RegistrationCommand;
 import library.controller.command.impl.UpdateUserCommand;
-import library.service.exception.ServiceException;
 
 import java.util.Scanner;
 
 public class UserPage implements Page {
     @Override
-    public Request run() throws ServiceException {
+    public Request run() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
         sb.append("5. Register a new user.\n");
@@ -48,7 +47,7 @@ public class UserPage implements Page {
     }
 
 
-    private void registerUser(Request request) throws ServiceException {
+    private void registerUser(Request request) {
         Command command = new RegistrationCommand();
         System.out.println("Enter name: ");
         String name = ScannerHelper.inputStringFromConsole();
@@ -61,7 +60,7 @@ public class UserPage implements Page {
         System.out.println("User registered.");
     }
 
-    private void deleteUser(Request request) throws ServiceException {
+    private void deleteUser(Request request) {
 
         Command deleteUserCommand = new DeleteUserCommand();
         System.out.println("Enter id user");
@@ -71,7 +70,7 @@ public class UserPage implements Page {
         System.out.println(response.getResponseCode());
     }
 
-    private void findUser(Request request) throws ServiceException {
+    private void findUser(Request request) {
         Command command = new DeleteUserCommand();
         System.out.println("Enter login user");
         String login = ScannerHelper.inputStringFromConsole();
@@ -80,12 +79,13 @@ public class UserPage implements Page {
         System.out.println(response.getResponseCode());
     }
 
-    private void updateUser(Request request) throws ServiceException {
+    private void updateUser(Request request) {
         Command command = new UpdateUserCommand();
         System.out.println("Enter id user");
         int id = ScannerHelper.inputInt();
         request.getBody().put("id", id);
         Response response = command.execute(request);
+        System.out.println(response.getResponseCode());
     }
 
     private void finishWork() {

@@ -17,12 +17,17 @@ public class SortBookByNameCommand implements Command {
 
 
     @Override
-    public Response execute(Request request) throws ServiceException {
+    public Response execute(Request request)  {
         logger.debug("SortBookByNameCommand");
         BookService bookService = serviceFactory.getBookServiceImpl();
 
 
-        List<Book> list = bookService.sortBookByName();
+        List<Book> list = null;
+        try {
+            list = bookService.sortBookByName();
+        } catch (ServiceException e) {
+          //  e.printStackTrace();
+        }
 
         Response response = new Response();
         if (list == null || list.isEmpty()) {
