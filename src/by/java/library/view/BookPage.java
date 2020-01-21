@@ -65,9 +65,9 @@ public class BookPage implements Page {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getErrorMessage());
+            System.out.println(response.getBody());
         }
-        System.out.println(response.getBody());
+        System.out.println();
     }
 
     private void findBook() {
@@ -110,8 +110,6 @@ public class BookPage implements Page {
         String authorOfTranslation = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter description: ");
         String description = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter averageMark: ");
-        String averageMark = String.valueOf(ScannerHelper.inputInt());
         System.out.println("Enter price: ");
         String price = String.valueOf(ScannerHelper.inputInt());
 
@@ -126,7 +124,6 @@ public class BookPage implements Page {
         request.getBody().put("language", language);
         request.getBody().put("authorOfTranslation", authorOfTranslation);
         request.getBody().put("description", description);
-        request.getBody().put("averageMark", averageMark);
         request.getBody().put("price", price);
 
         Response response = command.execute(request);

@@ -1,6 +1,7 @@
 package library;
 
 
+import library.dao.exception.DAOException;
 import library.view.BookPage;
 import library.view.UserPage;
 
@@ -18,10 +19,11 @@ import library.view.UserPage;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) {
-        BookPage bookPage = new BookPage();
+    public static void main(String[] args) throws DAOException {
+           BookPage bookPage = new BookPage();
         UserPage userPage = new UserPage();
        bookPage.run();
         // userPage.run();
+
     }
 }

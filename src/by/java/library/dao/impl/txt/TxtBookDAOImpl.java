@@ -10,19 +10,22 @@ import org.apache.log4j.Logger;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TxtBookDAOImpl implements BookDAO {
-    private static final String BOOKFILE = "src/by/resources/library/Books.txt";
+    private static final String BFILE = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
 
-    /*private Object readFile() throws DAOException {
-        File file = new File(BOOKFILE);
+    private Object readFile() throws DAOException {
+        List<Object> list = new ArrayList<>();
+        File file = new File(BFILE);
         ObjectInputStream objectInputStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            return objectInputStream.readObject();
+            objectInputStream.readObject();
+            list.add(objectInputStream);
+
+            return list;
         } catch (ClassNotFoundException ce) {
             throw new DAOException("Класс не существует", ce);
         } catch (FileNotFoundException e) {
@@ -40,12 +43,12 @@ public class TxtBookDAOImpl implements BookDAO {
                 }
             }
         }
-    }*/
+    }
 
     private void writeFile(List<Book> books) throws DAOException {
-        File file = new File(BOOKFILE);
-        ObjectOutputStream objectOutputStream = null;
-        FileOutputStream fileOutputStream = null;
+        File file = new File(BFILE);
+        ObjectOutputStream objectOutputStream;
+        FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -55,46 +58,18 @@ public class TxtBookDAOImpl implements BookDAO {
             throw new DAOException("file don't suggesting serialization" + e);
         } catch (IOException e) {
             throw new DAOException("file cant be create" + e);
-        } finally {
-            if (objectOutputStream != null) {
-                try {
-                    objectOutputStream.close();
-                } catch (IOException e) {
-                    //
-                }
-            }
         }
-    }
-
-    private Object readFile() throws FileNotFoundException {
-        File file = new File(BOOKFILE);
-        Scanner s = new Scanner(file);
-        ArrayList<String> list = new ArrayList<>();
-        while (s.hasNext()){
-            list.add(s.next());
-        }
-        s.close();
-        return list;
     }
 
 
     @Override
     public List<Book> getBooks() throws DAOException {
-        List<Book> list;
-        try {
-            list = (List<Book>) readFile();
-        } catch (FileNotFoundException e) {
-           throw new DAOException(e);
-        }
-
-        return list;
+        return (List<Book>) readFile();
     }
 
     @Override
     public void addBook(Book book) throws DAOException {
-        if (book.getId() != 0) {
-            throw new DAOException("book have id and cant be add in list");
-        }
+
         List<Book> list = getBooks();
 
         if (list == null || list.isEmpty()) {

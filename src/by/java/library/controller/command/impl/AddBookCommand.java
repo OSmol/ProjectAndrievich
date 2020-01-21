@@ -21,14 +21,14 @@ public class AddBookCommand implements Command {
         String author = String.valueOf(request.getBody().get("author"));
         String publishingHouse = String.valueOf(request.getBody().get("publishingHouse"));
         String year = String.valueOf(request.getBody().get("year"));
-        // Set<Genre> genre =request.getBody().get("genre");
-        //  Set<Country>country = parameters.get("country");
+        String genre = String.valueOf(request.getBody().get("genre"));
+        String country = String.valueOf(request.getBody().get("country"));
         String isbn = String.valueOf(request.getBody().get("isbn"));
         String countOfPages = String.valueOf(request.getBody().get("countOfPages"));
         String language = String.valueOf(request.getBody().get("language"));
         String authorOfTranslation = String.valueOf(request.getBody().get("authorOfTranslation"));
         String description = String.valueOf(request.getBody().get("description"));
-        String averageMark = String.valueOf(request.getBody().get("averageMark"));
+        //  String averageMark = String.valueOf(request.getBody().get("averageMark"));
         String price = String.valueOf(request.getBody().get("price"));
 
         Response response = new Response();
@@ -36,12 +36,14 @@ public class AddBookCommand implements Command {
                 || author == null || author.isEmpty()
                 || publishingHouse == null || publishingHouse.isEmpty()
                 || year == null || year.isEmpty()
+                || genre == null || genre.isEmpty()
+                || country == null || country.isEmpty()
                 || isbn == null || isbn.isEmpty()
                 || countOfPages == null || countOfPages.isEmpty()
                 || language == null || language.isEmpty()
                 || authorOfTranslation == null || authorOfTranslation.isEmpty()
                 || description == null || description.isEmpty()
-                || averageMark == null || averageMark.isEmpty()
+
                 || price == null || price.isEmpty()) {
             response.setErrorMessage("Enter login and password");
             response.setResponseCode(403);
@@ -53,14 +55,13 @@ public class AddBookCommand implements Command {
         book.setAuthor(new Person(1, author, author));
         book.setPublishingHouse(publishingHouse);
         book.setYear(Integer.parseInt(year));
-        // book.setGenres(genre);
-        //  book.setCountries(country);
+        book.setGenre(genre);
+        book.setCountry(country);
         book.setIsbn(Long.parseLong(isbn));
         book.setCountOfPages(Integer.parseInt(countOfPages));
         book.setLanguage(language);
         book.setAuthorOfTranslation(new Person(1, authorOfTranslation, authorOfTranslation));
         book.setDescription(description);
-        book.setAverageMark(Double.parseDouble(averageMark));
         book.setPrice(Double.parseDouble(price));
         try {
             serviceFactory.getBookServiceImpl().addBook(book);
