@@ -14,6 +14,8 @@ public interface BookService {
 
     Book getBook(int idBook) throws ServiceException;
 
+    List<Book> getBooks()throws ServiceException;
+
     void deleteBook(Book book) throws ServiceException;
 
     List<Book> findBookByName(String nameBook) throws ServiceException;

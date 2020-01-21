@@ -10,12 +10,13 @@ import org.apache.log4j.Logger;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TxtBookDAOImpl implements BookDAO {
     private static final String BOOKFILE = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
 
-    private Object readFile() throws DAOException {
+    /*private Object readFile() throws DAOException {
         File file = new File(BOOKFILE);
         ObjectInputStream objectInputStream = null;
         try {
@@ -34,13 +35,12 @@ public class TxtBookDAOImpl implements BookDAO {
             if (objectInputStream != null) {
                 try {
                     objectInputStream.close();
-
                 } catch (IOException e) {
                     logger.info("Error");
                 }
             }
         }
-    }
+    }*/
 
     private void writeFile(List<Book> books) throws DAOException {
         File file = new File(BOOKFILE);
@@ -66,9 +66,28 @@ public class TxtBookDAOImpl implements BookDAO {
         }
     }
 
+    private Object readFile() throws FileNotFoundException {
+        File file = new File(BOOKFILE);
+        Scanner s = new Scanner(file);
+        ArrayList<String> list = new ArrayList<>();
+        while (s.hasNext()){
+            list.add(s.next());
+        }
+        s.close();
+        return list;
+    }
+
+
     @Override
     public List<Book> getBooks() throws DAOException {
-        return (List<Book>) readFile();
+        List<Book> list;
+        try {
+            list = (List<Book>) readFile();
+        } catch (FileNotFoundException e) {
+           throw new DAOException(e);
+        }
+
+        return list;
     }
 
     @Override
@@ -147,7 +166,6 @@ public class TxtBookDAOImpl implements BookDAO {
     }
 
 
-
     @Override
     public void updateBook(Book book) throws DAOException {
         List<Book> list = getBooks();
@@ -164,9 +182,9 @@ public class TxtBookDAOImpl implements BookDAO {
         writeFile(list);
     }
 
-    public void createUser(User user, Book book){
-        List<User>users = new ArrayList<>();
-        List<Book>books = new ArrayList<>();
+    public void createUser(User user, Book book) {
+        List<User> users = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         users.add(user);
         books.add(book);
         book.setUsers(users);
@@ -174,16 +192,16 @@ public class TxtBookDAOImpl implements BookDAO {
 //сохранить изменения в базу данных + эксепшены
     }
 
-    public void loadUsersByName(String userName){
-        List<User>users = new ArrayList<>();
-        if(users.size()==0){
+    public void loadUsersByName(String userName) {
+        List<User> users = new ArrayList<>();
+        if (users.size() == 0) {
             //логировать то что ниже
             //юзеры не найдены
         }
-        for (User user:users){
+        for (User user : users) {
             //логировать то что ниже
             user.getName();
-            for (Book book: user.getBooks()){
+            for (Book book : user.getBooks()) {
                 //логировать то что ниже
                 book.getTitle();
             }

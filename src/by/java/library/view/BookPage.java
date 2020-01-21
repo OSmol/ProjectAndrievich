@@ -34,7 +34,7 @@ public class BookPage implements Page {
 
         switch (result) {
             case "1":
-                showBook();
+                showBooks();
                 break;
             case "2":
                 findBook();
@@ -55,12 +55,11 @@ public class BookPage implements Page {
         return null;
     }
 
-    private void showBook() {
+    private void showBooks() {
         Request request = new Request();
-        Command bookCommand = new GetBookCommand();
-        System.out.println("Enter id book");
-        int idBook = sc.nextInt();
-        request.getBody().put("idBook", idBook);
+        Command bookCommand = new GetBooksCommand();
+
+        request.getBody().put("Book", new Book());
         Response response = bookCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -68,7 +67,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getErrorMessage());
         }
-        System.out.println((List<Book>) response.getBody().get("idBook"));
+        System.out.println(response.getBody());
     }
 
     private void findBook() {

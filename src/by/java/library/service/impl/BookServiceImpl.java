@@ -58,6 +58,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> getBooks() throws ServiceException {
+        logger.debug("BookServiceImpl.getBooks - run");
+        try {
+            logger.debug("BookServiceImpl.getBooks - Book got");
+            return daoFactory.getTxtBookDAO().getBooks();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public void deleteBook(Book book) throws ServiceException {
         logger.debug("BookServiceImpl.deleteBook - run");
         try {

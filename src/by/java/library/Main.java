@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
         BookPage bookPage = new BookPage();
         UserPage userPage = new UserPage();
-      // bookPage.run();
-       userPage.run();
+       bookPage.run();
+        // userPage.run();
     }
 }
