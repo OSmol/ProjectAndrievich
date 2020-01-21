@@ -15,13 +15,15 @@ public class TxtBookDAOImpl implements BookDAO {
     private static final String BFILE = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
 
-    public Book readFile() throws DAOException {
+    public List<Book> readFile() throws DAOException {
         File file = new File(BFILE);
         ObjectInputStream objectInputStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            return (Book) objectInputStream.readObject();
+
+            return (List<Book>) objectInputStream.readObject();
+
         } catch (ClassNotFoundException ce) {
             throw new DAOException("Класс не существует", ce);
         } catch (FileNotFoundException e) {
@@ -39,6 +41,7 @@ public class TxtBookDAOImpl implements BookDAO {
                 }
             }
         }
+
     }
 
     public boolean writeFile(List<Book> books) throws DAOException {
@@ -72,16 +75,14 @@ public class TxtBookDAOImpl implements BookDAO {
 
     @Override
     public List<Book> getBooks() throws DAOException {
-        List<Book>list=new ArrayList<>();
-              list.add ((Book) readFile()) ;
-         return list;
+        return (List<Book>) readFile();
     }
 
     @Override
     public void addBook(Book book) throws DAOException {
 
-        List<Book> list = getBooks();
-
+     //   List<Book> list = getBooks();
+        List<Book> list =null;
         if (list == null || list.isEmpty()) {
             int generateID = 1;
             book.setId(generateID);

@@ -58,14 +58,13 @@ public class BookPage implements Page {
     private void showBooks() {
         Request request = new Request();
         Command bookCommand = new GetBooksCommand();
-
-        request.getBody().put("Book", new Book());
         Response response = bookCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody());
+
+            System.out.println(response.getBody().get("list"));
         }
         System.out.println();
     }

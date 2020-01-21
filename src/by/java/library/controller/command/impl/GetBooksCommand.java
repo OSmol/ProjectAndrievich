@@ -1,6 +1,5 @@
 package library.controller.command.impl;
 
-import library.bean.Book;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
@@ -18,8 +17,8 @@ public class GetBooksCommand implements Command {
         Response response = new Response();
         try {
             BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.getBooks();
             response.setResponseCode(201);
+            response.getBody().put("list", bookService.getBooks());
             return response;
 
         } catch (ServiceException e) {

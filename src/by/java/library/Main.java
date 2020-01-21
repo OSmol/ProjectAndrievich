@@ -1,15 +1,7 @@
 package library;
 
-
-import library.bean.Book;
-import library.dao.exception.DAOException;
-import library.dao.impl.txt.Deserializator;
-import library.dao.impl.txt.Serializator;
-import library.dao.impl.txt.TxtBookDAOImpl;
 import library.view.BookPage;
 import library.view.UserPage;
-
-import java.io.InvalidObjectException;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
