@@ -20,10 +20,8 @@ public class BookServiceImpl implements BookService {
     public void addBook(Book book) throws ServiceException {
         logger.debug("BookServiceImpl.addMovie - run");
         BookDAO txtBookDAO = daoFactory.getTxtBookDAO();
-        BookDAO sqlBookDAO = daoFactory.getSqlBookDAO();
         try {
             txtBookDAO.addBook(book);
-            sqlBookDAO.addBook(book);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -107,7 +105,7 @@ public class BookServiceImpl implements BookService {
         try {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
             for (Book book : list) {
-                String author = book.getAuthor().getSurname();
+                String author = book.getAuthor();
                 if (author.equalsIgnoreCase(authorBook)) {
                     listBooksByAuthor.add(book);
                 }
@@ -129,12 +127,12 @@ public class BookServiceImpl implements BookService {
             List<Book> list = daoFactory.getTxtBookDAO().getBooks();
             for (Book book : list) {
                 String genreName = book.getGenre();
-                    if (genre.equalsIgnoreCase(genreName)) {
-                        listBooksByGenre.add(book);
-                    } else {
-                        logger.debug("BookServiceImpl.findBookByGenre - Book not found");
-                    }
+                if (genre.equalsIgnoreCase(genreName)) {
+                    listBooksByGenre.add(book);
+                } else {
+                    logger.debug("BookServiceImpl.findBookByGenre - Book not found");
                 }
+            }
 
             return listBooksByGenre;
         } catch (DAOException e) {
@@ -176,7 +174,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> sortBookByRating(double averageMark) throws ServiceException {
+    public List<Book> sortBookByRating(double averageMark) {
         return null;
     }
 }

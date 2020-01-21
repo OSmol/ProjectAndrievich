@@ -29,16 +29,10 @@ public class SortBookByRatingCommand implements Command {
         security.setLogin(login);
         security.setPassword(password);
 
-        try {
-            BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.sortBookByRating(book.getAverageMark());
-            response.setResponseCode(201);
-            return response;
+        BookService bookService = serviceFactory.getBookServiceImpl();
+        //   bookService.sortBookByRating(book.getAverageMark());
+        response.setResponseCode(201);
+        return response;
 
-        } catch (ServiceException e) {
-            response.setErrorMessage(e.getMessage());
-            response.setResponseCode(501);
-            return response;
-        }
     }
 }

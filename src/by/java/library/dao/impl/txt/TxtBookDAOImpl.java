@@ -15,17 +15,13 @@ public class TxtBookDAOImpl implements BookDAO {
     private static final String BFILE = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
 
-    private Object readFile() throws DAOException {
-        List<Object> list = new ArrayList<>();
+    public Book readFile() throws DAOException {
         File file = new File(BFILE);
         ObjectInputStream objectInputStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            objectInputStream.readObject();
-            list.add(objectInputStream);
-
-            return list;
+            return (Book) objectInputStream.readObject();
         } catch (ClassNotFoundException ce) {
             throw new DAOException("Класс не существует", ce);
         } catch (FileNotFoundException e) {
@@ -45,26 +41,40 @@ public class TxtBookDAOImpl implements BookDAO {
         }
     }
 
-    private void writeFile(List<Book> books) throws DAOException {
+    public boolean writeFile(List<Book> books) throws DAOException {
+        boolean b = false;
         File file = new File(BFILE);
-        ObjectOutputStream objectOutputStream;
+        ObjectOutputStream objectOutputStream = null;
         FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(books);
-
+            if (fileOutputStream != null) {
+                objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(books);
+                b = true;
+            }
         } catch (NotSerializableException e) {
             throw new DAOException("file don't suggesting serialization" + e);
         } catch (IOException e) {
             throw new DAOException("file cant be create" + e);
+        }finally {
+            try {
+                if(objectOutputStream!=null){
+                    objectOutputStream.close();
+                }
+            }catch (IOException e){
+
+            }
         }
+        return b;
     }
 
 
     @Override
     public List<Book> getBooks() throws DAOException {
-        return (List<Book>) readFile();
+        List<Book>list=new ArrayList<>();
+              list.add ((Book) readFile()) ;
+         return list;
     }
 
     @Override
@@ -162,7 +172,7 @@ public class TxtBookDAOImpl implements BookDAO {
         List<Book> books = new ArrayList<>();
         users.add(user);
         books.add(book);
-        book.setUsers(users);
+        // book.setUsers(users);
         user.setBooks(books);
 //сохранить изменения в базу данных + эксепшены
     }

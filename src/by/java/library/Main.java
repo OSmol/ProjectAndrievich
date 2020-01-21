@@ -1,9 +1,15 @@
 package library;
 
 
+import library.bean.Book;
 import library.dao.exception.DAOException;
+import library.dao.impl.txt.Deserializator;
+import library.dao.impl.txt.Serializator;
+import library.dao.impl.txt.TxtBookDAOImpl;
 import library.view.BookPage;
 import library.view.UserPage;
+
+import java.io.InvalidObjectException;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -19,11 +25,11 @@ import library.view.UserPage;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) throws DAOException {
-           BookPage bookPage = new BookPage();
+    public static void main(String[] args) {
+        BookPage bookPage = new BookPage();
         UserPage userPage = new UserPage();
-       bookPage.run();
+         bookPage.run();
         // userPage.run();
-
     }
 }
+

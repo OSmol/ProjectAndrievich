@@ -7,10 +7,10 @@ import java.util.Objects;
 
 
 public class Book implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3L;
     private int id;
     private String title;
-    private Person author;
+    private String author;
     private String publishingHouse;
     private int year;
     private String genre;
@@ -18,14 +18,14 @@ public class Book implements Serializable {
     private long isbn;
     private int countOfPages;
     private String language;
-    private Person authorOfTranslation;
+    private String authorOfTranslation;
     private String description;
-    private double averageMark;
-    private Person customer;
+
+    private String customer;
     private double price;
     private boolean delete;
-    private List<User> users;
-    private BookType bookType;
+
+  //  private BookType bookType;
 
 
     public Book() {
@@ -50,10 +50,10 @@ public class Book implements Serializable {
      * @param price               - price of book
      * @param delete              - meaning the book is deleted or not
      */
-    public Book(int id, String title, Person author, String publishingHouse, int year,
+    public Book(int id, String title, String author, String publishingHouse, int year,
                String genre, String country, long isbn, int countOfPages,
-                String language, Person authorOfTranslation, String description, double averageMark,
-                Person customer, double price, boolean delete, List<User> users, BookType bookType) {
+                String language, String authorOfTranslation, String description,
+                String customer, double price, boolean delete) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -66,12 +66,11 @@ public class Book implements Serializable {
         this.language = language;
         this.authorOfTranslation = authorOfTranslation;
         this.description = description;
-        this.averageMark = averageMark;
+
         this.customer = customer;
         this.price = price;
         this.delete = delete;
-        this.users = users;
-        this.bookType=bookType;
+
     }
 
     public int getId() {
@@ -90,11 +89,11 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public Person getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Person author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -154,11 +153,11 @@ public class Book implements Serializable {
         this.language = language;
     }
 
-    public Person getAuthorOfTranslation() {
+    public String getAuthorOfTranslation() {
         return authorOfTranslation;
     }
 
-    public void setAuthorOfTranslation(Person authorOfTranslation) {
+    public void setAuthorOfTranslation(String authorOfTranslation) {
         this.authorOfTranslation = authorOfTranslation;
     }
 
@@ -170,19 +169,13 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public double getAverageMark() {
-        return averageMark;
-    }
 
-    public void setAverageMark(double averageMark) {
-        this.averageMark = averageMark;
-    }
 
-    public Person getCustomer() {
+    public String getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Person customer) {
+    public void setCustomer(String customer) {
         this.customer = customer;
     }
 
@@ -202,21 +195,7 @@ public class Book implements Serializable {
         this.delete = delete;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public BookType getBookType() {
-        return bookType;
-    }
-
-    public void setBookType(BookType bookType) {
-        this.bookType = bookType;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -227,7 +206,7 @@ public class Book implements Serializable {
                 year == book.year &&
                 isbn == book.isbn &&
                 countOfPages == book.countOfPages &&
-                Double.compare(book.averageMark, averageMark) == 0 &&
+
                 Double.compare(book.price, price) == 0 &&
                 delete == book.delete &&
                 Objects.equals(title, book.title) &&
@@ -238,14 +217,12 @@ public class Book implements Serializable {
                 Objects.equals(language, book.language) &&
                 Objects.equals(authorOfTranslation, book.authorOfTranslation) &&
                 Objects.equals(description, book.description) &&
-                Objects.equals(customer, book.customer) &&
-                Objects.equals(users, book.users) &&
-                bookType == book.bookType;
+                Objects.equals(customer, book.customer) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, publishingHouse, year, genre, country, isbn, countOfPages, language, authorOfTranslation, description, averageMark, customer, price, delete, users, bookType);
+        return Objects.hash(id, title, author, publishingHouse, year, genre, country, isbn, countOfPages, language, authorOfTranslation, description,  customer, price, delete);
     }
 
     @Override
@@ -263,12 +240,10 @@ public class Book implements Serializable {
                 ", language='" + language + '\'' +
                 ", authorOfTranslation=" + authorOfTranslation +
                 ", description='" + description + '\'' +
-                ", averageMark=" + averageMark +
+
                 ", customer=" + customer +
                 ", price=" + price +
-                ", delete=" + delete +
-                ", users=" + users +
-                ", bookType=" + bookType +
+                ", delete=" + delete  +
                 '}';
     }
 
@@ -288,7 +263,7 @@ public class Book implements Serializable {
         }
     }
 
-    public enum BookType {
+    public enum BookType implements Serializable {
         PAPERBOOK("Paper book"), EBOOK("eBook");
         String name;
 

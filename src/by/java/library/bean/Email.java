@@ -1,9 +1,11 @@
 package library.bean;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Email {
+public class Email implements Serializable {
+    private static final long serialVersionUID = 3L;
     private String name;
 
     public Email(String name) {

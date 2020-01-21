@@ -1,6 +1,9 @@
 package library.bean;
 
-public class Letter {
+import java.io.Serializable;
+
+public class Letter implements Serializable {
+    private static final long serialVersionUID = 3L;
     private Email recipient;
     private Email sender;
     private Book book;

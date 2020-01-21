@@ -54,7 +54,7 @@ public class FileHelper {
                // book.setAuthor(data[0]);
                 book.setTitle(data[1]);
                 book.setYear(Integer.parseInt(data[2]));
-                book.setBookType(Book.BookType.valueOf(data[3].toUpperCase()));
+              //  book.setBookType(Book.BookType.valueOf(data[3].toUpperCase()));
                         //build();
                 books.add(book);
             }
@@ -74,7 +74,7 @@ public class FileHelper {
                 sb.append(" - ");
                 sb.append(book.getYear());
                 sb.append(" - ");
-                sb.append(book.getBookType().name().toLowerCase());
+              //  sb.append(book.getBookType().name().toLowerCase());
 
                 bw.write(sb.toString());
                 bw.newLine();

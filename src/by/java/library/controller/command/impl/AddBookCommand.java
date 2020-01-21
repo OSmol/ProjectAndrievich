@@ -52,7 +52,7 @@ public class AddBookCommand implements Command {
         Book book = new Book();
         //   book.setId(Integer.parseInt(id));
         book.setTitle(title);
-        book.setAuthor(new Person(1, author, author));
+        book.setAuthor(author);
         book.setPublishingHouse(publishingHouse);
         book.setYear(Integer.parseInt(year));
         book.setGenre(genre);
@@ -60,7 +60,7 @@ public class AddBookCommand implements Command {
         book.setIsbn(Long.parseLong(isbn));
         book.setCountOfPages(Integer.parseInt(countOfPages));
         book.setLanguage(language);
-        book.setAuthorOfTranslation(new Person(1, authorOfTranslation, authorOfTranslation));
+        book.setAuthorOfTranslation(authorOfTranslation);
         book.setDescription(description);
         book.setPrice(Double.parseDouble(price));
         try {
