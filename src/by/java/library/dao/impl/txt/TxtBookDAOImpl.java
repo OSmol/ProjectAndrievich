@@ -60,12 +60,12 @@ public class TxtBookDAOImpl implements BookDAO {
             throw new DAOException("file don't suggesting serialization" + e);
         } catch (IOException e) {
             throw new DAOException("file cant be create" + e);
-        }finally {
+        } finally {
             try {
-                if(objectOutputStream!=null){
+                if (objectOutputStream != null) {
                     objectOutputStream.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
 
             }
         }
@@ -81,8 +81,7 @@ public class TxtBookDAOImpl implements BookDAO {
     @Override
     public void addBook(Book book) throws DAOException {
 
-     //   List<Book> list = getBooks();
-        List<Book> list =null;
+        List<Book> list = getBooks();
         if (list == null || list.isEmpty()) {
             int generateID = 1;
             book.setId(generateID);

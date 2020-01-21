@@ -79,7 +79,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findBookByName(String nameBook) throws ServiceException {//возвр лист
+    public List<Book> findBookByName(String nameBook) throws ServiceException {
         logger.debug("BookServiceImpl.findBookByName - run");
         List<Book> listBooksByName = new ArrayList<>();
         try {
