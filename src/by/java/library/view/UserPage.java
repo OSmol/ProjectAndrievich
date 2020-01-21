@@ -15,28 +15,28 @@ public class UserPage implements Page {
     public Request run() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
-        sb.append("5. Register a new user.\n");
-        sb.append("6. Delete user.\n");
-        sb.append("9. Change user\n");
+        sb.append("6. Register a new user.\n");
+        sb.append("7. Delete user.\n");
+        sb.append("8. Find user.\n");
+        sb.append("9. Update user\n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
         String result = sc.next();
-        Response response = new Response();
-        Request request = new Request();
+
         switch (result) {
 
             case "6":
-                registerUser(request);
+                registerUser();
                 break;
             case "7":
-                deleteUser(request);
+                deleteUser();
                 break;
             case "8":
-                findUser(request);
+                findUser();
                 break;
             case "9":
-                updateUser(request);
+                updateUser();
                 break;
             case "0":
                 finishWork();
@@ -47,21 +47,29 @@ public class UserPage implements Page {
     }
 
 
-    private void registerUser(Request request) {
+    private Response registerUser() {
+        Request request = new Request();
         Command command = new RegistrationCommand();
         System.out.println("Enter name: ");
         String name = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter email: ");
         String email = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter new login: ");
+        String login = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter new password: ");
+        String password = ScannerHelper.inputStringFromConsole();
         request.getBody().put("name", name);
         request.getBody().put("email", email);
+        request.getBody().put("login", login);
+        request.getBody().put("password", password);
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
         System.out.println("User registered.");
+        return response;
     }
 
-    private void deleteUser(Request request) {
-
+    private void deleteUser() {
+        Request request = new Request();
         Command deleteUserCommand = new DeleteUserCommand();
         System.out.println("Enter id user");
         int id = ScannerHelper.inputInt();
@@ -70,7 +78,8 @@ public class UserPage implements Page {
         System.out.println(response.getResponseCode());
     }
 
-    private void findUser(Request request) {
+    private void findUser() {
+        Request request = new Request();
         Command command = new DeleteUserCommand();
         System.out.println("Enter login user");
         String login = ScannerHelper.inputStringFromConsole();
@@ -79,7 +88,8 @@ public class UserPage implements Page {
         System.out.println(response.getResponseCode());
     }
 
-    private void updateUser(Request request) {
+    private void updateUser() {
+        Request request = new Request();
         Command command = new UpdateUserCommand();
         System.out.println("Enter id user");
         int id = ScannerHelper.inputInt();

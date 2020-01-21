@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TxtUserDAOImpl implements UserDAO {
-    private static final String BOOKFILE = "src/by/resources/library/Books.txt";
+    private static final String BOOKFILE = "src/by/resources/library/Users.txt";
     private static Logger logger = Logger.getLogger(TxtUserDAOImpl.class);
 
 
@@ -21,7 +21,7 @@ public class TxtUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean add(User user) throws DAOException {
+    public List<User> add(User user) throws DAOException {
         if (user.getId() != 0) {
             throw new DAOException("book have id and cant be add in list");
         }
@@ -38,7 +38,8 @@ public class TxtUserDAOImpl implements UserDAO {
             list.add(user);
             writeFile(list);
         }
-        return false;
+
+        return list;
     }
 
     @Override

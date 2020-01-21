@@ -1,7 +1,6 @@
 package library.dao.impl.txt;
 
 import library.bean.Book;
-import library.bean.Person;
 import library.bean.User;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TxtBookDAOImpl implements BookDAO {
-    private static final String BOOKFILE = "src/by/resources/library/Input.txt";
+    private static final String BOOKFILE = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
 
     private Object readFile() throws DAOException {

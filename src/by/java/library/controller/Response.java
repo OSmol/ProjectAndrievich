@@ -1,5 +1,7 @@
 package library.controller;
 
+import library.bean.Book;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +32,9 @@ public class Response {
 
     public void setBody(Map<Object, Object> body) {
         this.body = body;
+    }
+
+    public void setBody(String book1, Book book11) {
     }
 }
 

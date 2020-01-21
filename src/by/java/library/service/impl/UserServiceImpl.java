@@ -34,9 +34,10 @@ public class UserServiceImpl implements SecurityService, UserService {
         User user = new User(security);
         UserDAO userDAO = daoFactory.getTxtUserDAO();
         try {
+            userDAO.add(user);
             PasswordValidator.isEmptyString(security.getPassword());
             PasswordValidator.matchPassword(security.getPassword());
-            userDAO.add(user);
+
         } catch (DAOException | UtilException e) {
             throw new ServiceException(e);
         } finally {

@@ -62,8 +62,10 @@ public class UpdateBookCommand implements Command {
         book.setAverageMark(Double.parseDouble(averageMark));
         book.setPrice(Double.parseDouble(price));
         try {
+            Book book1 = new Book();
             serviceFactory.getBookServiceImpl().updateBook(book);
             response.setResponseCode(201);
+            response.setBody("book1", book1);
             return response;
 
         } catch (ServiceException e) {
