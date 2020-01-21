@@ -13,7 +13,6 @@ import java.util.Scanner;
 /*
 работаю с реквестом и респонсом, не могу вызвать дао, сервис, могу вызвать на 1 приватном методе 1 контроллер
 в этом  классе предпол работа с пользователем, поэтому дб много соут
-задача: написать бук пэйдж
  */
 public class BookPage implements Page {
     Scanner sc = new Scanner(System.in);
@@ -32,23 +31,22 @@ public class BookPage implements Page {
         System.out.println(sb.toString());
 
         String result = sc.next();
-        Response response = new Response();
-        Request request = new Request();
+
         switch (result) {
             case "1":
-                showBook(request);
+                showBook();
                 break;
             case "2":
-                findBook(request);
+                findBook();
                 break;
             case "3":
-                addBooks(request);
+                addBooks();
                 break;
             case "4":
-                removeBook(request);
+                removeBook();
                 break;
             case "5":
-                updateBook(request);
+                updateBook();
                 break;
             case "0":
                 finishWork();
@@ -57,21 +55,27 @@ public class BookPage implements Page {
         return null;
     }
 
-    private void showBook(Request request) {
+    private void showBook() {
+        Request request = new Request();
         Command bookCommand = new GetBookCommand();
         System.out.println("Enter id book");
         int idBook = sc.nextInt();
         request.getBody().put("idBook", idBook);
         Response response = bookCommand.execute(request);
-        System.out.println(response.getErrorMessage());
-        System.out.println(response.getResponseCode());
-        System.out.println("This book show.\n");
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+        }
+        if (response.getResponseCode() == 201) {
+            System.out.println(response.getErrorMessage());
+        }
+        System.out.println((List<Book>) response.getBody().get("idBook"));
     }
 
-    private void findBook(Request request) {
+    private void findBook() {
+        Request request = new Request();
         Command nameCommand = new FindBookByNameCommand();
         System.out.println("Enter book name");
-        String bookName = sc.nextLine();
+        String bookName = ScannerHelper.inputStringFromConsole();
         request.getBody().put("bookName", bookName);
         Response response = nameCommand.execute(request);
         System.out.println(response.getErrorMessage());
@@ -80,9 +84,9 @@ public class BookPage implements Page {
 
     }
 
-    private void addBooks(Request request) {
+    private void addBooks() {
         Command command = new AddBookCommand();
-
+        Request request = new Request();
         //  System.out.println("Enter id: ");
         //   String id = String.valueOf(ScannerHelper.inputInt());
         System.out.println("Enter title: ");
@@ -135,7 +139,8 @@ public class BookPage implements Page {
     }
 
 
-    private void removeBook(Request request) {
+    private void removeBook() {
+        Request request = new Request();
         Command bookCommand = new DeleteBookCommand();
         System.out.println("Enter id book");
         int id = sc.nextInt();
@@ -145,7 +150,8 @@ public class BookPage implements Page {
         System.out.println(response.getResponseCode());
     }
 
-    private void updateBook(Request request) {
+    private void updateBook() {
+        Request request = new Request();
         Command bookCommand = new UpdateBookCommand();
         System.out.println("Enter id book");
         int id = sc.nextInt();
@@ -153,7 +159,7 @@ public class BookPage implements Page {
         Response response = bookCommand.execute(request);
         System.out.println(response.getErrorMessage());
         System.out.println(response.getResponseCode());
-        System.out.println((List<Book>) response.getBody().get("id"));;
+        System.out.println((List<Book>) response.getBody().get("id"));
 
 
     }
