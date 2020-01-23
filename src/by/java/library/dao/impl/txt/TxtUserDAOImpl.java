@@ -17,15 +17,13 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAll() throws DAOException {
-        return (List<User>) readFile();
+        return readFile();
     }
 
     @Override
-    public List<User> add(User user) throws DAOException {
-        if (user.getId() != 0) {
-            throw new DAOException("book have id and cant be add in list");
-        }
-        List<User> list = getAll();
+    public void add(User user) throws DAOException {
+      //  List<User> list = getAll();
+        List<User>list = new ArrayList<>();
         if (list == null || list.isEmpty()) {
             int generateId = 1;
             list = new ArrayList<>();
@@ -38,8 +36,6 @@ public class TxtUserDAOImpl implements UserDAO {
             list.add(user);
             writeFile(list);
         }
-
-        return list;
     }
 
     @Override
@@ -105,13 +101,13 @@ public class TxtUserDAOImpl implements UserDAO {
         writeFile(list);
     }
 
-    private Object readFile() throws DAOException {
+    private List<User> readFile() throws DAOException {
         File file = new File(BOOKFILE);
         ObjectInputStream objectInputStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            return objectInputStream.readObject();
+            return (List<User>) objectInputStream.readObject();
         } catch (ClassNotFoundException ce) {
             throw new DAOException("Класс не существует", ce);
         } catch (FileNotFoundException e) {
@@ -124,7 +120,6 @@ public class TxtUserDAOImpl implements UserDAO {
             if (objectInputStream != null) {
                 try {
                     objectInputStream.close();
-
                 } catch (IOException e) {
                     logger.info("Error");
                 }
@@ -132,29 +127,34 @@ public class TxtUserDAOImpl implements UserDAO {
         }
     }
 
-    private void writeFile(List<User> list) throws DAOException {
+    private boolean writeFile(List<User> list) throws DAOException {
+        boolean b = false;
         File file = new File(BOOKFILE);
         ObjectOutputStream objectOutputStream = null;
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(list);
-
+            if (fileOutputStream != null) {
+                objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(list);
+                b = true;
+            }
         } catch (NotSerializableException e) {
             throw new DAOException("file don't suggesting serialization" + e);
         } catch (IOException e) {
             throw new DAOException("file cant be create" + e);
         } finally {
-            if (objectOutputStream != null) {
-                try {
+            try {
+                if (objectOutputStream != null) {
                     objectOutputStream.close();
-                } catch (IOException e) {
-                    //
                 }
+            } catch (IOException e) {
+                //
             }
         }
+        return b;
     }
+
 
     private int generateIdUser(List<User> list) {
         int max = list.get(0).getId();
@@ -166,12 +166,12 @@ public class TxtUserDAOImpl implements UserDAO {
         return max + 1;
     }
 
-    public static boolean isAdmin(User user){
-        return user.getUserRole()== User.UserRole.ADMIN;
+    public static boolean isAdmin(User user) {
+        return user.getUserRole() == User.UserRole.ADMIN;
     }
 
-    public static boolean isUserExist(String login){
-       return true;
+    public static boolean isUserExist(String login) {
+        return true;
     }
 }
 

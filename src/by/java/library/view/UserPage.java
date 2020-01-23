@@ -5,6 +5,7 @@ import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.DeleteUserCommand;
+import library.controller.command.impl.GetUsersCommand;
 import library.controller.command.impl.RegistrationCommand;
 import library.controller.command.impl.UpdateUserCommand;
 
@@ -19,7 +20,7 @@ public class UserPage implements Page {
         sb.append("7. Delete user.\n");
         sb.append("8. Find user.\n");
         sb.append("9. Update user\n");
-        sb.append("0. To finish work.\n");
+        sb.append("10. Show all users.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
         String result = sc.next();
@@ -38,8 +39,8 @@ public class UserPage implements Page {
             case "9":
                 updateUser();
                 break;
-            case "0":
-                finishWork();
+            case "10":
+                showAllUsers();
                 break;
         }
 
@@ -47,7 +48,7 @@ public class UserPage implements Page {
     }
 
 
-    private Response registerUser() {
+    private void registerUser() {
         Request request = new Request();
         Command command = new RegistrationCommand();
         System.out.println("Enter name: ");
@@ -62,20 +63,25 @@ public class UserPage implements Page {
         request.getBody().put("email", email);
         request.getBody().put("login", login);
         request.getBody().put("password", password);
+
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
-        System.out.println("User registered.");
-        return response;
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+        }
     }
 
     private void deleteUser() {
         Request request = new Request();
         Command deleteUserCommand = new DeleteUserCommand();
-        System.out.println("Enter id user");
-        int id = ScannerHelper.inputInt();
-        request.getBody().put("id", id);
         Response response = deleteUserCommand.execute(request);
-        System.out.println(response.getResponseCode());
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+        }
+        if (response.getResponseCode() == 201) {
+            System.out.println(response.getBody().get("list"));
+        }
+        System.out.println();
     }
 
     private void findUser() {
@@ -98,6 +104,16 @@ public class UserPage implements Page {
         System.out.println(response.getResponseCode());
     }
 
-    private void finishWork() {
+    private void showAllUsers() {
+        Request request = new Request();
+        Command userCommand = new GetUsersCommand();
+        Response response = userCommand.execute(request);
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+        }
+        if (response.getResponseCode() == 201) {
+            System.out.println(response.getBody().get("list"));
+        }
+        System.out.println();
     }
 }

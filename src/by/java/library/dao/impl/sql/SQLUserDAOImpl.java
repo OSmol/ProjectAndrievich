@@ -16,9 +16,8 @@ public class SQLUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> add(User user) throws DAOException {
+    public void add(User user) throws DAOException {
 
-        return null;
     }
 
     @Override

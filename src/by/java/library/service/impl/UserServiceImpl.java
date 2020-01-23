@@ -7,9 +7,9 @@ import library.dao.factory.DAOFactory;
 import library.service.SecurityService;
 import library.service.UserService;
 import library.service.exception.ServiceException;
-import library.service.util.PasswordValidator;
-import library.service.util.exception.UtilException;
 import org.apache.log4j.Logger;
+
+import java.util.List;
 
 public class UserServiceImpl implements SecurityService, UserService {
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
@@ -24,30 +24,48 @@ public class UserServiceImpl implements SecurityService, UserService {
     }
 
     @Override
-    public void signOut(String login) throws ServiceException {
+    public void signOut(String login) {
 
     }
 
     @Override
     public void registration(User.Security security) throws ServiceException {
-        logger.debug("UserServiceImpl.registration()");
-        User user = new User(security);
+        logger.debug("UserServiceImpl.registration() - run");
+        User user = new User();
         UserDAO userDAO = daoFactory.getTxtUserDAO();
         try {
             userDAO.add(user);
-            PasswordValidator.isEmptyString(security.getPassword());
-            PasswordValidator.matchPassword(security.getPassword());
-
-        } catch (DAOException | UtilException e) {
+            //  PasswordValidator.isEmptyString(security.getPassword());
+            // PasswordValidator.matchPassword(security.getPassword());
+        } catch (DAOException e) {
             throw new ServiceException(e);
         } finally {
-            logger.debug("UserServiceImpl.registration()");
+            logger.debug("UserServiceImpl.registration() - User add");
         }
     }
 
     @Override
-    public void delete() {
+    public void delete(String login) throws ServiceException{
+        logger.debug("UserServiceImpl.deleteUser - run");
+        try {
+            daoFactory.getTxtUserDAO().delete(login);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        } finally {
+            logger.debug("UserServiceImpl.deleteUserByLogin - User deleted");
+        }
+    }
 
+
+    @Override
+    public List<User> getUsers() throws ServiceException {
+        logger.debug("UserServiceImpl.getUsers - run");
+        try {
+            logger.debug("UserServiceImpl.getUsers - Users got");
+            return daoFactory.getTxtUserDAO().getAll();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
 

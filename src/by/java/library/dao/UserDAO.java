@@ -14,7 +14,7 @@ import java.util.List;
 public interface UserDAO {
     List<User> getAll() throws DAOException;
 
-    List<User> add(User user) throws DAOException;
+    void add(User user) throws DAOException;
 
     void delete(String login) throws DAOException;
 

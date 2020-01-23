@@ -13,6 +13,7 @@ public class RegistrationCommand implements Command {
     private static Logger logger = Logger.getLogger(RegistrationCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private User.Security security = new User.Security();
+    User user= new User();
 
     @Override
     public Response execute(Request request) {

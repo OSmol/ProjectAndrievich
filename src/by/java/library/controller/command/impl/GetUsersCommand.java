@@ -1,27 +1,26 @@
 package library.controller.command.impl;
 
-import javatrDay5.helper.ScannerHelper;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
-import library.service.BookService;
+import library.service.UserService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
-
-
-public class DeleteBookByIdCommand implements Command {
+public class GetUsersCommand implements Command {
+    private static Logger logger = Logger.getLogger(GetUsersCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     @Override
-    public Response execute(Request request) {
+    public Response execute(Request request) {//
         Response response = new Response();
         try {
-            System.out.println("Enter id book: ");
-            int id = ScannerHelper.inputInt();
-            BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.deleteBookById(id);
+            UserService userService = serviceFactory.getUserServiceImpl();
+            response.setResponseCode(201);
+            response.getBody().put("list", userService.getUsers());
             return response;
+
         } catch (ServiceException e) {
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(501);
