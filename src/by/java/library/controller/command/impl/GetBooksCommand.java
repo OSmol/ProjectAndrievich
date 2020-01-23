@@ -13,7 +13,7 @@ public class GetBooksCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     @Override
-    public Response execute(Request request) {
+    public Response execute(Request request) {//
         Response response = new Response();
         try {
             BookService bookService = serviceFactory.getBookServiceImpl();
@@ -27,5 +27,7 @@ public class GetBooksCommand implements Command {
             return response;
         }
     }
-}
+}/*
 
+Контроллер: получаешь реквест, достаёщб оттуда параметры, выполняешь сервис, ложишь в ресонс
+*/

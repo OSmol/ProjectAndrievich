@@ -1,39 +1,39 @@
 package library.controller.command.impl;
 
+import javatrDay5.helper.ScannerHelper;
+import library.bean.Book;
 import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
+import library.service.BookService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
-public class FindBookByNameCommand implements Command {
-    private static Logger logger = Logger.getLogger(FindBookByNameCommand.class);
-    private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private User.Security security = new User.Security();
+import java.util.List;
 
+public class FindBookByNameCommand implements Command {
+    private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    Book book = new Book();
 
     @Override
     public Response execute(Request request) {
-       String title= String.valueOf(request.getBody().get("title"));
         Response response = new Response();
-        if (title == null || title.isEmpty()) {
-            response.setErrorMessage("Enter title");
-
-            try {
-
-                serviceFactory.getBookServiceImpl().findBookByName(title);
-                response.setResponseCode(201);
-
-                return response;
-
-            } catch (ServiceException e) {
-                response.setErrorMessage(e.getMessage());
-                response.setResponseCode(501);
-                return response;
-            }
+        try {
+            System.out.println("Enter name book: ");
+            String title = ScannerHelper.inputStringFromConsole();
+            BookService bookService = serviceFactory.getBookServiceImpl();
+            List<Book> list = bookService.findBookByName(title);
+            System.out.println(list);
+            return response;
+        } catch (ServiceException e) {
+            response.setErrorMessage(e.getMessage());
+            response.setResponseCode(501);
+            return response;
         }
-       return response;
     }
 }
+/*
+получаешь реквест, достаёщб оттуда параметры, выполняешь сервис, ложишь в ресонс
+ */

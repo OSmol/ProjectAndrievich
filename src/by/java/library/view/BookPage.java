@@ -71,13 +71,29 @@ public class BookPage implements Page {
     private void findBookByName() {
         Request request = new Request();
         Command command = new FindBookByNameCommand();
-        System.out.println("Enter book name");
-        String title = ScannerHelper.inputStringFromConsole();
-        request.getBody().put("title", title);
+
         Response response = command.execute(request);
-        System.out.println(response.getResponseCode());
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+        }
+        if (response.getResponseCode() == 201) {
+            System.out.println(response.getBody().get("list"));
+        }
+        System.out.println();
 
     }
+
+    private void removeBook() {
+        Request request = new Request();
+        Command bookCommand = new DeleteBookCommand();
+        System.out.println("Enter id book");
+        int id = sc.nextInt();
+        request.getBody().put("id", id);
+        Response response = bookCommand.execute(request);
+        System.out.println(response.getErrorMessage());
+        System.out.println(response.getResponseCode());
+    }
+
 
     private void addBooks() {
         Command command = new AddBookCommand();
@@ -131,17 +147,6 @@ public class BookPage implements Page {
     }
 
 
-    private void removeBook() {
-        Request request = new Request();
-        Command bookCommand = new DeleteBookCommand();
-        System.out.println("Enter id book");
-        int id = sc.nextInt();
-        request.getBody().put("id", id);
-        Response response = bookCommand.execute(request);
-        System.out.println(response.getErrorMessage());
-        System.out.println(response.getResponseCode());
-    }
-
     private void updateBook() {
         Request request = new Request();
         Command bookCommand = new UpdateBookCommand();
@@ -152,8 +157,6 @@ public class BookPage implements Page {
         System.out.println(response.getErrorMessage());
         System.out.println(response.getResponseCode());
         System.out.println((List<Book>) response.getBody().get("id"));
-
-
     }
 
 
