@@ -158,7 +158,7 @@ public class BookPage implements Page {
         Response response = bookCommand.execute(request);
         System.out.println(response.getErrorMessage());
         System.out.println(response.getResponseCode());
-        System.out.println((List<Book>) response.getBody().get("id"));
+
     }
 
 
