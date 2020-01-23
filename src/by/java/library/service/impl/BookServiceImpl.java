@@ -177,4 +177,16 @@ public class BookServiceImpl implements BookService {
     public List<Book> sortBookByRating(double averageMark) {
         return null;
     }
+
+    @Override
+    public void deleteBookById(int id) throws ServiceException {
+        logger.debug("BookServiceImpl.deleteBookById - run");
+        try {
+            daoFactory.getTxtBookDAO().deleteBook(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        } finally {
+            logger.debug("BookServiceImpl.deleteBookById - Book deleted");
+        }
+    }
 }

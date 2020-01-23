@@ -30,5 +30,7 @@ public interface BookService {
 
     List<Book> sortBookByRating(double averageMark) throws ServiceException;
 
+   void deleteBookById(int id) throws ServiceException;
+
 
 }

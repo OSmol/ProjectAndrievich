@@ -85,13 +85,15 @@ public class BookPage implements Page {
 
     private void removeBook() {
         Request request = new Request();
-        Command bookCommand = new DeleteBookCommand();
-        System.out.println("Enter id book");
-        int id = sc.nextInt();
-        request.getBody().put("id", id);
+        Command bookCommand = new DeleteBookByIdCommand();
         Response response = bookCommand.execute(request);
-        System.out.println(response.getErrorMessage());
-        System.out.println(response.getResponseCode());
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+        }
+        if (response.getResponseCode() == 201) {
+            System.out.println(response.getBody().get("list"));
+        }
+        System.out.println();
     }
 
 
