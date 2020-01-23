@@ -14,31 +14,28 @@ public class FindBookByNameCommand implements Command {
     private static Logger logger = Logger.getLogger(FindBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private User.Security security = new User.Security();
+    Book book = new Book();
 
     @Override
     public Response execute(Request request) {
-        String login = String.valueOf(request.getBody().get("login"));
-        String password = String.valueOf(request.getBody().get("password"));
+        String title = String.valueOf(request.getBody().get("title"));
         Response response = new Response();
-        if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
-            response.setErrorMessage("Enter login and password");
-            response.setResponseCode(403);
-            return response;
-        }
-        security.setLogin(login);
-        security.setPassword(password);
+        if (title == null || title.isEmpty()) {
+            response.setErrorMessage("Enter title");
 
-        try {
-            Book book = new Book();
-            BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.findBookByName(book.getTitle());
-            response.setResponseCode(201);
-            return response;
+            try {
+                book.setTitle(title);
+                BookService bookService = serviceFactory.getBookServiceImpl();
+                response.setResponseCode(201);
+                response.getBody().put("list", bookService.findBookByName(book.getTitle()));
+                return response;
 
-        } catch (ServiceException e) {
-            response.setErrorMessage(e.getMessage());
-            response.setResponseCode(501);
-            return response;
+            } catch (ServiceException e) {
+                response.setErrorMessage(e.getMessage());
+                response.setResponseCode(501);
+                return response;
+            }
         }
+       return response;
     }
 }

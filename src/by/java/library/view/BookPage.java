@@ -63,7 +63,6 @@ public class BookPage implements Page {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-
             System.out.println(response.getBody().get("list"));
         }
         System.out.println();
@@ -71,17 +70,13 @@ public class BookPage implements Page {
 
     private void findBookByName() {
         Request request = new Request();
-        Command nameCommand = new FindBookByNameCommand();
+        Command command = new FindBookByNameCommand();
         System.out.println("Enter book name");
-        String bookName = ScannerHelper.inputStringFromConsole();
-        request.getBody().put("bookName", bookName);
-        Response response = nameCommand.execute(request);
-        if (response.getResponseCode() == 501) {
-            System.out.println(response.getErrorMessage());
-        }
-        if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody());
-        }
+        String title = ScannerHelper.inputStringFromConsole();
+        request.getBody().put("title", title);
+        Response response = command.execute(request);
+        System.out.println(response.getResponseCode());
+
     }
 
     private void addBooks() {
