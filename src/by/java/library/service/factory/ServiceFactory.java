@@ -1,6 +1,8 @@
 package library.service.factory;
 
-import library.service.impl.*;
+import library.service.impl.BookServiceImpl;
+import library.service.impl.PersonServiceImpl;
+import library.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
@@ -18,15 +20,13 @@ public class ServiceFactory {
         return instance;
     }
 
-    public library.service.impl.UserServiceImpl getUserServiceImpl() {
+    public UserServiceImpl getUserServiceImpl() {
         return UserServiceImpl;
     }
 
     public BookServiceImpl getBookServiceImpl() {
         return BookServiceImpl;
     }
-
-
 
     public PersonServiceImpl getPersonServiceImpl() {
         return PersonServiceImpl;

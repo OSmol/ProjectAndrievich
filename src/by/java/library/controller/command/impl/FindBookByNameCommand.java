@@ -18,7 +18,7 @@ public class FindBookByNameCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        String title = String.valueOf(request.getBody().get("title"));
+       String title= String.valueOf(request.getBody().get(book.getTitle()));
         Response response = new Response();
         if (title == null || title.isEmpty()) {
             response.setErrorMessage("Enter title");
@@ -27,7 +27,7 @@ public class FindBookByNameCommand implements Command {
                 book.setTitle(title);
                 BookService bookService = serviceFactory.getBookServiceImpl();
                 response.setResponseCode(201);
-                response.getBody().put("list", bookService.findBookByName(book.getTitle()));
+                response.getBody().put("list", bookService.findBookByName(title));
                 return response;
 
             } catch (ServiceException e) {
