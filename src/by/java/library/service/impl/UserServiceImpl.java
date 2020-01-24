@@ -68,5 +68,10 @@ public class UserServiceImpl implements SecurityService, UserService {
         }
     }
 
+    @Override
+    public void addUser() throws ServiceException {
+
+    }
+
 
 }

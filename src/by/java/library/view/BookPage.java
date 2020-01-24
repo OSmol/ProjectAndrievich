@@ -73,6 +73,7 @@ public class BookPage implements Page {
         Command command = new FindBookByNameCommand();
         System.out.println("Enter name book: ");
         String title = ScannerHelper.inputStringFromConsole();
+        request.getBody().put("title", title);
         Response response = command.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());

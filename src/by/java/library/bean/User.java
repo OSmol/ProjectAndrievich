@@ -2,7 +2,6 @@ package library.bean;
 
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -15,7 +14,6 @@ public class User implements Serializable {
     private boolean block;
     private String locale;
     private UserRole userRole;
-    private List<Book> books;
 
 
     public User() {
@@ -32,14 +30,14 @@ public class User implements Serializable {
     }
 
     public User(int id, String login, String password, String name, Email email, boolean block,
-                String locale, UserRole userRole, List<Book> books) {
+                String locale) {
         this.id = id;
         this.security = new Security(login, password);
         this.email = email;
         this.name = name;
         this.block = block;
         this.locale = locale;
-        this.books = books;
+
     }
 
     public User(Security security) {
@@ -104,14 +102,6 @@ public class User implements Serializable {
         this.userRole = role;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,13 +113,12 @@ public class User implements Serializable {
                 Objects.equals(name, user.name) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(locale, user.locale) &&
-                userRole == user.userRole &&
-                Objects.equals(books, user.books);
+                userRole == user.userRole;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, security, name, email, block, locale, userRole, books);
+        return Objects.hash(id, security, name, email, block, locale, userRole);
     }
 
     @Override
@@ -142,7 +131,6 @@ public class User implements Serializable {
                 ", block=" + block +
                 ", locale='" + locale + '\'' +
                 ", role=" + userRole +
-                ", books=" + books +
                 '}';
     }
 

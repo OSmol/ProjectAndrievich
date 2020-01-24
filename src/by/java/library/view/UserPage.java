@@ -16,7 +16,7 @@ public class UserPage implements Page {
     public Request run() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
-        sb.append("6. Register a new user.\n");
+        sb.append("6. Add a new user.\n");
         sb.append("7. Delete user.\n");
         sb.append("8. Find user.\n");
         sb.append("9. Update user\n");
@@ -28,7 +28,7 @@ public class UserPage implements Page {
         switch (result) {
 
             case "6":
-                registerUser();
+                addUser();
                 break;
             case "7":
                 deleteUser();
@@ -48,17 +48,19 @@ public class UserPage implements Page {
     }
 
 
-    private void registerUser() {
+    private void addUser() {
+
         Request request = new Request();
         Command command = new RegistrationCommand();
+        System.out.println("Enter login");
+        String login = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter password");
+        String password = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter name: ");
         String name = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter email: ");
         String email = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter new login: ");
-        String login = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter new password: ");
-        String password = ScannerHelper.inputStringFromConsole();
+
         request.getBody().put("name", name);
         request.getBody().put("email", email);
         request.getBody().put("login", login);
