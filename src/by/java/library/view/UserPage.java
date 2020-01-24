@@ -21,6 +21,7 @@ public class UserPage implements Page {
         sb.append("8. Find user.\n");
         sb.append("9. Update user\n");
         sb.append("10. Show all users.\n");
+        sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
         String result = sc.next();
@@ -42,11 +43,17 @@ public class UserPage implements Page {
             case "10":
                 showAllUsers();
                 break;
+            case "0":
+                finishWork();
+                break;
         }
 
         return null;
     }
 
+    private void finishWork() {
+        System.out.println("Work with users finished!");
+    }
 
     private void addUser() {
 

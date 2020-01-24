@@ -168,6 +168,7 @@ public class BookPage implements Page {
 
 
     private void finishWork() {
+        System.out.println("Work with books finished!");
     }
 
 
