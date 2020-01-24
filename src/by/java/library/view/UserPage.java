@@ -61,10 +61,10 @@ public class UserPage implements Page {
         System.out.println("Enter email: ");
         String email = ScannerHelper.inputStringFromConsole();
 
-        request.getBody().put("name", name);
-        request.getBody().put("email", email);
         request.getBody().put("login", login);
         request.getBody().put("password", password);
+        request.getBody().put("name", name);
+        request.getBody().put("email", email);
 
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());

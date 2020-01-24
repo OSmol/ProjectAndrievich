@@ -80,7 +80,6 @@ public class TxtBookDAOImpl implements BookDAO {
 
     @Override
     public void addBook(Book book) throws DAOException {
-
         List<Book> list = getBooks();
         if (list == null || list.isEmpty()) {
             int generateID = 1;
@@ -173,7 +172,7 @@ public class TxtBookDAOImpl implements BookDAO {
         users.add(user);
         books.add(book);
         // book.setUsers(users);
-        user.setBooks(books);
+
 //сохранить изменения в базу данных + эксепшены
     }
 
@@ -186,10 +185,10 @@ public class TxtBookDAOImpl implements BookDAO {
         for (User user : users) {
             //логировать то что ниже
             user.getName();
-            for (Book book : user.getBooks()) {
+          //  for (Book book : user.getBooks()) {
                 //логировать то что ниже
-                book.getTitle();
+              //  book.getTitle();
             }
         }
     }
-}
+//}

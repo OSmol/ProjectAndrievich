@@ -36,14 +36,14 @@ public class AddUserCommand implements Command {
             return response;
         }
         User user = new User();
-        //   book.setId(Integer.parseInt(id));
+        //   user.setId(Integer.parseInt(id));
         user.setName(name);
-        user.setEmail(email);
+        user.setEmail(null);
         user.setLocale(locale);
-        user.setUserRole(userRole);
+        user.setUserRole(null);
 
         try {
-            serviceFactory.getUserServiceImpl().addUser();
+            serviceFactory.getUserServiceImpl().addUser(user);
             response.setResponseCode(201);
             return response;
 

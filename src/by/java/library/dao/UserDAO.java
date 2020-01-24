@@ -12,7 +12,7 @@ import java.util.List;
 названия методов не должны отображать бизнес логику (сервис)
  */
 public interface UserDAO {
-    List<User> getAll() throws DAOException;
+    List<User> getUsers() throws DAOException;
 
     void add(User user) throws DAOException;
 

@@ -16,20 +16,19 @@ public class TxtUserDAOImpl implements UserDAO {
 
 
     @Override
-    public List<User> getAll() throws DAOException {
-        return readFile();
+    public List<User> getUsers() throws DAOException {
+        return (List<User>) readFile();
     }
 
     @Override
     public void add(User user) throws DAOException {
-      //  List<User> list = getAll();
-        List<User>list = new ArrayList<>();
+        List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             int generateId = 1;
-            list = new ArrayList<>();
             user.setId(generateId);
-            list.add(user);
-            writeFile(list);
+            List<User>users = new ArrayList<>();
+            users.add(user);
+            writeFile(users);
         } else {
             int generate = generateIdUser(list);
             user.setId(generate);
@@ -40,7 +39,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public void delete(String login) throws DAOException {
-        List<User> list = getAll();
+        List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
         } else {
@@ -58,7 +57,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public boolean delete(User user) throws DAOException {
-        List<User> list = getAll();
+        List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
         } else {
@@ -70,7 +69,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public User get(String login) throws DAOException {
-        List<User> list = getAll();
+        List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
         } else {
@@ -86,7 +85,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public void update(User user) throws DAOException {
-        List<User> list = getAll();
+        List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
         } else {
