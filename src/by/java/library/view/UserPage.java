@@ -4,9 +4,9 @@ import javatrDay5.helper.ScannerHelper;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
+import library.controller.command.impl.AddUserCommand;
 import library.controller.command.impl.DeleteUserCommand;
 import library.controller.command.impl.GetUsersCommand;
-import library.controller.command.impl.RegistrationCommand;
 import library.controller.command.impl.UpdateUserCommand;
 
 import java.util.Scanner;
@@ -51,7 +51,7 @@ public class UserPage implements Page {
     private void addUser() {
 
         Request request = new Request();
-        Command command = new RegistrationCommand();
+        Command command = new AddUserCommand();
         System.out.println("Enter login");
         String login = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter password");

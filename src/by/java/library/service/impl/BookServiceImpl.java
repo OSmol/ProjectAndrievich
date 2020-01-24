@@ -18,14 +18,14 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addBook(Book book) throws ServiceException {
-        logger.debug("BookServiceImpl.addMovie - run");
+        logger.debug("BookServiceImpl.addBook - run");
         BookDAO txtBookDAO = daoFactory.getTxtBookDAO();
         try {
             txtBookDAO.addBook(book);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        logger.debug("BookServiceImpl.addMovie - Book add");
+        logger.debug("BookServiceImpl.addBook - Book add");
     }
 
     @Override

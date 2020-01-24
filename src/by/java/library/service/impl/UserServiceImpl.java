@@ -70,8 +70,13 @@ public class UserServiceImpl implements SecurityService, UserService {
 
     @Override
     public void addUser(User user) throws ServiceException {
-
+        logger.debug("UserServiceImpl.addUser - run");
+        UserDAO txtUserDAO = daoFactory.getTxtUserDAO();
+        try {
+            txtUserDAO.add(user);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        logger.debug("UserServiceImpl.addUser - User add");
     }
-
-
 }

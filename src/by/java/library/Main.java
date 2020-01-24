@@ -2,6 +2,7 @@ package library;
 
 
 import library.view.BookPage;
+import library.view.MainPage;
 import library.view.UserPage;
 
 /*
@@ -22,7 +23,9 @@ public class Main {
         BookPage bookPage = new BookPage();
         UserPage userPage = new UserPage();
         //    bookPage.run();
-       userPage.run();
+      // userPage.run();
+        MainPage mainPage=new MainPage();
+        mainPage.run();
     }
 }
 
