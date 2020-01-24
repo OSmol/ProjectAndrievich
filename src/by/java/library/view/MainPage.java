@@ -46,6 +46,19 @@ public class MainPage implements Page {
     }
 
     private void useUsersMenu() {
+        UserPage userPage = new UserPage();
+        Request request = new Request();
+        userPage.run();
+        Response response = new Response();
+
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+        }
+        if (response.getResponseCode() == 201) {
+            System.out.println(response.getBody().get("list"));
+        }
+        System.out.println();
     }
 }
+
 
