@@ -71,7 +71,8 @@ public class BookPage implements Page {
     private void findBookByName() {
         Request request = new Request();
         Command command = new FindBookByNameCommand();
-
+        System.out.println("Enter name book: ");
+        String title = ScannerHelper.inputStringFromConsole();
         Response response = command.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -86,6 +87,9 @@ public class BookPage implements Page {
     private void removeBook() {
         Request request = new Request();
         Command bookCommand = new DeleteBookByIdCommand();
+        System.out.println("Enter id book: ");
+        int id = ScannerHelper.inputInt();
+        request.getBody().put("id",id);
         Response response = bookCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());

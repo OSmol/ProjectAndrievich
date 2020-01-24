@@ -1,6 +1,6 @@
 package library;
 
-import library.service.exception.ServiceException;
+
 import library.view.BookPage;
 import library.view.UserPage;
 
@@ -18,12 +18,11 @@ import library.view.UserPage;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) throws ServiceException {
+    public static void main(String[] args)  {
         BookPage bookPage = new BookPage();
         UserPage userPage = new UserPage();
        // bookPage.run();
          userPage.run();
-
     }
 }
 
