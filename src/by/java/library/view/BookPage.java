@@ -91,6 +91,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
+        System.out.println("\n Please, make your choice!");
     }
 
     private void findBookByName() {
@@ -106,6 +107,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
+        System.out.println("\n Please, make your choice!");
     }
 
     private void removeBook() {
@@ -121,6 +123,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
+        System.out.println("\n Please, make your choice!");
     }
 
 
@@ -172,6 +175,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
+        System.out.println("\n Please, make your choice!");
     }
 
 
@@ -184,12 +188,12 @@ public class BookPage implements Page {
         Response response = bookCommand.execute(request);
         System.out.println(response.getErrorMessage());
         System.out.println(response.getResponseCode());
-
+        System.out.println("\n Please, make your choice!");
     }
 
 
     private void finishWork() {
-        System.out.println("Work with books finished!");
+        System.out.println("Work with books finished! \n");
     }
 
 

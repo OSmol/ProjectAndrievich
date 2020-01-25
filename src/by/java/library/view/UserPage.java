@@ -67,7 +67,7 @@ public class UserPage implements Page {
     }
 
     private void finishWork() {
-        System.out.println("Work with users finished!");
+        System.out.println("Work with users finished! \n");
     }
 
     private void goToMainMenu() {
@@ -102,6 +102,7 @@ public class UserPage implements Page {
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
+        System.out.println("\n Please, make your choice!");
     }
 
     private void deleteUser() {
@@ -114,7 +115,7 @@ public class UserPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-        System.out.println();
+        System.out.println("\n Please, make your choice!");
     }
 
     private void findUser() {
@@ -125,6 +126,7 @@ public class UserPage implements Page {
         request.getBody().put("login", login);
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
+        System.out.println("\n Please, make your choice!");
     }
 
     private void updateUser() {
@@ -135,6 +137,7 @@ public class UserPage implements Page {
         request.getBody().put("id", id);
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
+        System.out.println("\n Please, make your choice!");
     }
 
     private void showAllUsers() {
@@ -147,6 +150,6 @@ public class UserPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-        System.out.println();
+        System.out.println("\n Please, make your choice!");
     }
 }
