@@ -1,13 +1,13 @@
 package library.view;
 
-import library.controller.Request;
-
 import java.util.Scanner;
-
+/*
+каждая пейдж должна быть синглтоном
+ */
 
 public class MainPage implements Page {
     @Override
-    public Request run() {
+    public void run() {
 
         StringBuilder sb = new StringBuilder();
         sb.append("\nMain options:\n");
@@ -16,20 +16,21 @@ public class MainPage implements Page {
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-        String result = sc.next();
-
-        switch (result) {
-            case "1":
-                useBooksMenu();
-                break;
-            case "2":
-                useUsersMenu();
-                break;
-            case "0":
-                finishWork();
-                break;
-        }
-        return null;
+        String result;
+        do {
+            result = sc.next();
+            switch (result) {
+                case "1":
+                    useBooksMenu();
+                    break;
+                case "2":
+                    useUsersMenu();
+                    break;
+                case "0":
+                    finishWork();
+                    break;
+            }
+        } while (true);
     }
 
     private void useBooksMenu() {

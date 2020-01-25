@@ -18,7 +18,7 @@ public class BookPage implements Page {
     Scanner sc = new Scanner(System.in);
 
     @Override
-    public Request run() {
+    public void run() {
 
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
@@ -52,7 +52,7 @@ public class BookPage implements Page {
                 finishWork();
                 break;
         }
-        return null;
+
     }
 
     private void showBooks() {
@@ -65,8 +65,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-        System.out.println();
-    }
+           }
 
     private void findBookByName() {
         Request request = new Request();
@@ -81,9 +80,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-        System.out.println();
-
-    }
+           }
 
     private void removeBook() {
         Request request = new Request();
@@ -98,8 +95,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-        System.out.println();
-    }
+           }
 
 
     private void addBooks() {
@@ -150,8 +146,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
-        // return request;
-    }
+            }
 
 
     private void updateBook() {

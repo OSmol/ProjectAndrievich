@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class UserPage implements Page {
     @Override
-    public Request run() {
+    public void run() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
         sb.append("6. Add a new user.\n");
@@ -47,9 +47,7 @@ public class UserPage implements Page {
                 finishWork();
                 break;
         }
-
-        return null;
-    }
+            }
 
     private void finishWork() {
         System.out.println("Work with users finished!");
