@@ -17,9 +17,6 @@ import java.util.Scanner;
 class BookPage implements Page {
     private static BookPage instance;
 
-    protected BookPage() {
-    }
-
     public static synchronized BookPage getInstance() {
         if (instance == null) {
             instance = new BookPage();
