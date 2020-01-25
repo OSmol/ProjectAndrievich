@@ -17,6 +17,7 @@ import java.util.Scanner;
 class BookPage implements Page {
     private static BookPage instance;
     private StringBuilder sb;
+    private Scanner sc = new Scanner(System.in);
 
     private BookPage() {
         sb = new StringBuilder();//sb созд в пределах объекта, а не в методе run()
@@ -38,18 +39,12 @@ class BookPage implements Page {
         return instance;
     }
 
-    private Scanner sc = new Scanner(System.in);
-
-
     @Override
     public void run() {
-
-        System.out.println(sb.toString());
-        int result;
-        boolean b = false;
-        do {
+        int result = 1;
+        while (result != 0) {
+            System.out.println(sb.toString());
             result = Integer.parseInt(sc.next());
-
             switch (result) {
                 case 1:
                     showBooks();
@@ -74,15 +69,9 @@ class BookPage implements Page {
                     return;
                 case 0:
                     finishWork();
-                    b = true;
-                default:
-                    System.out.println("Go to main menu and make your choice!\n " +
-                            "1. Use books menu.\n" +
-                            "2. Use users menu.\n" +
-                            "0. To finish work.\n");
-                    return;
+                    break;
             }
-        } while ((result != 6) && (!b));
+        }
     }
 
     private void goToMainMenu() {

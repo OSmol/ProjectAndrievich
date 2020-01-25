@@ -14,6 +14,7 @@ import java.util.Scanner;
 public final class UserPage implements Page {
     private static UserPage instance;
     private StringBuilder sb;
+    Scanner sc = new Scanner(System.in);
 
     private UserPage() {
         sb = new StringBuilder();
@@ -37,15 +38,11 @@ public final class UserPage implements Page {
 
     @Override
     public void run() {
-
-        System.out.println(sb.toString());
-        Scanner sc = new Scanner(System.in);
-        int result;
-        boolean b = false;
-        do {
+        int result = 1;
+        while (result != 0) {
+            System.out.println(sb.toString());
             result = Integer.parseInt(sc.next());
             switch (result) {
-
                 case 1:
                     addUser();
                     break;
@@ -69,15 +66,9 @@ public final class UserPage implements Page {
                     return;
                 case 0:
                     finishWork();
-                    b = true;
-                default:
-                    System.out.println("Go to main menu and make your choice!\n " +
-                            "1. Use books menu.\n" +
-                            "2. Use users menu.\n" +
-                            "0. To finish work.\n");
-                    return;
+                    break;
             }
-        } while ((result != 6) && (!b));
+        }
     }
 
     private void finishWork() {

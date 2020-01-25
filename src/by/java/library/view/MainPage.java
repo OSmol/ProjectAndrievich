@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class MainPage implements Page {
     private static MainPage instance;
     private StringBuilder sb;
+    private Scanner sc = new Scanner(System.in);
 
     private MainPage() {
         sb = new StringBuilder();
@@ -24,29 +25,23 @@ public class MainPage implements Page {
         return instance;
     }
 
-    private Scanner sc = new Scanner(System.in);
-
     @Override
     public void run() {
-        System.out.println(sb.toString());
         int result = 0;
-        while (result != 3) {
+        while (true) {
+            System.out.println(sb.toString());
             result = Integer.parseInt(sc.next());
             switch (result) {
                 case 1:
                     useBooksMenu();
-                    break;
+                    return;
                 case 2:
                     useUsersMenu();
-                    break;
-                case 0:
+                    return;
+                case 3:
                     finishWork();
                     return;
-                default:
-                    System.out.println("Enter right command");
-                    break;
             }
-
         }
     }
 

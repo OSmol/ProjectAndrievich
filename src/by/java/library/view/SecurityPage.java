@@ -5,23 +5,66 @@ import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.RegistrationCommand;
-import library.service.exception.ServiceException;
 
-public class SecurityPage {
-    public Request authorisation() throws ServiceException {
-        Command command = new RegistrationCommand();
-        System.out.println("Enter login: ");
-        String login = ScannerHelper.inputStringFromConsole();
-        System.out.println("Enter password: ");
-        String password = ScannerHelper.inputStringFromConsole();
-        Request request=new Request();
-        request.getBody().put("login", login);
-        request.getBody().put("password", password);
-        command.execute(request);
-        return null;
+import java.util.Scanner;
+
+public final class SecurityPage implements Page {
+    private static SecurityPage instance;
+    private StringBuilder sb;
+    Scanner sc = new Scanner(System.in);
+
+    private SecurityPage() {
+        sb = new StringBuilder();
+        sb.append("\nAvailable options:\n");
+        sb.append("1. Registration. \n");
+        sb.append("2. Sign in. \n");
+        sb.append("3. Sign out. \n");
+        sb.append("4. Go to Book menu.\n");
+        sb.append("5. Go to Main menu.\n");
+        sb.append("6. Go to User menu.\n");
+        sb.append("0. To finish work.\n");
     }
 
-    public Request registration() throws ServiceException {
+    public static synchronized SecurityPage getInstance() {
+        if (instance == null) {
+            instance = new SecurityPage();
+        }
+        return instance;
+    }
+
+    @Override
+    public void run() {
+        int result = 1;
+        while (result != 0) {
+            System.out.println(sb.toString());
+            result = Integer.parseInt(sc.next());
+            switch (result) {
+                case 1:
+                    registration();
+                    break;
+                case 2:
+                    signIn();
+                    break;
+                case 3:
+                    signOut();
+                    break;
+                case 4:
+                    goToBookMenu();
+                    return;
+                case 5:
+                    goToMainMenu();
+                    return;
+                case 6:
+                    goToUserMenu();
+                    return;
+                case 0:
+                    finishWork();
+                    break;
+            }
+        }
+    }
+
+    public void registration() {
         Command command = new RegistrationCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
@@ -33,18 +76,19 @@ public class SecurityPage {
 
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
-        if (response.getResponseCode()==501){
+        if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
-        return request;
+
     }
-    public Request signIn() throws ServiceException {
+
+    public void signIn() {
         Command command = new RegistrationCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter password: ");
         String password = ScannerHelper.inputStringFromConsole();
-        Request request=new Request();
+        Request request = new Request();
         request.getBody().put("login", login);
         request.getBody().put("password", password);
         Response response = command.execute(request);
@@ -52,9 +96,29 @@ public class SecurityPage {
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
-        return request;
+
     }
-    public Request signOut() throws ServiceException {
-        return null;
+
+    public void signOut() {
+
+    }
+
+    private void finishWork() {
+        System.out.println("Work with users finished! \n");
+    }
+
+    private void goToMainMenu() {
+        MainPage mainPage = MainPage.getInstance();
+        mainPage.run();
+    }
+
+    private void goToBookMenu() {
+        BookPage bookPage = BookPage.getInstance();//вызвали синглетон
+        bookPage.run();
+    }
+
+    private void goToUserMenu() {
+        UserPage userPage = UserPage.getInstance();
+        userPage.run();
     }
 }
