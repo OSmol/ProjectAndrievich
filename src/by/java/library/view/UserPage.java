@@ -21,11 +21,14 @@ public class UserPage implements Page {
         sb.append("3. Find user.\n");
         sb.append("4. Update user\n");
         sb.append("5. Show all users.\n");
+        sb.append("6. Go to Book menu.\n");
+        sb.append("7. Go to Main menu.\n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
         int result = 0;
-        while (result != 6) {
+        boolean b = false;
+        do {
             result = Integer.parseInt(sc.next());
             switch (result) {
 
@@ -44,22 +47,40 @@ public class UserPage implements Page {
                 case 5:
                     showAllUsers();
                     break;
+                case 6:
+                    goToBookMenu();
+                    return;
+                case 7:
+                    goToMainMenu();
+                    return;
                 case 0:
                     finishWork();
-                    return;
+                    b = true;
                 default:
-                    System.out.println("Enter right command");
-                    break;
+                    System.out.println("Go to main menu and make your choice!\n " +
+                            "1. Use books menu.\n" +
+                            "2. Use users menu.\n" +
+                            "0. To finish work.\n");
+                    return;
             }
-        }
+        } while ((result != 6) && (!b));
     }
 
     private void finishWork() {
         System.out.println("Work with users finished!");
     }
 
-    private void addUser() {
+    private void goToMainMenu() {
+        MainPage mainPage = new MainPage();
+        mainPage.run();
+    }
 
+    private void goToBookMenu() {
+        BookPage bookPage = new BookPage();
+        bookPage.run();
+    }
+
+    private void addUser() {
         Request request = new Request();
         Command command = new AddUserCommand();
         System.out.println("Enter login");

@@ -27,10 +27,13 @@ public class BookPage implements Page {
         sb.append("3. Add a book to the catalog.\n");
         sb.append("4. Remove book from catalog.\n");
         sb.append("5. Update book. \n");
+        sb.append("6. Go to User menu.\n");
+        sb.append("7. Go to Main menu.\n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         int result = 0;
-        while (result != 6) {
+        boolean b = false;
+        do {
             result = Integer.parseInt(sc.next());
 
             switch (result) {
@@ -49,14 +52,33 @@ public class BookPage implements Page {
                 case 5:
                     updateBook();
                     break;
+                case 6:
+                    goToUserMenu();
+                    return;
+                case 7:
+                    goToMainMenu();
+                    return;
                 case 0:
                     finishWork();
-                    return;
+                    b = true;
                 default:
-                    System.out.println("Enter right command");
-                    break;
+                    System.out.println("Go to main menu and make your choice!\n " +
+                            "1. Use books menu.\n" +
+                            "2. Use users menu.\n" +
+                            "0. To finish work.\n");
+                    return;
             }
-        }
+        } while ((result != 6) && (!b));
+    }
+
+    private void goToMainMenu() {
+        MainPage mainPage = new MainPage();
+        mainPage.run();
+    }
+
+    private void goToUserMenu() {
+        UserPage userPage = new UserPage();
+        userPage.run();
     }
 
     private void showBooks() {
