@@ -16,38 +16,43 @@ public class UserPage implements Page {
     public void run() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
-        sb.append("6. Add a new user.\n");
-        sb.append("7. Delete user.\n");
-        sb.append("8. Find user.\n");
-        sb.append("9. Update user\n");
-        sb.append("10. Show all users.\n");
+        sb.append("1. Add a new user.\n");
+        sb.append("2. Delete user.\n");
+        sb.append("3. Find user.\n");
+        sb.append("4. Update user\n");
+        sb.append("5. Show all users.\n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-        String result = sc.next();
+        int result = 0;
+        while (result != 6) {
+            result = Integer.parseInt(sc.next());
+            switch (result) {
 
-        switch (result) {
-
-            case "6":
-                addUser();
-                break;
-            case "7":
-                deleteUser();
-                break;
-            case "8":
-                findUser();
-                break;
-            case "9":
-                updateUser();
-                break;
-            case "10":
-                showAllUsers();
-                break;
-            case "0":
-                finishWork();
-                break;
-        }
+                case 1:
+                    addUser();
+                    break;
+                case 2:
+                    deleteUser();
+                    break;
+                case 3:
+                    findUser();
+                    break;
+                case 4:
+                    updateUser();
+                    break;
+                case 5:
+                    showAllUsers();
+                    break;
+                case 0:
+                    finishWork();
+                    return;
+                default:
+                    System.out.println("Enter right command");
+                    break;
             }
+        }
+    }
 
     private void finishWork() {
         System.out.println("Work with users finished!");

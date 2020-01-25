@@ -16,25 +16,28 @@ public class MainPage implements Page {
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-        String result;
-        do {
-            result = sc.next();
+        int result = 0;
+        while (result != 3) {
+            result = Integer.parseInt(sc.next());
             switch (result) {
-                case "1":
+                case 1:
                     useBooksMenu();
                     break;
-                case "2":
+                case 2:
                     useUsersMenu();
                     break;
-                case "0":
+                case 0:
                     finishWork();
-                    break;
+                    return;
+                default:
+                    System.out.println("Enter right command");
+                   break;
             }
-        } while (true);
+
+        }
     }
 
     private void useBooksMenu() {
-
         BookPage bookPage = new BookPage();
         bookPage.run();
         System.out.println();

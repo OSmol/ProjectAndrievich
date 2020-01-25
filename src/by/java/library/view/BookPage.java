@@ -29,30 +29,34 @@ public class BookPage implements Page {
         sb.append("5. Update book. \n");
         sb.append("0. To finish work.\n");
         System.out.println(sb.toString());
+        int result = 0;
+        while (result != 6) {
+            result = Integer.parseInt(sc.next());
 
-        String result = sc.next();
-
-        switch (result) {
-            case "1":
-                showBooks();
-                break;
-            case "2":
-                findBookByName();
-                break;
-            case "3":
-                addBooks();
-                break;
-            case "4":
-                removeBook();
-                break;
-            case "5":
-                updateBook();
-                break;
-            case "0":
-                finishWork();
-                break;
+            switch (result) {
+                case 1:
+                    showBooks();
+                    break;
+                case 2:
+                    findBookByName();
+                    break;
+                case 3:
+                    addBooks();
+                    break;
+                case 4:
+                    removeBook();
+                    break;
+                case 5:
+                    updateBook();
+                    break;
+                case 0:
+                    finishWork();
+                    return;
+                default:
+                    System.out.println("Enter right command");
+                    break;
+            }
         }
-
     }
 
     private void showBooks() {
@@ -65,7 +69,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-           }
+    }
 
     private void findBookByName() {
         Request request = new Request();
@@ -80,14 +84,14 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-           }
+    }
 
     private void removeBook() {
         Request request = new Request();
         Command bookCommand = new DeleteBookByIdCommand();
         System.out.println("Enter id book: ");
         int id = ScannerHelper.inputInt();
-        request.getBody().put("id",id);
+        request.getBody().put("id", id);
         Response response = bookCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -95,7 +99,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
         }
-           }
+    }
 
 
     private void addBooks() {
@@ -146,7 +150,7 @@ public class BookPage implements Page {
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
-            }
+    }
 
 
     private void updateBook() {
