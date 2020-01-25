@@ -11,7 +11,16 @@ import library.controller.command.impl.UpdateUserCommand;
 
 import java.util.Scanner;
 
-public class UserPage implements Page {
+ class UserPage implements Page {
+     private static UserPage instance;
+     protected UserPage(){}
+     public static synchronized UserPage getInstance(){
+         if (instance==null){
+             instance=new UserPage();
+         }
+         return instance;
+     }
+
     @Override
     public void run() {
         StringBuilder sb = new StringBuilder();

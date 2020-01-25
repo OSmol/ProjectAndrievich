@@ -14,7 +14,19 @@ import java.util.Scanner;
 работаю с реквестом и респонсом, не могу вызвать дао, сервис, могу вызвать на 1 приватном методе 1 контроллер
 в этом  классе предпол работа с пользователем, поэтому дб много соут
  */
-public class BookPage implements Page {
+class BookPage implements Page {
+    private static BookPage instance;
+
+    protected BookPage() {
+    }
+
+    public static synchronized BookPage getInstance() {
+        if (instance == null) {
+            instance = new BookPage();
+        }
+        return instance;
+    }
+
     Scanner sc = new Scanner(System.in);
 
     @Override
