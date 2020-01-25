@@ -1,9 +1,6 @@
 package library;
 
-
-import library.view.BookPage;
 import library.view.MainPage;
-import library.view.UserPage;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -19,13 +16,10 @@ import library.view.UserPage;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args)  {
-        BookPage bookPage = new BookPage();
-        UserPage userPage = new UserPage();
-        //    bookPage.run();
-      // userPage.run();
-        MainPage mainPage=new MainPage();
+    public static void main(String[] args) {
+        MainPage mainPage = MainPage.getInstance();
         mainPage.run();
     }
 }
+
 
