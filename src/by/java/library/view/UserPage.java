@@ -12,15 +12,11 @@ import library.controller.command.impl.UpdateUserCommand;
 import java.util.Scanner;
 
 public final class UserPage implements Page {
-    private static final UserPage instance = new UserPage();
+    private static UserPage instance;
+    private StringBuilder sb;
 
-    public static UserPage getInstance() {
-        return instance;
-    }
-
-    @Override
-    public void run() {
-        StringBuilder sb = new StringBuilder();
+    private UserPage() {
+        sb = new StringBuilder();
         sb.append("\nAvailable options:\n");
         sb.append("1. Add a new user.\n");
         sb.append("2. Delete user.\n");
@@ -30,9 +26,21 @@ public final class UserPage implements Page {
         sb.append("6. Go to Book menu.\n");
         sb.append("7. Go to Main menu.\n");
         sb.append("0. To finish work.\n");
+    }
+
+    public static synchronized UserPage getInstance() {
+        if (instance == null) {
+            instance = new UserPage();
+        }
+        return instance;
+    }
+
+    @Override
+    public void run() {
+
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-        int result = 0;
+        int result;
         boolean b = false;
         do {
             result = Integer.parseInt(sc.next());
@@ -77,12 +85,12 @@ public final class UserPage implements Page {
     }
 
     private void goToMainMenu() {
-        MainPage mainPage = new MainPage();
+        MainPage mainPage = MainPage.getInstance();
         mainPage.run();
     }
 
     private void goToBookMenu() {
-        BookPage bookPage = new BookPage();
+        BookPage bookPage = BookPage.getInstance();//вызвали синглетон
         bookPage.run();
     }
 

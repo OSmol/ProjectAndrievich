@@ -6,16 +6,29 @@ import java.util.Scanner;
  */
 
 public class MainPage implements Page {
-    @Override
-    public void run() {
+    private static MainPage instance;
+    private StringBuilder sb;
 
-        StringBuilder sb = new StringBuilder();
+    private MainPage() {
+        sb = new StringBuilder();
         sb.append("\nMain options:\n");
         sb.append("1. Use books menu.\n");
         sb.append("2. Use users menu.\n");
         sb.append("0. To finish work.\n");
+    }
+
+    public static synchronized MainPage getInstance() {
+        if (instance == null) {
+            instance = new MainPage();
+        }
+        return instance;
+    }
+
+    private Scanner sc = new Scanner(System.in);
+
+    @Override
+    public void run() {
         System.out.println(sb.toString());
-        Scanner sc = new Scanner(System.in);
         int result = 0;
         while (result != 3) {
             result = Integer.parseInt(sc.next());
@@ -31,22 +44,22 @@ public class MainPage implements Page {
                     return;
                 default:
                     System.out.println("Enter right command");
-                   break;
+                    break;
             }
 
         }
     }
 
     private void useBooksMenu() {
-        BookPage bookPage = new BookPage();
+        BookPage bookPage = BookPage.getInstance();
         bookPage.run();
-        System.out.println();
+
     }
 
     private void useUsersMenu() {
-        UserPage userPage = new UserPage();
+        UserPage userPage = UserPage.getInstance();
         userPage.run();
-        System.out.println();
+
     }
 
     private void finishWork() {

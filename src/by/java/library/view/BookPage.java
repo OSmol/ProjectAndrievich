@@ -16,20 +16,10 @@ import java.util.Scanner;
  */
 class BookPage implements Page {
     private static BookPage instance;
+    private StringBuilder sb;
 
-    public static synchronized BookPage getInstance() {
-        if (instance == null) {
-            instance = new BookPage();
-        }
-        return instance;
-    }
-
-    Scanner sc = new Scanner(System.in);
-
-    @Override
-    public void run() {
-
-        StringBuilder sb = new StringBuilder();
+    private BookPage() {
+        sb = new StringBuilder();//sb созд в пределах объекта, а не в методе run()
         sb.append("\nAvailable options:\n");
         sb.append("1. View books in the catalog.\n");
         sb.append("2. Find a book in the catalog.\n");
@@ -39,8 +29,23 @@ class BookPage implements Page {
         sb.append("6. Go to User menu.\n");
         sb.append("7. Go to Main menu.\n");
         sb.append("0. To finish work.\n");
+    }
+
+    public static synchronized BookPage getInstance() {
+        if (instance == null) {
+            instance = new BookPage();
+        }
+        return instance;
+    }
+
+    private Scanner sc = new Scanner(System.in);
+
+
+    @Override
+    public void run() {
+
         System.out.println(sb.toString());
-        int result = 0;
+        int result;
         boolean b = false;
         do {
             result = Integer.parseInt(sc.next());
@@ -81,12 +86,12 @@ class BookPage implements Page {
     }
 
     private void goToMainMenu() {
-        MainPage mainPage = new MainPage();
+        MainPage mainPage = MainPage.getInstance();
         mainPage.run();
     }
 
     private void goToUserMenu() {
-        UserPage userPage = new UserPage();
+        UserPage userPage = UserPage.getInstance();
         userPage.run();
     }
 
