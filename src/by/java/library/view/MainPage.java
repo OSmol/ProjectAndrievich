@@ -27,7 +27,7 @@ public class MainPage implements Page {
 
     @Override
     public void run() {
-        int result = 0;
+        int result;
         while (true) {
             System.out.println(sb.toString());
             result = Integer.parseInt(sc.next());

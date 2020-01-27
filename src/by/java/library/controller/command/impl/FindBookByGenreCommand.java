@@ -1,7 +1,6 @@
 package library.controller.command.impl;
 
 import library.bean.Book;
-
 import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
@@ -11,6 +10,8 @@ import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
+import java.util.List;
+
 public class FindBookByGenreCommand implements Command {
     private static Logger logger = Logger.getLogger(FindBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
@@ -18,24 +19,13 @@ public class FindBookByGenreCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        String login = String.valueOf(request.getBody().get("login"));
-        String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();
-        if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
-            response.setErrorMessage("Enter login and password");
-            response.setResponseCode(403);
-            return response;
-        }
-        security.setLogin(login);
-        security.setPassword(password);
-
         try {
-            Book book = new Book();
+            String genre = String.valueOf(request.getBody().get("genre"));
             BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.findBookByGenre(book.getGenre());
-            response.setResponseCode(201);
+            List<Book> list = bookService.findBookByGenre(genre);
+            System.out.println(list);
             return response;
-
         } catch (ServiceException e) {
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(501);
@@ -43,3 +33,4 @@ public class FindBookByGenreCommand implements Command {
         }
     }
 }
+

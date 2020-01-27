@@ -26,7 +26,7 @@ public class SortBookByNameCommand implements Command {
         try {
             list = bookService.sortBookByName();
         } catch (ServiceException e) {
-          //  e.printStackTrace();
+          //  log
         }
 
         Response response = new Response();
