@@ -5,6 +5,7 @@ import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.RegistrationCommand;
+import library.controller.command.impl.SignInCommand;
 
 import java.util.Scanner;
 
@@ -19,9 +20,6 @@ public final class SecurityPage implements Page {
         sb.append("1. Registration. \n");
         sb.append("2. Sign in. \n");
         sb.append("3. Sign out. \n");
-        sb.append("4. Go to Book menu.\n");
-        sb.append("5. Go to Main menu.\n");
-        sb.append("6. Go to User menu.\n");
         sb.append("0. To finish work.\n");
     }
 
@@ -48,15 +46,6 @@ public final class SecurityPage implements Page {
                 case 3:
                     signOut();
                     break;
-                case 4:
-                    goToBookMenu();
-                    return;
-                case 5:
-                    goToMainMenu();
-                    return;
-                case 6:
-                    goToUserMenu();
-                    return;
                 case 0:
                     finishWork();
                     break;
@@ -65,6 +54,9 @@ public final class SecurityPage implements Page {
     }
 
     public void registration() {
+        //ввести логин и пароль, проверить, новые они или нет,
+        // если новые - записать их в файл, "данные записаны" и перейти на меню мэйн - добавить нового пользователя
+        // если данные есть - "логин и пароль уже существуют" и перейти на меню секьюрити
         Command command = new RegistrationCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
@@ -82,8 +74,9 @@ public final class SecurityPage implements Page {
 
     }
 
+    //ввести данные, прочитать файл, если данные совпадают - перейти на Маин меню
     public void signIn() {
-        Command command = new RegistrationCommand();
+        Command command = new SignInCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter password: ");
@@ -99,6 +92,7 @@ public final class SecurityPage implements Page {
 
     }
 
+    //перейти на signIn
     public void signOut() {
 
     }
@@ -110,15 +104,5 @@ public final class SecurityPage implements Page {
     private void goToMainMenu() {
         MainPage mainPage = MainPage.getInstance();
         mainPage.run();
-    }
-
-    private void goToBookMenu() {
-        BookPage bookPage = BookPage.getInstance();//вызвали синглетон
-        bookPage.run();
-    }
-
-    private void goToUserMenu() {
-        UserPage userPage = UserPage.getInstance();
-        userPage.run();
     }
 }
