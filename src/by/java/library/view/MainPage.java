@@ -15,7 +15,7 @@ public class MainPage implements Page {
         sb.append("\nMain options:\n");
         sb.append("1. Use books menu.\n");
         sb.append("2. Use users menu.\n");
-        sb.append("0. To finish work.\n");
+        sb.append("3. To finish work.\n");
     }
 
     public static synchronized MainPage getInstance() {

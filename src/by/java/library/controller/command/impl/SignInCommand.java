@@ -4,7 +4,11 @@ import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
+import library.security.PasswordEncryptor;
+import library.security.PasswordEncryptorImpl;
+import library.security.SecurityContextHolder;
 import library.service.factory.ServiceFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 public class SignInCommand implements Command {
@@ -14,6 +18,25 @@ public class SignInCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        return null;
+        String login = String.valueOf(request.getBody().get("login"));
+        String password = String.valueOf(request.getBody().get("password"));
+        Response response = new Response();
+        if (StringUtils.isAnyEmpty(login, password)) {
+            response.setErrorMessage("Enter login and password");
+            response.setResponseCode(403);
+            return response;
+        }
+        PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
+        String encryptedPassword = passwordEncryptor.encrypt(password);//зашифровать
+        User user = userService.findByLoginAndPassword(login, password);
+        if (user != null) {
+            SecurityContextHolder.setLoggedUser(user);
+            response.setResponseCode(201);
+        }
+        if (user == null) {
+            response.setResponseCode(403);//
+            response.setErrorMessage("Not found user");
+        }
+        return response;
     }
 }

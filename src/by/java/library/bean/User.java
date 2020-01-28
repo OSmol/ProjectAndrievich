@@ -191,7 +191,7 @@ public class User implements Serializable {
 
         @Override
         public String toString() {
-            return "Security{" +
+            return "SecurityContextHolder{" +
                     "login='" + login + '\'' +
                     ", password='" + password + '\'' +
                     '}';
