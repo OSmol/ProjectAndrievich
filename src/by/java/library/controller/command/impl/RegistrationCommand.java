@@ -8,6 +8,7 @@ import library.security.PasswordEncryptor;
 import library.security.PasswordEncryptorImpl;
 import library.security.SecurityContextHolder;
 import library.service.UserService;
+import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -29,7 +30,12 @@ public class RegistrationCommand implements Command {
         }
         PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
         String encryptedPassword = passwordEncryptor.encrypt(password);//зашифровать
-        User user = userService.findByLogin(login);
+        User user = null;
+        try {
+            user = userService.findUserByLogin(login);
+        } catch (ServiceException e) {
+            //
+        }
         if (user != null) {
             response.setResponseCode(403);
             response.setErrorMessage("User with this login already exist");
@@ -39,7 +45,11 @@ public class RegistrationCommand implements Command {
             user1.setName(name);
             SecurityContextHolder.setLoggedUser(user1);
             response.setResponseCode(201);//
-            userService.addUser(user1);
+            try {
+                userService.addUser(user1);
+            } catch (ServiceException e) {
+                //
+            }
         }
         return response;
     }

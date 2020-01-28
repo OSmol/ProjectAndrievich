@@ -7,13 +7,16 @@ import library.controller.command.Command;
 import library.security.PasswordEncryptor;
 import library.security.PasswordEncryptorImpl;
 import library.security.SecurityContextHolder;
+import library.service.UserService;
+import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 public class SignInCommand implements Command {
     private static Logger logger = Logger.getLogger(SignInCommand.class);
-    private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+
+    private UserService userService = ServiceFactory.getInstance().getUserServiceImpl();
     private User.Security security = new User.Security();
 
     @Override
@@ -28,7 +31,12 @@ public class SignInCommand implements Command {
         }
         PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
         String encryptedPassword = passwordEncryptor.encrypt(password);//зашифровать
-        User user = userService.findByLoginAndPassword(login, password);
+        User user = null;
+        try {
+            user = userService.findUserByLoginAndPassword(login, password);
+        } catch (ServiceException e) {
+            //
+        }
         if (user != null) {
             SecurityContextHolder.setLoggedUser(user);
             response.setResponseCode(201);
