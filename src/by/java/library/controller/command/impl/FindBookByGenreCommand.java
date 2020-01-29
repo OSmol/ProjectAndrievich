@@ -24,7 +24,7 @@ public class FindBookByGenreCommand implements Command {
             String genre = String.valueOf(request.getBody().get("genre"));
             BookService bookService = serviceFactory.getBookServiceImpl();
             List<Book> list = bookService.findBookByGenre(genre);
-            System.out.println(list);
+            response.getBody().put("list", bookService.getBooks());//передать лист в респонс
             return response;
         } catch (ServiceException e) {
             response.setErrorMessage(e.getMessage());

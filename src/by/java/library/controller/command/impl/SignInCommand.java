@@ -15,9 +15,7 @@ import org.apache.log4j.Logger;
 
 public class SignInCommand implements Command {
     private static Logger logger = Logger.getLogger(SignInCommand.class);
-
     private UserService userService = ServiceFactory.getInstance().getUserServiceImpl();
-    private User.Security security = new User.Security();
 
     @Override
     public Response execute(Request request) {
@@ -25,15 +23,15 @@ public class SignInCommand implements Command {
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();
         if (StringUtils.isAnyEmpty(login, password)) {
-            response.setErrorMessage("Enter login and password");
-            response.setResponseCode(403);
+            response.setErrorMessage("Empty fields");
+            response.setResponseCode(400);
             return response;
         }
         PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
         String encryptedPassword = passwordEncryptor.encrypt(password);//зашифровать
         User user = null;
         try {
-            user = userService.findUserByLoginAndPassword(login, password);
+            user = userService.findUserByLoginAndPassword(login, encryptedPassword);
         } catch (ServiceException e) {
             //
         }

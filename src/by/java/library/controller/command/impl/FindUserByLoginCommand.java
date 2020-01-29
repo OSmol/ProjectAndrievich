@@ -7,7 +7,7 @@ import library.controller.command.Command;
 import library.service.UserService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
-
+@Deprecated
 public class FindUserByLoginCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 

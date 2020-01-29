@@ -7,6 +7,7 @@ import library.controller.Response;
 import library.controller.command.Command;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 public class AddUserCommand implements Command {
@@ -25,14 +26,9 @@ public class AddUserCommand implements Command {
 
 
         Response response = new Response();
-        if (login == null || login.isEmpty()
-                || password == null || password.isEmpty()
-                || name == null || name.isEmpty()
-                || email == null || email.isEmpty()
-                || locale == null || locale.isEmpty()
-                || userRole == null || userRole.isEmpty()) {
-            response.setErrorMessage("Enter login and password");
-            response.setResponseCode(403);
+        if (StringUtils.isAnyEmpty(login, password, name, email, locale, userRole)) {
+            response.setErrorMessage("Empty field to add User");
+            response.setResponseCode(400);
             return response;
         }
         User user = new User();

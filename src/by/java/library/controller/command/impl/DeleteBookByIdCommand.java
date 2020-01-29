@@ -19,6 +19,7 @@ public class DeleteBookByIdCommand implements Command {
             BookService bookService = serviceFactory.getBookServiceImpl();
             int num = Integer.parseInt(id);
             bookService.deleteBookById(num);
+            response.setResponseCode(201);
             return response;
         } catch (ServiceException e) {
             response.setErrorMessage(e.getMessage());

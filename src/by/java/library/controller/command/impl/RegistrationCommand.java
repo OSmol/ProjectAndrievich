@@ -23,18 +23,19 @@ public class RegistrationCommand implements Command {
         String password = String.valueOf(request.getBody().get("password"));
         String name = String.valueOf(request.getBody().get("name"));
         Response response = new Response();
-        if (StringUtils.isAnyEmpty(login, password)) {
-            response.setErrorMessage("Enter login and password");
-            response.setResponseCode(403);
+        if (StringUtils.isAnyEmpty(login, password,name)) {
+            response.setErrorMessage("Empty fields");
+            response.setResponseCode(400);
             return response;
         }
         PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
         String encryptedPassword = passwordEncryptor.encrypt(password);//зашифровать
+        //и сохрнить в файл, положить в юзера
         User user = null;
         try {
             user = userService.findUserByLogin(login);
         } catch (ServiceException e) {
-            //
+            //постар исп 1 трай и много ретурнов где они нужны в этом классе
         }
         if (user != null) {
             response.setResponseCode(403);

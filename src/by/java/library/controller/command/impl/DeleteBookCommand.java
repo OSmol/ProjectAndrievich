@@ -11,10 +11,11 @@ import org.apache.log4j.Logger;
 public class DeleteBookCommand implements Command {
     private static Logger logger = Logger.getLogger(DeleteBookCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private Book book = new Book();
+
 
     @Override
     public Response execute(Request request) {
+        Book book = (Book) request.getBody().get("book");
         Response response=new Response();
         try {
             serviceFactory.getBookServiceImpl().deleteBook(book);

@@ -1,6 +1,5 @@
 package library.controller.command.impl;
 
-import javatrDay5.helper.ScannerHelper;
 import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
@@ -20,8 +19,10 @@ public class DeleteUserCommand implements Command {
     public Response execute(Request request) {
         Response response = new Response();
         try {
-            System.out.println("Enter login user: ");
-            String login = ScannerHelper.inputStringFromConsole();
+         //   System.out.println("Enter login user: ");
+         //   String login = ScannerHelper.inputStringFromConsole();
+
+            String login = String.valueOf(request.getBody().get("login"));//логин из реквеста
             UserService userService = serviceFactory.getUserServiceImpl();
             userService.delete(login);
             return response;

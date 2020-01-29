@@ -1,12 +1,12 @@
 package library.controller.command.impl;
 
 import library.bean.Book;
-import library.bean.Person;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 public class UpdateBookCommand implements Command {
@@ -15,7 +15,7 @@ public class UpdateBookCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        //  String id = parameters.get("id");
+        String id = String.valueOf(request.getBody().get("id"));
         String title = String.valueOf(request.getBody().get("title"));
         String author = String.valueOf(request.getBody().get("author"));
         String publishingHouse = String.valueOf(request.getBody().get("publishingHouse"));
@@ -31,23 +31,14 @@ public class UpdateBookCommand implements Command {
         String price = String.valueOf(request.getBody().get("price"));
 
         Response response = new Response();
-        if (title == null || title.isEmpty()
-                || author == null || author.isEmpty()
-                || publishingHouse == null || publishingHouse.isEmpty()
-                || year == null || year.isEmpty()
-                || isbn == null || isbn.isEmpty()
-                || countOfPages == null || countOfPages.isEmpty()
-                || language == null || language.isEmpty()
-                || authorOfTranslation == null || authorOfTranslation.isEmpty()
-                || description == null || description.isEmpty()
-                || averageMark == null || averageMark.isEmpty()
-                || price == null || price.isEmpty()) {
-            response.setErrorMessage("Enter login and password");
-            response.setResponseCode(403);
+        if (StringUtils.isAnyEmpty(id, title, author, publishingHouse, year, genre, country, isbn, countOfPages,
+                language, authorOfTranslation, description, price)) {
+            response.setErrorMessage("Empty field to add Books");
+            response.setResponseCode(400);
             return response;
         }
         Book book = new Book();
-        //   book.setId(Integer.parseInt(id));
+        book.setId(Integer.parseInt(id));
         book.setTitle(title);
         book.setAuthor(author);
         book.setPublishingHouse(publishingHouse);

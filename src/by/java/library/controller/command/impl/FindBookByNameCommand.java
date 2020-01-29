@@ -20,7 +20,7 @@ public class FindBookByNameCommand implements Command {
             String title = String.valueOf(request.getBody().get("title"));
             BookService bookService = serviceFactory.getBookServiceImpl();
             List<Book> list = bookService.findBookByName(title);
-            System.out.println(list);
+            response.getBody().put(list, bookService.getBooks());//передали лист в респонс
             return response;
         } catch (ServiceException e) {
             response.setErrorMessage(e.getMessage());
@@ -30,5 +30,5 @@ public class FindBookByNameCommand implements Command {
     }
 }
 /*
-получаешь реквест, достаёщб оттуда параметры, выполняешь сервис, ложишь в ресонс
+получить реквест, достать оттуда параметры, выполнить сервис, положить в респонс
  */

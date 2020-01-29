@@ -20,8 +20,6 @@ public class SortBookByNameCommand implements Command {
     public Response execute(Request request)  {
         logger.debug("SortBookByNameCommand");
         BookService bookService = serviceFactory.getBookServiceImpl();
-
-
         List<Book> list = null;
         try {
             list = bookService.sortBookByName();
@@ -30,9 +28,9 @@ public class SortBookByNameCommand implements Command {
         }
 
         Response response = new Response();
-        if (list == null || list.isEmpty()) {
-            response.setErrorMessage("Enter login and password");
-            response.setResponseCode(403);
+        if (list == null || list.isEmpty()) {//change
+            response.setErrorMessage("Empty field to add Books");
+            response.setResponseCode(400);
             return response;
         }
         response.setResponseCode(201);
