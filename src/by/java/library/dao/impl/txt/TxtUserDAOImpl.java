@@ -22,6 +22,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public void add(User user) throws DAOException {
+
         List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             int generateId = 1;
@@ -75,7 +76,7 @@ public class TxtUserDAOImpl implements UserDAO {
         } else {
             for (User user : list) {
                 String loginName = user.getLogin();
-                if (loginName.equals(login)) {
+                if (login.equals(loginName)) {
                     return user;
                 }
             }

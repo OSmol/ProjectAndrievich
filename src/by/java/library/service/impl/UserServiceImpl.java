@@ -53,6 +53,7 @@ public class UserServiceImpl implements UserService {
             logger.debug("UserServiceImpl.deleteUserByLogin - User deleted");
         }
     }
+
     @Override
     public void deleteUser(User user) throws ServiceException {
         logger.debug("UserServiceImpl.deleteUser - run");
@@ -74,6 +75,7 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
+
     @Override
     public User getUser(String login) throws ServiceException {
         logger.debug("UserServiceImpl.getUser - run");
@@ -85,6 +87,7 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
     @Override
     public void addUser(User user) throws ServiceException {
         logger.debug("UserServiceImpl.addUser - run");
@@ -120,15 +123,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByLogin(String login) throws ServiceException {
         logger.debug("UserServiceImpl.findUserByLogin - run");
-
+//"что-нибудь".equals(login) - не вызовет NullPointer. тк всегда существует
         try {
             User user = daoFactory.getTxtUserDAO().getUser(login);
-         //   List<User> list = daoFactory.getTxtUserDAO().getUsers();
-           // for (User user : list) {
+            //   List<User> list = daoFactory.getTxtUserDAO().getUsers();
+            // for (User user : list) {
+            if (user != null) {
                 String loginUser = user.getLogin();
-                if (loginUser.equalsIgnoreCase(login)) {
+                if (login.equalsIgnoreCase(loginUser)) {
                     return (user);
-               // }
+                }
+
+            } else {
+                throw new ServiceException("Cant find user by this login " + login);
             }
             return user;
         } catch (DAOException e) {

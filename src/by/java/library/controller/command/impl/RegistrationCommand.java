@@ -48,7 +48,8 @@ public class RegistrationCommand implements Command {
                 userService.addUser(user1);
             }
         } catch (ServiceException e) {
-            //
+            response.setErrorMessage(e.getMessage());
+            response.setResponseCode(401);//unauthorized
         }
         return response;
     }

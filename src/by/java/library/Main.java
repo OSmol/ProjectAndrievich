@@ -1,7 +1,7 @@
 package library;
 
-import library.view.MainPage;
 import library.view.SecurityPage;
+import library.view.UserPage;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -18,10 +18,10 @@ import library.view.SecurityPage;
  */
 public class Main {
     public static void main(String[] args) {
+        UserPage page = UserPage.getInstance();
+        page.run();
         SecurityPage securityPage = SecurityPage.getInstance();
-        securityPage.run();
-        MainPage mainPage = MainPage.getInstance();
-       // mainPage.run();
+      //  securityPage.run();
     }
 }
 

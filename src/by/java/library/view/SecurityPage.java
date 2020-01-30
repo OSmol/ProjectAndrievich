@@ -39,11 +39,9 @@ public class SecurityPage implements Page {
             switch (result) {
                 case 1:
                     registration();
-                    goToMainMenu();
                     return;
                 case 2:
                     signIn();
-                    goToMainMenu();
                     return;
                 case 3:
                     signOut();
@@ -79,13 +77,13 @@ public class SecurityPage implements Page {
         request.getBody().put("locale", locale);
         Response response = command.execute(request);
 
-        if (response.getResponseCode() == 501) {
+        if (response.getResponseCode() == 501 || response.getResponseCode() == 401) {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
+            goToMainMenu();
         }
-
     }
 
     //ввести данные, прочитать файл, если данные совпадают - перейти на Маин меню
@@ -100,15 +98,18 @@ public class SecurityPage implements Page {
         request.getBody().put("password", password);
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
-        if (response.getResponseCode() == 501) {
+        if (response.getResponseCode() == 501) {//Not Implemented («не реализовано»);
             System.out.println(response.getErrorMessage());
         }
-
+        if (response.getResponseCode() == 201) {//Created («создано»);
+            System.out.println(response.getBody().get("list"));
+            goToMainMenu();
+        }
     }
 
     //перейти на signIn
     public void signOut() {
-
+        signIn();
     }
 
     private void finishWork() {
