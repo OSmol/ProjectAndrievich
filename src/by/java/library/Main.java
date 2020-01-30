@@ -1,8 +1,7 @@
 package library;
 
-import library.dao.exception.DAOException;
-import library.service.exception.ServiceException;
 import library.view.MainPage;
+import library.view.SecurityPage;
 
 /*
 Создать консольное приложение "Учёт книг в домашней библиотеке".
@@ -18,9 +17,11 @@ import library.view.MainPage;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) throws ServiceException, DAOException {
+    public static void main(String[] args) {
+        SecurityPage securityPage = SecurityPage.getInstance();
+        securityPage.run();
         MainPage mainPage = MainPage.getInstance();
-        mainPage.run();
+       // mainPage.run();
     }
 }
 

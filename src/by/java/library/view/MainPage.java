@@ -27,6 +27,7 @@ public class MainPage implements Page {
 
     @Override
     public void run() {
+
         int result;
         while (true) {
             System.out.println(sb.toString());

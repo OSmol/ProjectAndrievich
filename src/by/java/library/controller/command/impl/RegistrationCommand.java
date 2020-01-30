@@ -20,17 +20,19 @@ public class RegistrationCommand implements Command {
     @Override
     public Response execute(Request request) {
         String login = String.valueOf(request.getBody().get("login"));
+
         String password = String.valueOf(request.getBody().get("password"));
         String name = String.valueOf(request.getBody().get("name"));
+        String email = String.valueOf(request.getBody().get("email"));
+        String locale = String.valueOf(request.getBody().get("locale"));
         Response response = new Response();
-        if (StringUtils.isAnyEmpty(login, password, name)) {
+        if (StringUtils.isAnyEmpty(login, password, name, email, locale)) {
             response.setErrorMessage("Empty fields");
             response.setResponseCode(400);
             return response;
         }
         PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
         String encryptedPassword = passwordEncryptor.encrypt(password);//зашифровать
-        //и сохрнить в файл, положить в юзера
         User user;
         try {
             user = userService.findUserByLogin(login);
@@ -42,15 +44,11 @@ public class RegistrationCommand implements Command {
                 User user1 = new User();
                 user1.setName(name);
                 SecurityContextHolder.setLoggedUser(user1);
-                response.setResponseCode(201);//
-                try {
-                    userService.addUser(user1);
-                } catch (ServiceException e) {
-                    //
-                }
+                response.setResponseCode(201);
+                userService.addUser(user1);
             }
         } catch (ServiceException e) {
-            //постар исп 1 трай и много ретурнов где они нужны в этом классе
+            //
         }
         return response;
     }

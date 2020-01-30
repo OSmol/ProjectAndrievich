@@ -39,16 +39,18 @@ public class SecurityPage implements Page {
             switch (result) {
                 case 1:
                     registration();
-                    break;
+                    goToMainMenu();
+                    return;
                 case 2:
                     signIn();
-                    break;
+                    goToMainMenu();
+                    return;
                 case 3:
                     signOut();
-                    break;
+                    return;
                 case 0:
                     finishWork();
-                    break;
+                    return;
             }
         }
     }
@@ -62,7 +64,19 @@ public class SecurityPage implements Page {
         Command command = new RegistrationCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter password: ");
+        String password = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter name: ");
+        String name = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter email: ");
+        String email = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter locale: ");
+        String locale = ScannerHelper.inputStringFromConsole();
         request.getBody().put("login", login);
+        request.getBody().put("password", password);
+        request.getBody().put("name", name);
+        request.getBody().put("email", email);
+        request.getBody().put("locale", locale);
         Response response = command.execute(request);
 
         if (response.getResponseCode() == 501) {
