@@ -8,10 +8,10 @@ import java.util.Objects;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private int id;
-    private Security security;
+    private String login;
+    private String password;
     private String name;
     private Email email;
-    private boolean block;
     private String locale;
     private UserRole userRole;
 
@@ -20,29 +20,27 @@ public class User implements Serializable {
     }
 
     public User(String login, String password) {
-        this.security = new Security(login, password);
+        this.login = login;
+        this.password = password;
     }
 
     public User(String login, String password, String name, Email email) {
-        this.security = new Security(login, password);
+        this.login = login;
+        this.password = password;
         this.email = email;
         this.name = name;
     }
 
-    public User(int id, String login, String password, String name, Email email, boolean block,
-                String locale) {
+    public User(int id, String login, String password, String name, Email email, String locale) {
         this.id = id;
-        this.security = new Security(login, password);
+        this.login = login;
+        this.password = password;
         this.email = email;
         this.name = name;
-        this.block = block;
         this.locale = locale;
 
     }
 
-    public User(Security security) {
-        this.security = security;
-    }
 
     public int getId() {
         return id;
@@ -53,14 +51,20 @@ public class User implements Serializable {
     }
 
     public String getLogin() {
-        return security.getLogin();
+        return login;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getPassword() {
-        return security.getPassword();
+        return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getName() {
         return name;
@@ -76,14 +80,6 @@ public class User implements Serializable {
 
     public void setEmail(Email email) {
         this.email = email;
-    }
-
-    public boolean isBlock() {
-        return block;
-    }
-
-    public void setBlock(boolean block) {
-        this.block = block;
     }
 
     public String getLocale() {
@@ -108,8 +104,8 @@ public class User implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id == user.id &&
-                block == user.block &&
-                Objects.equals(security, user.security) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(locale, user.locale) &&
@@ -117,21 +113,21 @@ public class User implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, security, name, email, block, locale, userRole);
-    }
-
-    @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", security=" + security +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", block=" + block +
+                ", email=" + email +
                 ", locale='" + locale + '\'' +
-                ", role=" + userRole +
+                ", userRole=" + userRole +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password, name, email, locale, userRole);
     }
 
     public enum UserRole {
@@ -147,54 +143,5 @@ public class User implements Serializable {
         }
     }
 
-    public static class Security {
-        private String login;
-        private String password;
-
-        public Security() {
-        }
-
-        Security(String login, String password) {
-            this.login = login;
-            this.password = password;
-        }
-
-        public String getLogin() {
-            return login;
-        }
-
-        public void setLogin(String login) {
-            this.login = login;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Security security = (Security) o;
-            return Objects.equals(login, security.login) &&
-                    Objects.equals(password, security.password);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(login, password);
-        }
-
-        @Override
-        public String toString() {
-            return "SecurityContextHolder{" +
-                    "login='" + login + '\'' +
-                    ", password='" + password + '\'' +
-                    '}';
-        }
-    }
 }
+

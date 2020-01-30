@@ -1,7 +1,6 @@
 package library.controller.command.impl;
 
 import library.bean.Book;
-import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
@@ -15,7 +14,7 @@ import java.util.List;
 public class FindBookByGenreCommand implements Command {
     private static Logger logger = Logger.getLogger(FindBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private User.Security security = new User.Security();
+
 
     @Override
     public Response execute(Request request) {

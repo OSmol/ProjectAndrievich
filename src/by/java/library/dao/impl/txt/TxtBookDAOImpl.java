@@ -85,7 +85,6 @@ public class TxtBookDAOImpl implements BookDAO {
             int generateID = 1;
             book.setId(generateID);
             List<Book> books = new ArrayList<>();
-
             books.add(book);
             writeFile(books);
         } else {

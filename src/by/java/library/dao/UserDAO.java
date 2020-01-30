@@ -18,9 +18,9 @@ public interface UserDAO {
 
     void delete(String login) throws DAOException;
 
-    boolean delete(User user) throws DAOException;
+    void deleteUser(User user) throws DAOException;
 
-    User get(String login) throws DAOException;
+    User getUser(String login) throws DAOException;
 
     void update(User user) throws DAOException;
 

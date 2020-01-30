@@ -1,6 +1,8 @@
 package library.dao.factory;
 
-import library.dao.impl.sql.*;
+import library.dao.impl.sql.SQLBookDAOImpl;
+import library.dao.impl.sql.SQLPersonDAOImpl;
+import library.dao.impl.sql.SQLUserDAOImpl;
 import library.dao.impl.txt.*;
 
 public class DAOFactory {
@@ -8,12 +10,9 @@ public class DAOFactory {
 
     private final SQLBookDAOImpl sqlBookDAO = new SQLBookDAOImpl();
     private final SQLUserDAOImpl sqlUserDAO = new SQLUserDAOImpl();
-
     private final SQLPersonDAOImpl sqlPersonDAO = new SQLPersonDAOImpl();
-
     private final TxtBookDAOImpl txtBookDAO = new TxtBookDAOImpl();
     private final TxtUserDAOImpl txtUserDAO = new TxtUserDAOImpl();
-
     private final TxtPersonDAOImpl txtPersonDAO = new TxtPersonDAOImpl();
     private final TxtEmailDAOImpl txtEmailDAO = new TxtEmailDAOImpl();
     private final TxtLetterDAOImpl txtLetterDAO = new TxtLetterDAOImpl();
@@ -33,8 +32,6 @@ public class DAOFactory {
     public SQLUserDAOImpl getSqlUserDAO() {
         return sqlUserDAO;
     }
-
-
 
     public SQLPersonDAOImpl getSqlPersonDAO() {
         return sqlPersonDAO;

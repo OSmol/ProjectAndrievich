@@ -1,5 +1,7 @@
 package library;
 
+import library.dao.exception.DAOException;
+import library.service.exception.ServiceException;
 import library.view.MainPage;
 
 /*
@@ -16,10 +18,9 @@ import library.view.MainPage;
 6) Пароль не хранится в открытом виде.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ServiceException, DAOException {
         MainPage mainPage = MainPage.getInstance();
         mainPage.run();
-
     }
 }
 

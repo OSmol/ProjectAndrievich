@@ -26,13 +26,12 @@ public class SQLUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean delete(User user) throws DAOException {
+    public void deleteUser(User user) throws DAOException {
 
-        return false;
     }
 
     @Override
-    public User get(String login) throws DAOException {
+    public User getUser(String login) throws DAOException {
         return null;
     }
 

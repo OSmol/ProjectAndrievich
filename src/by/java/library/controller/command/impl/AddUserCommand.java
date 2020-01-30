@@ -33,6 +33,8 @@ public class AddUserCommand implements Command {
         }
         User user = new User();
         //   user.setId(Integer.parseInt(id));
+        user.setLogin(login);
+        user.setPassword(password);
         user.setName(name);
         user.setEmail(null);
         user.setLocale(locale);

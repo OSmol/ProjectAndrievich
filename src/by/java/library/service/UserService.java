@@ -10,7 +10,11 @@ public interface UserService {
 
     void delete(String login) throws ServiceException;
 
+    void deleteUser(User user) throws ServiceException;
+
     List<User> getUsers() throws ServiceException;
+
+    public User getUser(String login) throws ServiceException;
 
     void addUser(User user) throws ServiceException;
 
@@ -22,5 +26,5 @@ public interface UserService {
 
     void signOut(String login) throws ServiceException;
 
-    void registration(User.Security security) throws ServiceException;
+    void registration(User user) throws ServiceException;
 }

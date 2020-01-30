@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TxtUserDAOImpl implements UserDAO {
-    private static final String BOOKFILE = "src/by/resources/library/Users.txt";
+    private static final String USERS_TXT = "src/by/resources/library/Users.txt";
     private static Logger logger = Logger.getLogger(TxtUserDAOImpl.class);
 
 
@@ -26,7 +26,7 @@ public class TxtUserDAOImpl implements UserDAO {
         if (list == null || list.isEmpty()) {
             int generateId = 1;
             user.setId(generateId);
-            List<User>users = new ArrayList<>();
+            List<User> users = new ArrayList<>();
             users.add(user);
             writeFile(users);
         } else {
@@ -56,7 +56,7 @@ public class TxtUserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean delete(User user) throws DAOException {
+    public void deleteUser(User user) throws DAOException {
         List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
@@ -64,11 +64,11 @@ public class TxtUserDAOImpl implements UserDAO {
             list.remove(user);
         }
         writeFile(list);
-        return false;
     }
 
+
     @Override
-    public User get(String login) throws DAOException {
+    public User getUser(String login) throws DAOException {
         List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
@@ -77,6 +77,8 @@ public class TxtUserDAOImpl implements UserDAO {
                 String loginName = user.getLogin();
                 if (loginName.equals(login)) {
                     return user;
+                } else {
+                    add(user);
                 }
             }
         }
@@ -101,7 +103,7 @@ public class TxtUserDAOImpl implements UserDAO {
     }
 
     private List<User> readFile() throws DAOException {
-        File file = new File(BOOKFILE);
+        File file = new File(USERS_TXT);
         ObjectInputStream objectInputStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -128,7 +130,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     private boolean writeFile(List<User> list) throws DAOException {
         boolean b = false;
-        File file = new File(BOOKFILE);
+        File file = new File(USERS_TXT);
         ObjectOutputStream objectOutputStream = null;
         FileOutputStream fileOutputStream = null;
         try {

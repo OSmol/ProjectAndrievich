@@ -28,9 +28,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registration(User.Security security) throws ServiceException {
+    public void registration(User user) throws ServiceException {
         logger.debug("UserServiceImpl.registration() - run");
-        User user = new User();
         UserDAO userDAO = daoFactory.getTxtUserDAO();
         try {
             userDAO.add(user);
@@ -54,7 +53,17 @@ public class UserServiceImpl implements UserService {
             logger.debug("UserServiceImpl.deleteUserByLogin - User deleted");
         }
     }
+    @Override
+    public void deleteUser(User user) throws ServiceException {
+        logger.debug("UserServiceImpl.deleteUser - run");
+        try {
+            logger.debug("UserServiceImpl.deleteUser - User deleted");
+            daoFactory.getTxtUserDAO().deleteUser(user);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
 
+    }
 
     @Override
     public List<User> getUsers() throws ServiceException {
@@ -66,7 +75,17 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
+    @Override
+    public User getUser(String login) throws ServiceException {
+        logger.debug("UserServiceImpl.getUser - run");
+        try {
+            logger.debug("UserServiceImpl.getUser - Book got");
+            return daoFactory.getTxtUserDAO().getUser(login);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
 
+    }
     @Override
     public void addUser(User user) throws ServiceException {
         logger.debug("UserServiceImpl.addUser - run");
@@ -87,7 +106,7 @@ public class UserServiceImpl implements UserService {
             for (User user : list) {
                 String loginUser = user.getLogin();
                 String passwordUser = user.getPassword();
-                if (loginUser.equalsIgnoreCase(login)&&passwordUser.equals(password)) {
+                if (loginUser.equalsIgnoreCase(login) && passwordUser.equals(password)) {
                     return user;
                 }
             }
@@ -102,19 +121,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByLogin(String login) throws ServiceException {
         logger.debug("UserServiceImpl.findUserByLogin - run");
+
         try {
-            List<User> list = daoFactory.getTxtUserDAO().getUsers();
-            for (User user : list) {
+            User user = daoFactory.getTxtUserDAO().getUser(login);
+         //   List<User> list = daoFactory.getTxtUserDAO().getUsers();
+           // for (User user : list) {
                 String loginUser = user.getLogin();
                 if (loginUser.equalsIgnoreCase(login)) {
-                    return user;
-                }
+                    return (user);
+               // }
             }
+            return user;
         } catch (DAOException e) {
             throw new ServiceException(e);
         } finally {
             logger.debug("UserServiceImpl.findUserByLogin - User found");
         }
-        return null;
     }
 }

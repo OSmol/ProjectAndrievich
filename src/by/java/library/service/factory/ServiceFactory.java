@@ -9,7 +9,6 @@ public class ServiceFactory {
 
     private final library.service.impl.UserServiceImpl UserServiceImpl = new UserServiceImpl();
     private final library.service.impl.BookServiceImpl BookServiceImpl = new BookServiceImpl();
-
     private final library.service.impl.PersonServiceImpl PersonServiceImpl = new PersonServiceImpl();
 
 
