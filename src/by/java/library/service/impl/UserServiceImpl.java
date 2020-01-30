@@ -62,7 +62,6 @@ public class UserServiceImpl implements UserService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-
     }
 
     @Override
@@ -79,7 +78,7 @@ public class UserServiceImpl implements UserService {
     public User getUser(String login) throws ServiceException {
         logger.debug("UserServiceImpl.getUser - run");
         try {
-            logger.debug("UserServiceImpl.getUser - Book got");
+            logger.debug("UserServiceImpl.getUser - User got");
             return daoFactory.getTxtUserDAO().getUser(login);
         } catch (DAOException e) {
             throw new ServiceException(e);

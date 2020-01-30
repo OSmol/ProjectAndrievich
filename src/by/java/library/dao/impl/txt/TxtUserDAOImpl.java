@@ -77,8 +77,6 @@ public class TxtUserDAOImpl implements UserDAO {
                 String loginName = user.getLogin();
                 if (loginName.equals(login)) {
                     return user;
-                } else {
-                    add(user);
                 }
             }
         }

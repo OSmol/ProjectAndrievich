@@ -21,11 +21,10 @@ public class GetBookCommand implements Command {
         String password = String.valueOf(request.getBody().get("password"));
         Response response = new Response();
         if (StringUtils.isAnyEmpty(login, password)) {
-            response.setErrorMessage("Empty fields to add User");
+            response.setErrorMessage("Empty fields to add Book");
             response.setResponseCode(400);
             return response;
         }
-
 
         try {
             Book book = new Book();
