@@ -66,7 +66,7 @@ public class TxtBookDAOImpl implements BookDAO {
                     objectOutputStream.close();
                 }
             } catch (IOException e) {
-
+//
             }
         }
         return b;
@@ -174,20 +174,5 @@ public class TxtBookDAOImpl implements BookDAO {
 
 //сохранить изменения в базу данных + эксепшены
     }
+   }
 
-    public void loadUsersByName(String userName) {
-        List<User> users = new ArrayList<>();
-        if (users.size() == 0) {
-            //логировать то что ниже
-            //юзеры не найдены
-        }
-        for (User user : users) {
-            //логировать то что ниже
-            user.getName();
-          //  for (Book book : user.getBooks()) {
-                //логировать то что ниже
-              //  book.getTitle();
-            }
-        }
-    }
-//}

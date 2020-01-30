@@ -22,11 +22,11 @@ public class AddUserCommand implements Command {
         String name = String.valueOf(request.getBody().get("name"));
         String email = String.valueOf(request.getBody().get("email"));
         String locale = String.valueOf(request.getBody().get("locale"));
-        String userRole = String.valueOf(request.getBody().get("userRole"));
+       // String userRole = String.valueOf(request.getBody().get("userRole"));
 
 
         Response response = new Response();
-        if (StringUtils.isAnyEmpty(login, password, name, email, locale, userRole)) {
+        if (StringUtils.isAnyEmpty(login, password, name, email, locale)) {
             response.setErrorMessage("Empty field to add User");
             response.setResponseCode(400);
             return response;
@@ -38,7 +38,7 @@ public class AddUserCommand implements Command {
         user.setName(name);
         user.setEmail(null);
         user.setLocale(locale);
-        user.setUserRole(null);
+      //  user.setUserRole(null);
 
         try {
             serviceFactory.getUserServiceImpl().addUser(user);

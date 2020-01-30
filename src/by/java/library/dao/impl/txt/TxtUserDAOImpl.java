@@ -22,8 +22,8 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public void add(User user) throws DAOException {
-
-        List<User> list = getUsers();
+       List<User> list = getUsers();
+        // List<User>list = new ArrayList<>();
         if (list == null || list.isEmpty()) {
             int generateId = 1;
             user.setId(generateId);
@@ -53,6 +53,7 @@ public class TxtUserDAOImpl implements UserDAO {
                     }
                 } while (iterator.hasNext());
             }
+            writeFile(list);
         }
     }
 
@@ -101,7 +102,7 @@ public class TxtUserDAOImpl implements UserDAO {
         writeFile(list);
     }
 
-    private List<User> readFile() throws DAOException {
+    public List<User> readFile() throws DAOException {
         File file = new File(USERS_TXT);
         ObjectInputStream objectInputStream = null;
         try {
@@ -127,11 +128,11 @@ public class TxtUserDAOImpl implements UserDAO {
         }
     }
 
-    private boolean writeFile(List<User> list) throws DAOException {
+    public boolean writeFile(List<User> list) throws DAOException {
         boolean b = false;
         File file = new File(USERS_TXT);
         ObjectOutputStream objectOutputStream = null;
-        FileOutputStream fileOutputStream = null;
+        FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
             if (fileOutputStream != null) {

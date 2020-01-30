@@ -126,14 +126,13 @@ public class UserServiceImpl implements UserService {
 //"что-нибудь".equals(login) - не вызовет NullPointer. тк всегда существует
         try {
             User user = daoFactory.getTxtUserDAO().getUser(login);
-            //   List<User> list = daoFactory.getTxtUserDAO().getUsers();
-            // for (User user : list) {
             if (user != null) {
                 String loginUser = user.getLogin();
                 if (login.equalsIgnoreCase(loginUser)) {
                     return (user);
+                } else {
+                    addUser(user);
                 }
-
             } else {
                 throw new ServiceException("Cant find user by this login " + login);
             }
