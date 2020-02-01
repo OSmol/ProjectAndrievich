@@ -104,12 +104,11 @@ class BookPage implements Page {
         String title = ScannerHelper.inputStringFromConsole();
         request.getBody().put("title", title);
         Response response = command.execute(request);
-       // System.out.println(response.getBody().get("list"));
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-           System.out.println(response.getBody().get("list"));
+            System.out.println(response.getBody().get("list"));
         }
         System.out.println("\n Please, make your choice!");
     }

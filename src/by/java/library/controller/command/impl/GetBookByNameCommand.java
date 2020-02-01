@@ -26,6 +26,4 @@ public class GetBookByNameCommand implements Command {
         }
     }
 }
-/*
-получить реквест, достать оттуда параметры, выполнить сервис, положить в респонс
- */
+

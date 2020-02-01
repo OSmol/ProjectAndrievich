@@ -47,7 +47,7 @@ public final class UserPage implements Page {
                     deleteUser();
                     break;
                 case 3:
-                    findUser();
+                    findUserByLogin();
                     break;
                 case 4:
                     updateUser();
@@ -115,7 +115,7 @@ public final class UserPage implements Page {
         Command deleteUserCommand = new DeleteUserByLoginCommand();
         System.out.println("Enter user login");
         String login = ScannerHelper.inputStringFromConsole();
-        request.getBody().put("login",login);
+        request.getBody().put("login", login);
         Response response = deleteUserCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -126,19 +126,18 @@ public final class UserPage implements Page {
         System.out.println("\n Please, make your choice!");
     }
 
-    private void findUser() {
+    private void findUserByLogin() {
         Request request = new Request();
         Command command = new GetUserByLoginCommand();
         System.out.println("Enter login user");
         String login = ScannerHelper.inputStringFromConsole();
         request.getBody().put("login", login);
         Response response = command.execute(request);
-        System.out.println(response);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody().get("list"));
+            System.out.println(response.getBody().get("user"));
         }
         System.out.println("\n Please, make your choice!");
     }

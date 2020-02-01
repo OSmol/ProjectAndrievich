@@ -1,13 +1,11 @@
 package library.controller.command.impl;
 
-import library.bean.Book;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.service.BookService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 public class GetBookByIdCommand implements Command {
@@ -17,23 +15,16 @@ public class GetBookByIdCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        String login = request.getStringValue("login");
-        String password = request.getStringValue("password");
         Response response = new Response();
-        if (StringUtils.isAnyEmpty(login, password)) {
-            response.setErrorMessage("Empty fields to add Book");
-            response.setResponseCode(400);
-            return response;
-        }
+        BookService bookService = serviceFactory.getBookServiceImpl();
 
         try {
-            Book book = new Book();
-            BookService bookService = serviceFactory.getBookServiceImpl();
-            bookService.getBook(book.getId());
+            int id = Integer.parseInt(request.getStringValue("id"));
+            response.getBody().put("book", bookService.getBook(id));
             response.setResponseCode(201);
             return response;
 
-        } catch (ServiceException e) {
+        } catch (ServiceException | NumberFormatException e) {
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(501);
             return response;

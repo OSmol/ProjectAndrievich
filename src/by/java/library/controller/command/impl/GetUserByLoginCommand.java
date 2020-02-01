@@ -1,6 +1,5 @@
 package library.controller.command.impl;
 
-import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
@@ -17,10 +16,10 @@ public class GetUserByLoginCommand implements Command {
     @Override
     public Response execute(Request request) {
         Response response = new Response();
+        UserService userService = serviceFactory.getUserServiceImpl();
         try {
-            User user = new User();
-            UserService userService = serviceFactory.getUserServiceImpl();
-            userService.getUser(user.getLogin());
+            String login = request.getStringValue("login");
+            response.getBody().put("user", userService.getUser(login));
             response.setResponseCode(201);
             return response;
         } catch (ServiceException e) {

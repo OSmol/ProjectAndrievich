@@ -10,7 +10,7 @@ import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
 import java.util.List;
-
+@Deprecated
 public class GetBookByGenreCommand implements Command {
     private static Logger logger = Logger.getLogger(GetBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
