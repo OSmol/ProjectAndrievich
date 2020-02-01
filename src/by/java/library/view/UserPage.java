@@ -128,7 +128,7 @@ public final class UserPage implements Page {
 
     private void findUser() {
         Request request = new Request();
-        Command command = new GetUserCommand();
+        Command command = new GetUserByLoginCommand();
         System.out.println("Enter login user");
         String login = ScannerHelper.inputStringFromConsole();
         request.getBody().put("login", login);

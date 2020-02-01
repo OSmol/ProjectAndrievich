@@ -17,7 +17,7 @@ public class DeleteUserByLoginCommand implements Command {
     public Response execute(Request request) {
         Response response = new Response();
         try {
-            String login = request.getStringValue("login");//логин из реквеста
+            String login = request.getStringValue("login");
             UserService userService = serviceFactory.getUserServiceImpl();
             userService.delete(login);
             return response;

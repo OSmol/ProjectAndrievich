@@ -7,21 +7,32 @@ import library.controller.command.Command;
 import library.service.BookService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
-import java.util.List;
-
-public class FindBookByNameCommand implements Command {
+public class GetBookByIdCommand implements Command {
+    private static Logger logger = Logger.getLogger(GetBookByIdCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+
 
     @Override
     public Response execute(Request request) {
+        String login = request.getStringValue("login");
+        String password = request.getStringValue("password");
         Response response = new Response();
-        try {
-            String title = request.getStringValue("title");
-            BookService bookService = serviceFactory.getBookServiceImpl();
-            List<Book> list = bookService.findBookByName(title);
-            response.getBody().put(list, bookService.getBooks());//передали лист в респонс
+        if (StringUtils.isAnyEmpty(login, password)) {
+            response.setErrorMessage("Empty fields to add Book");
+            response.setResponseCode(400);
             return response;
+        }
+
+        try {
+            Book book = new Book();
+            BookService bookService = serviceFactory.getBookServiceImpl();
+            bookService.getBook(book.getId());
+            response.setResponseCode(201);
+            return response;
+
         } catch (ServiceException e) {
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(501);
@@ -29,6 +40,4 @@ public class FindBookByNameCommand implements Command {
         }
     }
 }
-/*
-получить реквест, достать оттуда параметры, выполнить сервис, положить в респонс
- */
+

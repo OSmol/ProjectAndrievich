@@ -99,17 +99,17 @@ class BookPage implements Page {
 
     private void findBookByName() {
         Request request = new Request();
-        Command command = new FindBookByNameCommand();
+        Command command = new GetBookByNameCommand();
         System.out.println("Enter name book: ");
         String title = ScannerHelper.inputStringFromConsole();
         request.getBody().put("title", title);
         Response response = command.execute(request);
-        System.out.println(response);
+       // System.out.println(response.getBody().get("list"));
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody().get("list"));
+           System.out.println(response.getBody().get("list"));
         }
         System.out.println("\n Please, make your choice!");
     }

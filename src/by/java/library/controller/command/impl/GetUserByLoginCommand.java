@@ -9,8 +9,8 @@ import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
-public class GetUserCommand implements Command {
-    private static Logger logger = Logger.getLogger(GetUserCommand.class);
+public class GetUserByLoginCommand implements Command {
+    private static Logger logger = Logger.getLogger(GetUserByLoginCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
 

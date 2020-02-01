@@ -88,7 +88,7 @@ public class BookServiceImpl implements BookService {
                 String title = book.getTitle();
                 if (title.equalsIgnoreCase(nameBook)) {
                     listBooksByName.add(book);
-                }
+                                    }
             }
             return listBooksByName;
         } catch (DAOException e) {
@@ -129,11 +129,11 @@ public class BookServiceImpl implements BookService {
                 String genreName = book.getGenre();
                 if (genre.equalsIgnoreCase(genreName)) {
                     listBooksByGenre.add(book);
+                    return listBooksByGenre;
                 } else {
                     logger.debug("BookServiceImpl.findBookByGenre - Book not found");
                 }
             }
-
             return listBooksByGenre;
         } catch (DAOException e) {
             throw new ServiceException(e);
