@@ -1,13 +1,11 @@
 package library.view;
 
 import javatrDay5.helper.ScannerHelper;
-import library.bean.Book;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.*;
 
-import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -27,9 +25,12 @@ class BookPage implements Page {
         sb.append("3. Add a book to the catalog.\n");
         sb.append("4. Remove book from catalog.\n");
         sb.append("5. Update book. \n");
-        sb.append("6. Go to User menu.\n");
-        sb.append("7. Go to Main menu.\n");
+        sb.append("6. Sort books by name. \n");
+        sb.append("7. Sort books by year. \n");
+        sb.append("8. Go to User menu.\n");
+        sb.append("9. Go to Main menu.\n");
         sb.append("0. To finish work.\n");
+
     }
 
     public static synchronized BookPage getInstance() {
@@ -62,14 +63,22 @@ class BookPage implements Page {
                     updateBook();
                     break;
                 case 6:
+                    sortBookByName();
+                    break;
+                case 7:
+                    sortBookByYear();
+                    break;
+                case 8:
                     goToUserMenu();
                     return;
-                case 7:
+                case 9:
                     goToMainMenu();
                     return;
                 case 0:
                     finishWork();
                     break;
+
+
             }
         }
     }
@@ -93,6 +102,32 @@ class BookPage implements Page {
         }
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
+        }
+        System.out.println("\n Please, make your choice!");
+    }
+
+    private void sortBookByName() {
+        Request request = new Request();
+        Command command = new SortBooksByNameCommand();
+        Response response = command.execute(request);
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+            System.out.println(response.getResponseCode());
+        } else {
+            System.out.println(response.getBody().get("title"));
+        }
+        System.out.println("\n Please, make your choice!");
+    }
+
+    private void sortBookByYear() {
+        Request request = new Request();
+        Command command = new SortBooksByNameCommand();
+        Response response = command.execute(request);
+        if (response.getResponseCode() == 501) {
+            System.out.println(response.getErrorMessage());
+            System.out.println(response.getResponseCode());
+        } else {
+            System.out.println(response.getBody().get("title"));
         }
         System.out.println("\n Please, make your choice!");
     }
@@ -204,18 +239,6 @@ class BookPage implements Page {
     }
 
 
-    private Request sortBookByName() {
-        Command command = new SortBookByNameCommand();
-        Request request = new Request();
-        Response response = command.execute(request);
-        if (response.getResponseCode() == 501) {
-            System.out.println(response.getErrorMessage());
-            System.out.println(response.getResponseCode());
-        } else {
-            List<Book> list = (List<Book>) response.getBody().get("title");
-        }
-        return request;
-    }
 }
 
 
