@@ -8,7 +8,7 @@ import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
-public class GetBookByGenreCommand implements Command {
+public class GetBooksByGenreCommand implements Command {
     private static Logger logger = Logger.getLogger(GetBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
