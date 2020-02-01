@@ -7,7 +7,7 @@ import library.service.BookService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
-@Deprecated
+
 public class GetBookByAuthorCommand implements Command {
     private static Logger logger = Logger.getLogger(GetBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();

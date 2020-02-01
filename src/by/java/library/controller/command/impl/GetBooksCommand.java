@@ -15,19 +15,18 @@ public class GetBooksCommand implements Command {
     @Override
     public Response execute(Request request) {//
         Response response = new Response();
+        BookService bookService = serviceFactory.getBookServiceImpl();
         try {
-            BookService bookService = serviceFactory.getBookServiceImpl();
+            logger.debug(request.getBody().put("list", bookService.getBooks() + "go to show all books"));
             response.setResponseCode(201);
             response.getBody().put("list", bookService.getBooks());
+            logger.debug(request.getBody().put("list", bookService.getBooks() + " show all books"));
             return response;
-
         } catch (ServiceException e) {
+            logger.error(e);
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(501);
             return response;
         }
     }
-}/*
-
-Контроллер: получаешь реквест, достаёщб оттуда параметры, выполняешь сервис, ложишь в ресонс
-*/
+}
