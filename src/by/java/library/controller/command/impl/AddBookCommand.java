@@ -16,20 +16,18 @@ public class AddBookCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        //  String id = parameters.get("id");
-        String title = String.valueOf(request.getBody().get("title"));
-        String author = String.valueOf(request.getBody().get("author"));
-        String publishingHouse = String.valueOf(request.getBody().get("publishingHouse"));
-        String year = String.valueOf(request.getBody().get("year"));
-        String genre = String.valueOf(request.getBody().get("genre"));
-        String country = String.valueOf(request.getBody().get("country"));
-        String isbn = String.valueOf(request.getBody().get("isbn"));
-        String countOfPages = String.valueOf(request.getBody().get("countOfPages"));
-        String language = String.valueOf(request.getBody().get("language"));
-        String authorOfTranslation = String.valueOf(request.getBody().get("authorOfTranslation"));
-        String description = String.valueOf(request.getBody().get("description"));
-        //  String averageMark = String.valueOf(request.getBody().get("averageMark"));
-        String price = String.valueOf(request.getBody().get("price"));
+        String title = request.getStringValue("title");
+        String author = request.getStringValue("author");
+        String publishingHouse = request.getStringValue("publishingHouse");
+        String year = request.getStringValue("year");
+        String genre = request.getStringValue("genre");
+        String country = request.getStringValue("country");
+        String isbn = request.getStringValue("isbn");
+        String countOfPages = request.getStringValue("countOfPages");
+        String language = request.getStringValue("language");
+        String authorOfTranslation = request.getStringValue("authorOfTranslation");
+        String description = request.getStringValue("description");
+        String price = request.getStringValue("price");
 
         Response response = new Response();
         if (StringUtils.isAnyEmpty(title, author, publishingHouse, year, genre, country, isbn, countOfPages,
@@ -39,7 +37,6 @@ public class AddBookCommand implements Command {
             return response;
         }
         Book book = new Book();
-        //   book.setId(Integer.parseInt(id));
         book.setTitle(title);
         book.setAuthor(author);
         book.setPublishingHouse(publishingHouse);

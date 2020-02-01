@@ -17,7 +17,7 @@ public class FindBookByNameCommand implements Command {
     public Response execute(Request request) {
         Response response = new Response();
         try {
-            String title = String.valueOf(request.getBody().get("title"));
+            String title = request.getStringValue("title");
             BookService bookService = serviceFactory.getBookServiceImpl();
             List<Book> list = bookService.findBookByName(title);
             response.getBody().put(list, bookService.getBooks());//передали лист в респонс

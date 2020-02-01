@@ -51,8 +51,8 @@ public class InputUtil {
             System.out.println("Invalid input. Try again.");
         }
         if (scanner.nextInt() == 1) {
-            return Book.BookType.EBOOK;
-        } else return Book.BookType.PAPERBOOK;
+            return Book.BookType.E_BOOK;
+        } else return Book.BookType.PAPER_BOOK;
     }
 
     public static int checkPageNumber() {

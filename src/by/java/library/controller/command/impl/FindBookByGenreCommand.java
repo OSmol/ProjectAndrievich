@@ -20,7 +20,7 @@ public class FindBookByGenreCommand implements Command {
     public Response execute(Request request) {
         Response response = new Response();
         try {
-            String genre = String.valueOf(request.getBody().get("genre"));
+            String genre = request.getStringValue("genre");
             BookService bookService = serviceFactory.getBookServiceImpl();
             List<Book> list = bookService.findBookByGenre(genre);
             response.getBody().put("list", bookService.getBooks());//передать лист в респонс

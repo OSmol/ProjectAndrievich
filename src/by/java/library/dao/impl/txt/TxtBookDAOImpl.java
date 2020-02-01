@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TxtBookDAOImpl implements BookDAO {
@@ -99,13 +100,16 @@ public class TxtBookDAOImpl implements BookDAO {
     public void deleteBook(int idBook) throws DAOException {
         List<Book> list = getBooks();
         if (list == null || list.isEmpty()) {
-            throw new DAOException("List empty");
+            throw new DAOException("List is empty");
         } else {
-            for (Book book : list) {
-                long idName = book.getId();
-                if (idName == idBook) {
-                    list.remove(book);
-                }
+            Iterator<Book> iterator = list.iterator();
+            if (iterator.hasNext()) {
+                do {
+                    Book book = iterator.next();
+                    if (book.getId()==idBook) {
+                        iterator.remove();
+                    }
+                } while (iterator.hasNext());
             }
             writeFile(list);
         }

@@ -13,17 +13,17 @@ public class UpdateUserCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        String id = String.valueOf(request.getBody().get("id"));
-        String login = String.valueOf(request.getBody().get("login"));
-        String password = String.valueOf(request.getBody().get("password"));
-        String name = String.valueOf(request.getBody().get("name"));
-        String email = String.valueOf(request.getBody().get("email"));
-        String locale = String.valueOf(request.getBody().get("locale"));
-        String userRole = String.valueOf(request.getBody().get("userRole"));
+        String id = request.getStringValue("id");
+        String login = request.getStringValue("login");
+        String password = request.getStringValue("password");
+        String name = request.getStringValue("name");
+        String email = request.getStringValue("email");
+        String locale = request.getStringValue("locale");
+     //   String userRole = String.valueOf(request.getBody().get("userRole"));
 
 
         Response response = new Response();
-        if (StringUtils.isAnyEmpty(login, password, name, email, locale, userRole)) {
+        if (StringUtils.isAnyEmpty(login, password, name, email, locale)) {
             response.setErrorMessage("Empty field to add User");
             response.setResponseCode(400);
             return response;
@@ -33,7 +33,7 @@ public class UpdateUserCommand implements Command {
         user.setName(name);
         user.setEmail(null);
         user.setLocale(locale);
-        user.setUserRole(null);
+     //   user.setUserRole(null);
 
         try {
             serviceFactory.getUserServiceImpl().addUser(user);

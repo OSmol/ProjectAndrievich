@@ -6,7 +6,8 @@ import java.util.Map;
 public class Request {
     private Map<Object, Object> body = new HashMap();
 
-    public Request (){}
+    public Request() {
+    }
 
     public Map<Object, Object> getBody() {
         return body;
@@ -14,5 +15,9 @@ public class Request {
 
     public void setBody(Map<Object, Object> body) {
         this.body = body;
+    }
+
+    public String getStringValue(String key) {
+        return String.valueOf(body.get(key));
     }
 }

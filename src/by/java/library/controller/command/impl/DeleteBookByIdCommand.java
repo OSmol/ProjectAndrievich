@@ -14,14 +14,14 @@ public class DeleteBookByIdCommand implements Command {
     @Override
     public Response execute(Request request) {
         Response response = new Response();
-        String id = String.valueOf(request.getBody().get("id"));
+        String id = request.getStringValue("id");
         try {
             BookService bookService = serviceFactory.getBookServiceImpl();
             int num = Integer.parseInt(id);
             bookService.deleteBookById(num);
             response.setResponseCode(201);
             return response;
-        } catch (ServiceException e) {
+        } catch (ServiceException | NumberFormatException e) {
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(501);
             return response;

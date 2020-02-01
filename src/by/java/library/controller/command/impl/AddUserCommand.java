@@ -1,6 +1,7 @@
 package library.controller.command.impl;
 
 
+import library.bean.Email;
 import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
@@ -17,12 +18,12 @@ public class AddUserCommand implements Command {
     @Override
     public Response execute(Request request) {
         //  String id = parameters.get("id");
-        String login = String.valueOf(request.getBody().get("login"));
-        String password = String.valueOf(request.getBody().get("password"));
-        String name = String.valueOf(request.getBody().get("name"));
-        String email = String.valueOf(request.getBody().get("email"));
-        String locale = String.valueOf(request.getBody().get("locale"));
-       // String userRole = String.valueOf(request.getBody().get("userRole"));
+        String login = request.getStringValue("login");
+        String password = request.getStringValue("password");
+        String name = request.getStringValue("name");
+        String email = request.getStringValue("email");
+        String locale = request.getStringValue("locale");
+        // String userRole = String.valueOf(request.getBody().get("userRole"));
 
 
         Response response = new Response();
@@ -36,9 +37,9 @@ public class AddUserCommand implements Command {
         user.setLogin(login);
         user.setPassword(password);
         user.setName(name);
-        user.setEmail(null);
+        user.setEmail(new Email(email));
         user.setLocale(locale);
-      //  user.setUserRole(null);
+       // user.setUserRole(null);
 
         try {
             serviceFactory.getUserServiceImpl().addUser(user);

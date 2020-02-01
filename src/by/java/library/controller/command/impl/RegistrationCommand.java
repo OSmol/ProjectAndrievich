@@ -19,12 +19,12 @@ public class RegistrationCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        String login = String.valueOf(request.getBody().get("login"));
+        String login = request.getStringValue("login");
 
-        String password = String.valueOf(request.getBody().get("password"));
-        String name = String.valueOf(request.getBody().get("name"));
-        String email = String.valueOf(request.getBody().get("email"));
-        String locale = String.valueOf(request.getBody().get("locale"));
+        String password = request.getStringValue("password");
+        String name = request.getStringValue("name");
+        String email = request.getStringValue("email");
+        String locale = request.getStringValue("locale");
         Response response = new Response();
         if (StringUtils.isAnyEmpty(login, password, name, email, locale)) {
             response.setErrorMessage("Empty fields");

@@ -19,8 +19,8 @@ public class SignInCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        String login = String.valueOf(request.getBody().get("login"));
-        String password = String.valueOf(request.getBody().get("password"));
+        String login =request.getStringValue("login");
+        String password = request.getStringValue("password");
         Response response = new Response();
         if (StringUtils.isAnyEmpty(login, password)) {
             response.setErrorMessage("Empty fields");

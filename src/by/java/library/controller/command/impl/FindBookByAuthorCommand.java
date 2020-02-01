@@ -19,7 +19,7 @@ public class FindBookByAuthorCommand implements Command {
     public Response execute(Request request) {
         Response response = new Response();
         try {
-            String author = String.valueOf(request.getBody().get("author"));
+            String author = request.getStringValue("author");
             BookService bookService = serviceFactory.getBookServiceImpl();
             List<Book> list = bookService.findBookByAuthor(author);
             response.getBody().put("list", bookService.getBooks());//передать лист в респонс

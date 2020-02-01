@@ -2,7 +2,6 @@ package library.bean;
 
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -264,7 +263,7 @@ public class Book implements Serializable {
     }
 
     public enum BookType implements Serializable {
-        PAPERBOOK("Paper book"), EBOOK("eBook");
+        PAPER_BOOK("paper book"), E_BOOK("eBook");
         String name;
 
         BookType(String name) {
