@@ -4,9 +4,6 @@ import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
-import library.security.PasswordEncryptor;
-import library.security.PasswordEncryptorImpl;
-import library.security.SecurityContextHolder;
 import library.service.UserService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
@@ -19,7 +16,7 @@ public class SignInCommand implements Command {
 
     @Override
     public Response execute(Request request) {
-        String login =request.getStringValue("login");
+        String login = request.getStringValue("login");
         String password = request.getStringValue("password");
         Response response = new Response();
         if (StringUtils.isAnyEmpty(login, password)) {
@@ -27,21 +24,19 @@ public class SignInCommand implements Command {
             response.setResponseCode(400);
             return response;
         }
-        PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
-        String encryptedPassword = passwordEncryptor.encrypt(password);//зашифровать
         User user = null;
         try {
-            user = userService.findUserByLoginAndPassword(login, encryptedPassword);
+            user = userService.findUserByLoginAndPassword(login, password);
+            if (user != null) {
+                response.setResponseCode(201);
+            }
+            if (user == null) {
+                response.setResponseCode(403);//
+                response.setErrorMessage("Not found user");
+            }
         } catch (ServiceException e) {
-            //
-        }
-        if (user != null) {
-            SecurityContextHolder.setLoggedUser(user);
-            response.setResponseCode(201);
-        }
-        if (user == null) {
-            response.setResponseCode(403);//
-            response.setErrorMessage("Not found user");
+            response.setResponseCode(501);//todo
+            response.setErrorMessage(e.getMessage());
         }
         return response;
     }

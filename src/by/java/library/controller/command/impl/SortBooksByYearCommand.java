@@ -18,21 +18,21 @@ public class SortBooksByYearCommand implements Command {
     @Override
     public Response execute(Request request) {
         logger.debug("SortBooksByYearCommand");
+        Response response = new Response();
         BookService bookService = serviceFactory.getBookServiceImpl();
-        List<Book> list = null;
+        List<Book> list;
         try {
             list = bookService.sortBookByYear();
+            if (list == null || list.isEmpty()) {
+                response.setErrorMessage("Empty field to sort Books");
+                response.setResponseCode(400);
+                return response;
+            }
+            response.setResponseCode(201);
+            response.getBody().put("title", list);
         } catch (ServiceException e) {
-            //  log
+            response.setErrorMessage(e.getMessage());
         }
-        Response response = new Response();
-        if (list == null || list.isEmpty()) {
-            response.setErrorMessage("Empty field to sort Books");
-            response.setResponseCode(400);
-            return response;
-        }
-        response.setResponseCode(201);
-        response.getBody().put("title", list);
         return response;
     }
 }

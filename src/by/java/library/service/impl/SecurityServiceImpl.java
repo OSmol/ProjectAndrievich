@@ -6,6 +6,7 @@ import library.dao.exception.DAOException;
 import library.dao.factory.DAOFactory;
 import library.security.PasswordEncryptor;
 import library.security.PasswordEncryptorImpl;
+import library.security.SecurityContextHolder;
 import library.service.SecurityService;
 import library.service.UserService;
 import library.service.exception.ServiceException;
@@ -15,14 +16,26 @@ public class SecurityServiceImpl implements SecurityService {
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
     private DAOFactory daoFactory = DAOFactory.getInstance();
     private UserDAO userDAO = daoFactory.getTxtUserDAO();
-    private UserService userService=new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
     @Override
     public void signIn(String login, String password) throws ServiceException {
-        //проверяем параметры
-        if (login == null || login.isEmpty()) {
-            throw new ServiceException("Incorrect login");
+
+        logger.debug("UserServiceImpl.registration() - run");
+        try {
+            PasswordEncryptor passwordEncryptor = new PasswordEncryptorImpl();
+            User foundUser = userDAO.getUser(login);
+            if (!foundUser.getPassword().equals(passwordEncryptor.encrypt(password))) {
+                throw new ServiceException("don't find user by login and password.");
+            }
+            SecurityContextHolder.setLoggedUser(foundUser);//todo
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        } finally {
+            logger.debug("UserServiceImpl.registration() - User add");
         }
+
+
     }
 
     @Override

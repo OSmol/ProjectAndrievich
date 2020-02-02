@@ -7,6 +7,7 @@ import library.controller.command.Command;
 import library.service.BookService;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -17,25 +18,23 @@ public class SortBooksByNameCommand implements Command {
 
 
     @Override
-    public Response execute(Request request)  {
+    public Response execute(Request request) {
         logger.debug("SortBooksByNameCommand");
+        Response response = new Response();
         BookService bookService = serviceFactory.getBookServiceImpl();
-        List<Book> list = null;
+        List<Book> list;
         try {
             list = bookService.sortBookByName();
+            if (CollectionUtils.isEmpty(list)) {
+                response.setErrorMessage("Empty field to add Books");
+                response.setResponseCode(400);
+                return response;
+            }
+            response.setResponseCode(201);
+            response.getBody().put("title", list);
         } catch (ServiceException e) {
-          //  log
+            response.setErrorMessage(e.getMessage());
         }
-
-        Response response = new Response();
-        if (list == null || list.isEmpty()) {//change
-            response.setErrorMessage("Empty field to add Books");
-            response.setResponseCode(400);
-            return response;
-        }
-        response.setResponseCode(201);
-        response.getBody().put("title", list);
         return response;
-
     }
 }

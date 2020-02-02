@@ -1,7 +1,6 @@
 package library.dao.impl.txt;
 
 import library.bean.Book;
-import library.bean.User;
 import library.dao.BookDAO;
 import library.dao.exception.DAOException;
 import org.apache.commons.collections4.CollectionUtils;
@@ -106,7 +105,7 @@ public class TxtBookDAOImpl implements BookDAO {
             if (iterator.hasNext()) {
                 do {
                     Book book = iterator.next();
-                    if (book.getId()==idBook) {
+                    if (book.getId() == idBook) {
                         iterator.remove();
                     }
                 } while (iterator.hasNext());
@@ -168,15 +167,6 @@ public class TxtBookDAOImpl implements BookDAO {
         }
         writeFile(list);
     }
+}
 
-    public void createUser(User user, Book book) {
-        List<User> users = new ArrayList<>();
-        List<Book> books = new ArrayList<>();
-        users.add(user);
-        books.add(book);
-        // book.setUsers(users);
-
-//сохранить изменения в базу данных + эксепшены
-    }
-   }
 

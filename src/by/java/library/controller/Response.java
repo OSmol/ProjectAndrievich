@@ -37,6 +37,12 @@ public class Response {
     public void setBody(String book1, Book book11) {
     }
 
+    public Response() {
+    }
+
+    public Response(int responseCode) {
+        this.responseCode = responseCode;
+    }
 }
 
 

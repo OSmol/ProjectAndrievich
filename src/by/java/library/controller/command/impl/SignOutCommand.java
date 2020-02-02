@@ -13,9 +13,9 @@ public class SignOutCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     @Override
-    public Response execute(Request request)  {
+    public Response execute(Request request) {
         SecurityContextHolder.setLoggedUser(null);//todo
-            return null;
-        }
+        return new Response(200);
     }
+}
 

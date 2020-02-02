@@ -32,10 +32,8 @@ public class BookServiceImpl implements BookService {
     public void updateBook(Book book) throws ServiceException {
         logger.debug("BookServiceImpl.updateBook - run");
         BookDAO txtBookDAO = daoFactory.getTxtBookDAO();
-        BookDAO sqlBookDAO = daoFactory.getSqlBookDAO();
         try {
             txtBookDAO.updateBook(book);
-            sqlBookDAO.updateBook(book);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -88,7 +86,7 @@ public class BookServiceImpl implements BookService {
                 String title = book.getTitle();
                 if (title.equalsIgnoreCase(nameBook)) {
                     listBooksByName.add(book);
-                                    }
+                }
             }
             return listBooksByName;
         } catch (DAOException e) {
