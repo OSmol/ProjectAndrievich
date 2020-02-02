@@ -14,33 +14,7 @@ public class UserServiceImpl implements UserService {
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
     private DAOFactory daoFactory = DAOFactory.getInstance();
 
-    @Override
-    public void signIn(String login, String password) throws ServiceException {
-        //проверяем параметры
-        if (login == null || login.isEmpty()) {
-            throw new ServiceException("Incorrect login");
-        }
-    }
 
-    @Override
-    public void signOut(String login) {
-
-    }
-
-    @Override
-    public void registration(User user) throws ServiceException {
-        logger.debug("UserServiceImpl.registration() - run");
-        UserDAO userDAO = daoFactory.getTxtUserDAO();
-        try {
-            userDAO.add(user);
-            //  PasswordValidator.isEmptyString(security.getPassword());
-            // PasswordValidator.matchPassword(security.getPassword());
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        } finally {
-            logger.debug("UserServiceImpl.registration() - User add");
-        }
-    }
 
     @Override
     public void delete(String login) throws ServiceException {
