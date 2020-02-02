@@ -24,7 +24,7 @@ public class SignInCommand implements Command {
             response.setResponseCode(400);
             return response;
         }
-        User user = null;
+        User user;
         try {
             user = userService.findUserByLoginAndPassword(login, password);
             if (user != null) {

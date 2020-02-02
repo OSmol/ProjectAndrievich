@@ -57,7 +57,7 @@ public class SecurityPage implements Page {
         //ввести логин и пароль, проверить, новые они или нет,
         // если новые - записать их в файл, "данные записаны" и перейти на меню мэйн - добавить нового пользователя
         // если данные есть - "логин и пароль уже существуют" и перейти на меню секьюрити
-
+        System.out.println("\n Please register!\n ");
         Request request = new Request();
         Command command = new RegistrationCommand();
         System.out.println("Enter login: ");
@@ -104,6 +104,9 @@ public class SecurityPage implements Page {
         if (response.getResponseCode() == 201) {//Created («создано»);
             System.out.println(response.getBody().get("list"));
             goToMainMenu();
+        }
+        if (response.getResponseCode()==403){
+            registration();
         }
     }
 

@@ -20,9 +20,7 @@ public class RegistrationCommand implements Command {
     @Override
     public Response execute(Request request) {
         String login = request.getStringValue("login");
-
         String password = request.getStringValue("password");
-
         // PasswordValidator.matchPassword(security.getPassword());
         String name = request.getStringValue("name");
         String email = request.getStringValue("email");
@@ -39,7 +37,7 @@ public class RegistrationCommand implements Command {
             user.setLogin(login);
             user.setPassword(password);
             securityService.registration(user);
-
+            response.setResponseCode(201);
         } catch (ServiceException e) {
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(401);//unauthorized
