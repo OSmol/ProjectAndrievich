@@ -1,11 +1,13 @@
 package library.view;
 
 import javatrDay5.helper.ScannerHelper;
+import library.bean.Book;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -101,7 +103,10 @@ class BookPage implements Page {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody().get("list"));
+            List<Book> list = (List<Book>) response.getBody().get("list");
+            for (Book book : list) {
+                System.out.println(book);
+            }
         }
         System.out.println("\n Please, make your choice!");
     }
@@ -114,9 +119,14 @@ class BookPage implements Page {
             System.out.println(response.getErrorMessage());
             System.out.println(response.getResponseCode());
         } else {
-            System.out.println(response.getBody().get("title"));
+            if (response.getResponseCode() == 201) {
+                List<Book> list = (List<Book>) response.getBody().get("title");
+                for (Book book : list) {
+                    System.out.println(book);
+                }
+            }
+            System.out.println("\n Please, make your choice!");
         }
-        System.out.println("\n Please, make your choice!");
     }
 
     private void sortBookByYear() {
@@ -127,9 +137,14 @@ class BookPage implements Page {
             System.out.println(response.getErrorMessage());
             System.out.println(response.getResponseCode());
         } else {
-            System.out.println(response.getBody().get("title"));
+            if (response.getResponseCode() == 201) {
+                List<Book> list = (List<Book>) response.getBody().get("title");
+                for (Book book : list) {
+                    System.out.println(book);
+                }
+            }
+            System.out.println("\n Please, make your choice!");
         }
-        System.out.println("\n Please, make your choice!");
     }
 
     private void findBookByName() {
@@ -143,7 +158,10 @@ class BookPage implements Page {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody().get("list"));
+            List<Book> list = (List<Book>) response.getBody().get("list");
+            for (Book book : list) {
+                System.out.println(book);
+            }
         }
         System.out.println("\n Please, make your choice!");
     }
@@ -228,7 +246,10 @@ class BookPage implements Page {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody().get("list"));
+            List<Book> list = (List<Book>) response.getBody().get("list");
+            for (Book book : list) {
+                System.out.println(book);
+            }
         }
         System.out.println("\n Please, make your choice!");
     }
@@ -237,8 +258,6 @@ class BookPage implements Page {
     private void finishWork() {
         System.out.println("Work with books finished! \n");
     }
-
-
 }
 
 

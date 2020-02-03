@@ -19,8 +19,8 @@ import library.view.SecurityPage;
 public class Main {
     public static void main(String[] args) {
         SecurityPage securityPage = SecurityPage.getInstance();
-       securityPage.run();
-        MainPage page=MainPage.getInstance();
+        //    securityPage.run();
+        MainPage page = MainPage.getInstance();
         //   page.run();
     }
 }

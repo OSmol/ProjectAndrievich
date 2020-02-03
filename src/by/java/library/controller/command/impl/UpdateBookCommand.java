@@ -51,11 +51,13 @@ public class UpdateBookCommand implements Command {
             book.setAuthorOfTranslation(authorOfTranslation);
             book.setDescription(description);
             book.setPrice(Double.parseDouble(price));
+
             serviceFactory.getBookServiceImpl().updateBook(book);
             response.setResponseCode(201);
             return response;
 
         } catch (ServiceException | NumberFormatException e) {
+            logger.error(e);
             response.setErrorMessage(e.getMessage());
             response.setResponseCode(501);
             return response;

@@ -1,11 +1,13 @@
 package library.view;
 
 import javatrDay5.helper.ScannerHelper;
+import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
 import library.controller.command.impl.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public final class UserPage implements Page {
@@ -121,11 +123,13 @@ public final class UserPage implements Page {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody().get("list"));
+            List<User> list = (List<User>) response.getBody().get("list");
+            for (User user : list) {
+                System.out.println(user);
+            }
+            System.out.println("\n Please, make your choice!");
         }
-        System.out.println("\n Please, make your choice!");
     }
-
     private void findUserByLogin() {
         Request request = new Request();
         Command command = new GetUserByLoginCommand();
@@ -166,8 +170,10 @@ public final class UserPage implements Page {
             System.out.println(response.getErrorMessage());
         }
         if (response.getResponseCode() == 201) {
-            System.out.println(response.getBody().get("list"));
-        }
+            List<User> list = (List<User>) response.getBody().get("list");
+            for (User user : list) {
+                System.out.println(user);
+            }
         System.out.println("\n Please, make your choice!");
     }
-}
+}}
