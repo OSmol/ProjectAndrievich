@@ -23,7 +23,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public void add(User user) throws DAOException {
-        List<User> list = getUsers();
+         List<User> list = getUsers();
         // List<User>list = new ArrayList<>();
         if (list == null || list.isEmpty()) {
             int generateId = 1;

@@ -13,41 +13,40 @@ import java.util.List;
 import java.util.Objects;
 
 public class TxtBookDAOImpl implements BookDAO {
-    private static final String BFILE = "src/by/resources/library/Books.txt";
+    private static final String BOOKS_TXT = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
 
     public List<Book> readFile() throws DAOException {
-        File file = new File(BFILE);
+        File file = new File(BOOKS_TXT);
         ObjectInputStream objectInputStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-
             return (List<Book>) objectInputStream.readObject();
-
         } catch (ClassNotFoundException ce) {
             throw new DAOException("Класс не существует", ce);
         } catch (FileNotFoundException e) {
             throw new DAOException("Файл для десериализации не существует: ", e);
         } catch (InvalidClassException ioe) {
             throw new DAOException("Несовпадение версий классов: ", ioe);
+        } catch (InvalidObjectException e) {
+            throw new DAOException("объект не восстановлен");
         } catch (IOException ioe) {
-            throw new DAOException("Общая IO ошибка: ", ioe);
+            throw new DAOException("Общая IO ошибка: ");
         } finally {
-            if (objectInputStream != null) {
-                try {
+            try {
+                if (objectInputStream != null) {
                     objectInputStream.close();
-                } catch (IOException e) {
-                    logger.info("Error");
                 }
+            } catch (IOException e) {
+                System.err.println("ошибка закрытия потока ");
             }
         }
-
     }
 
     public boolean writeFile(List<Book> books) throws DAOException {
         boolean b = false;
-        File file = new File(BFILE);
+        File file = new File(BOOKS_TXT);
         ObjectOutputStream objectOutputStream = null;
         FileOutputStream fileOutputStream;
         try {
@@ -81,7 +80,8 @@ public class TxtBookDAOImpl implements BookDAO {
 
     @Override
     public void addBook(Book book) throws DAOException {
-        List<Book> list = getBooks();
+         List<Book> list = getBooks();
+        // List<Book> list = new ArrayList<>();
         if (list == null || list.isEmpty()) {
             int generateID = 1;
             book.setId(generateID);

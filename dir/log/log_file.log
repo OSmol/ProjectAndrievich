@@ -20,3 +20,10 @@
 2019-12-02 21:58:40 INFO  Main:28 - Введите цвет. Список мячей цвета red: [Ball{id=123, color=RED, size=1, weight=23}, Ball{id=145, color=RED, size=36, weight=14}]
 2019-12-02 21:58:40 INFO  Main:29 - Количество мячей цвета red  : 2
 2019-12-02 21:58:40 INFO  Main:31 - Список мячей синего цвета: [Ball{id=5, color=BLUE, size=5, weight=25}, Ball{id=321, color=BLUE, size=7, weight=3}]
+2020-02-03 15:39:34 ERROR AddBookCommand:60 - java.lang.NumberFormatException: For input string: "null"
+2020-02-03 17:09:06 ERROR AddBookCommand:60 - java.lang.NumberFormatException: For input string: "null"
+2020-02-04 10:07:50 ERROR GetBooksCommand:26 - library.service.exception.ServiceException: library.dao.exception.DAOException: Общая IO ошибка: 
+2020-02-04 11:11:39 ERROR GetBooksCommand:26 - library.service.exception.ServiceException: library.dao.exception.DAOException: Общая IO ошибка: 
+2020-02-04 11:15:19 ERROR GetBooksCommand:26 - library.service.exception.ServiceException: library.dao.exception.DAOException: Общая IO ошибка: 
+2020-02-04 11:15:25 ERROR GetBooksCommand:26 - library.service.exception.ServiceException: library.dao.exception.DAOException: Общая IO ошибка: 
+2020-02-04 11:15:50 ERROR GetBooksCommand:26 - library.service.exception.ServiceException: library.dao.exception.DAOException: Общая IO ошибка: 

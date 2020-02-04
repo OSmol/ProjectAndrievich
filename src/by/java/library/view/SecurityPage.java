@@ -46,6 +46,9 @@ public class SecurityPage implements Page {
                 case 3:
                     signOut();
                     return;
+                case 4:
+                    signInForUser();
+                    return;
                 case 0:
                     finishWork();
                     return;
@@ -82,7 +85,7 @@ public class SecurityPage implements Page {
         }
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
-            goToMainMenu();
+            signIn();
         }
     }
 
@@ -105,12 +108,18 @@ public class SecurityPage implements Page {
             System.out.println(response.getBody().get("list"));
             goToMainMenu();
         }
-        if (response.getResponseCode()==403){
+        if (response.getResponseCode() == 403) {
             registration();
         }
+        if (response.getResponseCode() == 401) {
+            signInForUser();
+        }
     }
+    public void signInForUser() {
+        UserSignInPage userSignInPage = UserSignInPage.getInstance();
+        userSignInPage.run();
 
-    //перейти на signIn
+    }
     public void signOut() {
         signIn();
     }

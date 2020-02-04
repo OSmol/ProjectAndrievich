@@ -1,5 +1,6 @@
 package library.controller.command.impl;
 
+import library.bean.Email;
 import library.bean.User;
 import library.controller.Request;
 import library.controller.Response;
@@ -25,6 +26,8 @@ public class RegistrationCommand implements Command {
         String name = request.getStringValue("name");
         String email = request.getStringValue("email");
         String locale = request.getStringValue("locale");
+        String userRole = request.getStringValue("userRole");
+
         Response response = new Response();
         if (StringUtils.isAnyEmpty(login, password, name, email, locale)) {
             response.setErrorMessage("Empty fields");
@@ -36,6 +39,11 @@ public class RegistrationCommand implements Command {
         try {
             user.setLogin(login);
             user.setPassword(password);
+            user.setName(name);
+            user.setEmail(new Email(email));
+            user.setLocale(locale);
+            user.setUserRole(User.UserRole.ADMIN);
+
             securityService.registration(user);
             response.setResponseCode(201);
         } catch (ServiceException e) {
