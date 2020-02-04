@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class TxtUserDAOImpl implements UserDAO {
     private static final String USERS_TXT = "src/by/resources/library/Users.txt";
@@ -22,7 +23,7 @@ public class TxtUserDAOImpl implements UserDAO {
 
     @Override
     public void add(User user) throws DAOException {
-       List<User> list = getUsers();
+        List<User> list = getUsers();
         // List<User>list = new ArrayList<>();
         if (list == null || list.isEmpty()) {
             int generateId = 1;
@@ -48,7 +49,7 @@ public class TxtUserDAOImpl implements UserDAO {
             if (iterator.hasNext()) {
                 do {
                     User user = iterator.next();
-                    if (user.getLogin().equalsIgnoreCase(login)) {
+                    if (Objects.equals(user.getLogin(), login)) {
                         iterator.remove();
                     }
                 } while (iterator.hasNext());
@@ -95,7 +96,14 @@ public class TxtUserDAOImpl implements UserDAO {
             for (int i = 0; i < list.size(); i++) {
                 User user1 = list.get(i);
                 if (user1.getId() == idUser) {
-                    list.set(i, user1);
+                    user1.setLogin(user.getLogin());
+                    user1.setPassword(user.getPassword());
+                    user1.setName(user.getName());
+                    user1.setUserRole(user.getUserRole());
+                    user1.setLocale(user.getLocale());
+                    user1.setEmail(user.getEmail());
+                    user1.setId(user.getId());
+
                 }
             }
         }

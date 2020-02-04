@@ -130,7 +130,7 @@ public class User implements Serializable {
         return Objects.hash(id, login, password, name, email, locale, userRole);
     }
 
-    public enum UserRole {
+    public enum UserRole implements Serializable{
         ADMIN("admin"), USER("user");
         private String name;
 
@@ -140,6 +140,10 @@ public class User implements Serializable {
 
         public String getName() {
             return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 

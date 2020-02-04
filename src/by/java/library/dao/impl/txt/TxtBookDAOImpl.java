@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class TxtBookDAOImpl implements BookDAO {
     private static final String BFILE = "src/by/resources/library/Books.txt";
@@ -105,7 +106,7 @@ public class TxtBookDAOImpl implements BookDAO {
             if (iterator.hasNext()) {
                 do {
                     Book book = iterator.next();
-                    if (book.getId() == idBook) {
+                    if (Objects.equals(book.getId(), idBook)) {
                         iterator.remove();
                     }
                 } while (iterator.hasNext());
@@ -158,10 +159,24 @@ public class TxtBookDAOImpl implements BookDAO {
         if (CollectionUtils.isNotEmpty(list)) {
             throw new DAOException("List empty");
         } else {
-            int bookId = book.getId();
-            for (Book book1 : list) {
-                if (book1.getId() == bookId) {
-                    book1 = book;
+            for (int i = 0; i < list.size(); i++) {
+                Book book1 = list.get(i);
+                if (book1.getId() == book.getId()) {
+                    book1.setId(book.getId());
+                    book1.setTitle(book.getTitle());
+                    book1.setPrice(book.getPrice());
+                    book1.setDescription(book.getDescription());
+                    book1.setLanguage(book.getLanguage());
+                    book1.setCountOfPages(book.getCountOfPages());
+                    book1.setIsbn(book.getIsbn());
+                    book1.setPublishingHouse(book.getPublishingHouse());
+                    book1.setYear(book.getYear());
+                    book1.setAuthor(book.getAuthor());
+                    book1.setAuthorOfTranslation(book.getAuthorOfTranslation());
+                    book1.setCountry(book.getCountry());
+                    book1.setGenre(book.getGenre());
+                    book1.setCustomer(book.getCustomer());
+                    list.add(book1);
                 }
             }
         }

@@ -3,6 +3,7 @@ package library.controller.command.impl;
 
 import library.bean.Email;
 import library.bean.User;
+import library.bean.User.UserRole;
 import library.controller.Request;
 import library.controller.Response;
 import library.controller.command.Command;
@@ -15,6 +16,7 @@ public class AddUserCommand implements Command {
     private static Logger logger = Logger.getLogger(AddBookCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
+
     @Override
     public Response execute(Request request) {
         //  String id = parameters.get("id");
@@ -23,7 +25,7 @@ public class AddUserCommand implements Command {
         String name = request.getStringValue("name");
         String email = request.getStringValue("email");
         String locale = request.getStringValue("locale");
-        // String userRole = String.valueOf(request.getBody().get("userRole"));
+        String userRole = request.getStringValue("userRole");
 
 
         Response response = new Response();
@@ -39,7 +41,7 @@ public class AddUserCommand implements Command {
         user.setName(name);
         user.setEmail(new Email(email));
         user.setLocale(locale);
-       // user.setUserRole(null);
+        user.setUserRole(UserRole.ADMIN);
 
         try {
             serviceFactory.getUserServiceImpl().addUser(user);

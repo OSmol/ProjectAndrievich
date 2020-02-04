@@ -21,7 +21,7 @@ public class Main {
         SecurityPage securityPage = SecurityPage.getInstance();
         //    securityPage.run();
         MainPage page = MainPage.getInstance();
-        //   page.run();
+           page.run();
     }
 }
 

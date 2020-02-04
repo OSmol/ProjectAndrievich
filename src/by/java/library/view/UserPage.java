@@ -97,12 +97,15 @@ public final class UserPage implements Page {
         String email = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter locale: ");
         String locale = ScannerHelper.inputStringFromConsole();
+        System.out.println("Enter role: ");
+        String role = ScannerHelper.inputStringFromConsole();
 
         request.getBody().put("login", login);
         request.getBody().put("password", password);
         request.getBody().put("name", name);
         request.getBody().put("email", email);
         request.getBody().put("locale", locale);
+        request.getBody().put("userRole",role);
 
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
