@@ -29,10 +29,6 @@ public class SignInCommand implements Command {
             user = userService.findUserByLoginAndPassword(login, password);
             if (user != null) {
                 response.setResponseCode(201);
-                if (!user.getPassword().equals("admin")) {
-                    response.setResponseCode(401);//
-                    response.setErrorMessage("you are user");
-                }
             }
             if (user == null) {
                 response.setResponseCode(403);//

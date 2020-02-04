@@ -46,9 +46,6 @@ public class SecurityPage implements Page {
                 case 3:
                     signOut();
                     return;
-                case 4:
-                    signInForUser();
-                    return;
                 case 0:
                     finishWork();
                     return;
@@ -85,12 +82,11 @@ public class SecurityPage implements Page {
         }
         if (response.getResponseCode() == 201) {
             System.out.println(response.getBody().get("list"));
-            signIn();
+            goToMainMenu();
         }
     }
 
-    //ввести данные, прочитать файл, если данные совпадают - перейти на Маин меню
-    public void signIn() {
+        public void signIn() {
         Command command = new SignInCommand();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
@@ -108,19 +104,12 @@ public class SecurityPage implements Page {
             System.out.println(response.getBody().get("list"));
             goToMainMenu();
         }
-        if (response.getResponseCode() == 403) {
+        if (response.getResponseCode()==403){
             registration();
         }
-        if (response.getResponseCode() == 401) {
-            signInForUser();
-        }
     }
-    public void signInForUser() {
-        UserSignInPage userSignInPage = UserSignInPage.getInstance();
-        userSignInPage.run();
 
-    }
-    public void signOut() {
+        public void signOut() {
         signIn();
     }
 
