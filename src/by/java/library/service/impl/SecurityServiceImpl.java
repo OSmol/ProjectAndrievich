@@ -16,8 +16,19 @@ public class SecurityServiceImpl implements SecurityService {
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
     private DAOFactory daoFactory = DAOFactory.getInstance();
     private UserDAO userDAO = daoFactory.getTxtUserDAO();
-    private UserService userService = new UserServiceImpl();
+    private UserService userService = UserServiceImpl.getInstance();
 
+    private static SecurityServiceImpl instance;
+
+    private SecurityServiceImpl() {
+    }
+
+    public static synchronized SecurityServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new SecurityServiceImpl();
+        }
+        return instance;
+    }
     @Override
     public void signIn(String login, String password) throws ServiceException {
 

@@ -66,7 +66,7 @@ class UserSignInPage implements Page {
 
        private void showBooks() {
         Request request = new Request();
-        Command bookCommand = new GetBooksCommand();
+        Command bookCommand = GetBooksCommand.getInstance();
         Response response = bookCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -82,7 +82,7 @@ class UserSignInPage implements Page {
 
     private void sortBookByName() {
         Request request = new Request();
-        Command command = new SortBooksByNameCommand();
+        Command command = SortBooksByNameCommand.getInstance();
         Response response = command.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -100,7 +100,7 @@ class UserSignInPage implements Page {
 
     private void sortBookByYear() {
         Request request = new Request();
-        Command command = new SortBooksByNameCommand();
+        Command command = SortBooksByNameCommand.getInstance();
         Response response = command.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -118,7 +118,7 @@ class UserSignInPage implements Page {
 
     private void findBookByName() {
         Request request = new Request();
-        Command command = new GetBookByNameCommand();
+        Command command = GetBookByNameCommand.getInstance();
         System.out.println("Enter name book: ");
         String title = ScannerHelper.inputStringFromConsole();
         request.getBody().put("title", title);

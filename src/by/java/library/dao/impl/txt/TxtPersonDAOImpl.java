@@ -4,6 +4,9 @@ import library.bean.Book;
 import library.bean.Person;
 import library.dao.PersonDAO;
 import library.dao.exception.DAOException;
+import library.dao.factory.DAOFactory;
+import library.service.impl.BookServiceImpl;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,6 +14,19 @@ import java.util.List;
 
 public class TxtPersonDAOImpl implements PersonDAO {
     private static final String BOOKFILE = "src/by/resources/library/Input.txt";
+    private static Logger logger = Logger.getLogger(BookServiceImpl.class);
+    private final DAOFactory daoFactory = DAOFactory.getInstance();
+    private static TxtPersonDAOImpl instance;
+
+    private TxtPersonDAOImpl() {
+    }
+
+    public static synchronized TxtPersonDAOImpl getInstance() {
+        if (instance == null) {
+            instance = new TxtPersonDAOImpl();
+        }
+        return instance;
+    }
 
     @Override
     public List<Person> getAll() throws DAOException {

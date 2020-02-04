@@ -97,7 +97,7 @@ class BookPage implements Page {
 
     private void showBooks() {
         Request request = new Request();
-        Command bookCommand = new GetBooksCommand();
+        Command bookCommand = GetBooksCommand.getInstance();
         Response response = bookCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -113,7 +113,7 @@ class BookPage implements Page {
 
     private void sortBookByName() {
         Request request = new Request();
-        Command command = new SortBooksByNameCommand();
+        Command command = SortBooksByNameCommand.getInstance();
         Response response = command.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -131,7 +131,7 @@ class BookPage implements Page {
 
     private void sortBookByYear() {
         Request request = new Request();
-        Command command = new SortBooksByNameCommand();
+        Command command = SortBooksByNameCommand.getInstance();
         Response response = command.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -149,7 +149,7 @@ class BookPage implements Page {
 
     private void findBookByName() {
         Request request = new Request();
-        Command command = new GetBookByNameCommand();
+        Command command = GetBookByNameCommand.getInstance();
         System.out.println("Enter name book: ");
         String title = ScannerHelper.inputStringFromConsole();
         request.getBody().put("title", title);
@@ -168,7 +168,7 @@ class BookPage implements Page {
 
     private void removeBook() {
         Request request = new Request();
-        Command bookCommand = new DeleteBookByIdCommand();
+        Command bookCommand = DeleteBookByIdCommand.getInstance();
         System.out.println("Enter id book: ");
         int id = ScannerHelper.inputInt();
         request.getBody().put("id", id);
@@ -184,7 +184,7 @@ class BookPage implements Page {
 
 
     private void addBooks() {
-        Command command = new AddBookCommand();
+        Command command = AddBookCommand.getInstance();
         Request request = new Request();
         //  System.out.println("Enter id: ");
         //   String id = String.valueOf(ScannerHelper.inputInt());
@@ -237,7 +237,7 @@ class BookPage implements Page {
 
     private void updateBook() {
         Request request = new Request();
-        Command bookCommand = new UpdateBookCommand();
+        Command bookCommand = UpdateBookCommand.getInstance();
         System.out.println("Enter id book");
         int id = sc.nextInt();
         request.getBody().put("id", id);

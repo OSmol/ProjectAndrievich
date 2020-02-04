@@ -11,7 +11,17 @@ import org.apache.log4j.Logger;
 public class GetUserByLoginCommand implements Command {
     private static Logger logger = Logger.getLogger(GetUserByLoginCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static GetUserByLoginCommand instance;
 
+    private GetUserByLoginCommand() {
+    }
+
+    public static synchronized GetUserByLoginCommand getInstance() {
+        if (instance == null) {
+            instance = new GetUserByLoginCommand();
+        }
+        return instance;
+    }
 
     @Override
     public Response execute(Request request) {

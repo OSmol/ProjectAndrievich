@@ -15,7 +15,17 @@ import java.util.List;
 public class SortBooksByRatingCommand implements Command {
     private static Logger logger = Logger.getLogger(SignInCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static SortBooksByRatingCommand instance;
 
+    private SortBooksByRatingCommand() {
+    }
+
+    public static synchronized SortBooksByRatingCommand getInstance() {
+        if (instance == null) {
+            instance = new SortBooksByRatingCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {//todo
         logger.debug("SortBooksByRatingCommand");

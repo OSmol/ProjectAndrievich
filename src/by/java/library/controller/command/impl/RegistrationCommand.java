@@ -16,8 +16,18 @@ import org.apache.log4j.Logger;
 public class RegistrationCommand implements Command {
     private static Logger logger = Logger.getLogger(RegistrationCommand.class);
     private UserService userService = ServiceFactory.getInstance().getUserServiceImpl();
-    private SecurityService securityService = new SecurityServiceImpl();
+    private SecurityService securityService = SecurityServiceImpl.getInstance();
+    private static RegistrationCommand instance;
 
+    private RegistrationCommand() {
+    }
+
+    public static synchronized RegistrationCommand getInstance() {
+        if (instance == null) {
+            instance = new RegistrationCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         String login = request.getStringValue("login");

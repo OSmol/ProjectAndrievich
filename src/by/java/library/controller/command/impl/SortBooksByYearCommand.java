@@ -14,7 +14,17 @@ import java.util.List;
 public class SortBooksByYearCommand implements Command {
     private static Logger logger = Logger.getLogger(SignInCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static SortBooksByYearCommand instance;
 
+    private SortBooksByYearCommand() {
+    }
+
+    public static synchronized SortBooksByYearCommand getInstance() {
+        if (instance == null) {
+            instance = new SortBooksByYearCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         logger.debug("SortBooksByYearCommand");

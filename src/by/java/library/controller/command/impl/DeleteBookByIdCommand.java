@@ -10,7 +10,17 @@ import library.service.factory.ServiceFactory;
 
 public class DeleteBookByIdCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static DeleteBookByIdCommand instance;
 
+    private DeleteBookByIdCommand() {
+    }
+
+    public static synchronized DeleteBookByIdCommand getInstance() {
+        if (instance == null) {
+            instance = new DeleteBookByIdCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         Response response = new Response();

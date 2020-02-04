@@ -11,7 +11,17 @@ import org.apache.log4j.Logger;
 public class DeleteUserByLoginCommand implements Command {
     private static Logger logger = Logger.getLogger(DeleteUserByLoginCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static DeleteUserByLoginCommand instance;
 
+    private DeleteUserByLoginCommand() {
+    }
+
+    public static synchronized DeleteUserByLoginCommand getInstance() {
+        if (instance == null) {
+            instance = new DeleteUserByLoginCommand();
+        }
+        return instance;
+    }
 
     @Override
     public Response execute(Request request) {

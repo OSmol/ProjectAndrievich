@@ -12,6 +12,17 @@ import java.util.List;
 public class LetterServiceImpl implements LetterService {
     private static Logger logger = Logger.getLogger(LetterServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
+    private static LetterServiceImpl instance;
+
+    private LetterServiceImpl() {
+    }
+
+    public static synchronized LetterServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new LetterServiceImpl();
+        }
+        return instance;
+    }
 
     public List<Letter> getAll() throws ServiceException {
         logger.debug("LetterServiceImpl - run");

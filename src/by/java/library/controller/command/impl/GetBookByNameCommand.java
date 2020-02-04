@@ -9,7 +9,17 @@ import library.service.factory.ServiceFactory;
 
 public class GetBookByNameCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static GetBookByNameCommand instance;
 
+    private GetBookByNameCommand() {
+    }
+
+    public static synchronized GetBookByNameCommand getInstance() {
+        if (instance == null) {
+            instance = new GetBookByNameCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         Response response = new Response();

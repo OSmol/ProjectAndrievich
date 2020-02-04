@@ -12,6 +12,17 @@ import java.util.List;
 public class PersonServiceImpl implements PersonService {
     private static Logger logger = Logger.getLogger(BookServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
+    private static PersonServiceImpl instance;
+
+    private PersonServiceImpl() {
+    }
+
+    public static synchronized PersonServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new PersonServiceImpl();
+        }
+        return instance;
+    }
 
     @Override
     public List<Person> getAll() throws ServiceException {

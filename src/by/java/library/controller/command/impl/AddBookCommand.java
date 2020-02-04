@@ -6,6 +6,7 @@ import library.controller.Response;
 import library.controller.command.Command;
 import library.service.exception.ServiceException;
 import library.service.factory.ServiceFactory;
+import library.service.impl.BookServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -13,7 +14,17 @@ import org.apache.log4j.Logger;
 public class AddBookCommand implements Command {
     private static Logger logger = Logger.getLogger(AddBookCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static AddBookCommand instance;
 
+    private AddBookCommand() {
+    }
+
+    public static synchronized AddBookCommand getInstance() {
+        if (instance == null) {
+            instance = new AddBookCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         String title = request.getStringValue("title");

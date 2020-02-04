@@ -12,7 +12,17 @@ public class GetBookByIdCommand implements Command {
     private static Logger logger = Logger.getLogger(GetBookByIdCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
+    private static GetBookByIdCommand instance;
 
+    private GetBookByIdCommand() {
+    }
+
+    public static synchronized GetBookByIdCommand getInstance() {
+        if (instance == null) {
+            instance = new GetBookByIdCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         Response response = new Response();

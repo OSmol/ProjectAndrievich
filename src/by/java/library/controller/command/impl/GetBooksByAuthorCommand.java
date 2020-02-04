@@ -11,7 +11,17 @@ import org.apache.log4j.Logger;
 public class GetBooksByAuthorCommand implements Command {
     private static Logger logger = Logger.getLogger(GetBookByNameCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static GetBooksByAuthorCommand instance;
 
+    private GetBooksByAuthorCommand() {
+    }
+
+    public static synchronized GetBooksByAuthorCommand getInstance() {
+        if (instance == null) {
+            instance = new GetBooksByAuthorCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         Response response = new Response();

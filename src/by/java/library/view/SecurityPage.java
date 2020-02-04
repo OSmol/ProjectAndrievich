@@ -59,7 +59,7 @@ public class SecurityPage implements Page {
         // если данные есть - "логин и пароль уже существуют" и перейти на меню секьюрити
         System.out.println("\n Please register!\n ");
         Request request = new Request();
-        Command command = new RegistrationCommand();
+        Command command = RegistrationCommand.getInstance();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter password: ");
@@ -87,7 +87,7 @@ public class SecurityPage implements Page {
     }
 
         public void signIn() {
-        Command command = new SignInCommand();
+        Command command = SignInCommand.getInstance();
         System.out.println("Enter login: ");
         String login = ScannerHelper.inputStringFromConsole();
         System.out.println("Enter password: ");
@@ -109,7 +109,7 @@ public class SecurityPage implements Page {
         }
     }
 
-        public void signOut() {
+        public void signOut() {//todo
         signIn();
     }
 

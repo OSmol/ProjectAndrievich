@@ -14,7 +14,17 @@ public class UserServiceImpl implements UserService {
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
     private DAOFactory daoFactory = DAOFactory.getInstance();
 
+    private static UserServiceImpl instance;
 
+    private UserServiceImpl() {
+    }
+
+    public static synchronized UserServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new UserServiceImpl();
+        }
+        return instance;
+    }
 
     @Override
     public void delete(String login) throws ServiceException {

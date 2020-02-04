@@ -13,7 +13,17 @@ import org.apache.log4j.Logger;
 public class SignInCommand implements Command {
     private static Logger logger = Logger.getLogger(SignInCommand.class);
     private UserService userService = ServiceFactory.getInstance().getUserServiceImpl();
+    private static SignInCommand instance;
 
+    private SignInCommand() {
+    }
+
+    public static synchronized SignInCommand getInstance() {
+        if (instance == null) {
+            instance = new SignInCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         String login = request.getStringValue("login");

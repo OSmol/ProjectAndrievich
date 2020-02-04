@@ -11,6 +11,17 @@ import java.util.List;
 public class EmailServiceImpl implements EmailService {
     private static Logger logger = Logger.getLogger(EmailServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
+    private static EmailServiceImpl instance;
+
+    private EmailServiceImpl() {
+    }
+
+    public static synchronized EmailServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new EmailServiceImpl();
+        }
+        return instance;
+    }
 
     public List<Email> getAll() throws ServiceException {
         logger.debug("EmailServiceImpl - run");

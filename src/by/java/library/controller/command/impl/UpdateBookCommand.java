@@ -12,7 +12,17 @@ import org.apache.log4j.Logger;
 public class UpdateBookCommand implements Command {
     private static Logger logger = Logger.getLogger(AddBookCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static UpdateBookCommand instance;
 
+    private UpdateBookCommand() {
+    }
+
+    public static synchronized UpdateBookCommand getInstance() {
+        if (instance == null) {
+            instance = new UpdateBookCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         String id = request.getStringValue("id");

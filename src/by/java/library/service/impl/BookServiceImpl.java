@@ -15,6 +15,17 @@ public class BookServiceImpl implements BookService {
     private static Logger logger = Logger.getLogger(BookServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
 
+    private static BookServiceImpl instance;
+
+    private BookServiceImpl() {
+    }
+
+    public static synchronized BookServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new BookServiceImpl();
+        }
+        return instance;
+    }
 
     @Override
     public void addBook(Book book) throws ServiceException {

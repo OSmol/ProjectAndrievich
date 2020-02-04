@@ -11,16 +11,25 @@ import org.apache.log4j.Logger;
 public class GetBooksCommand implements Command {
     private static Logger logger = Logger.getLogger(GetBooksCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    BookService bookService = serviceFactory.getBookServiceImpl();
+    private static GetBooksCommand instance;
 
+    private GetBooksCommand() {
+    }
+
+    public static synchronized GetBooksCommand getInstance() {
+        if (instance == null) {
+            instance = new GetBooksCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {//
         Response response = new Response();
-        BookService bookService = serviceFactory.getBookServiceImpl();
         try {
-            logger.debug(request.getBody().put("list", bookService.getBooks() + "go to show all books"));
             response.setResponseCode(201);
             response.getBody().put("list", bookService.getBooks());
-            logger.debug(request.getBody().put("list", bookService.getBooks() + " show all books"));
+            logger.debug("show all books");
             return response;
         } catch (ServiceException e) {
             logger.error(e);

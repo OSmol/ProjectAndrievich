@@ -27,7 +27,6 @@ public class TxtBookDAOImpl implements BookDAO {
         return instance;
     }
 
-
     public List<Book> readFile() throws DAOException {
         File file = new File(BOOKS_TXT);
         ObjectInputStream objectInputStream = null;

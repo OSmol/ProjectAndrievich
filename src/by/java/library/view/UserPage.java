@@ -85,7 +85,7 @@ public final class UserPage implements Page {
     }
 
     private void addUser() {
-        Command command = new AddUserCommand();
+        Command command = AddUserCommand.getInstance();
         Request request = new Request();
         System.out.println("Enter login");
         String login = ScannerHelper.inputStringFromConsole();
@@ -105,7 +105,7 @@ public final class UserPage implements Page {
         request.getBody().put("name", name);
         request.getBody().put("email", email);
         request.getBody().put("locale", locale);
-        request.getBody().put("userRole",role);
+        request.getBody().put("userRole", role);
 
         Response response = command.execute(request);
         System.out.println(response.getResponseCode());
@@ -117,7 +117,7 @@ public final class UserPage implements Page {
 
     private void deleteUser() {
         Request request = new Request();
-        Command deleteUserCommand = new DeleteUserByLoginCommand();
+        Command deleteUserCommand = DeleteUserByLoginCommand.getInstance();
         System.out.println("Enter user login");
         String login = ScannerHelper.inputStringFromConsole();
         request.getBody().put("login", login);
@@ -133,9 +133,10 @@ public final class UserPage implements Page {
             System.out.println("\n Please, make your choice!");
         }
     }
+
     private void findUserByLogin() {
         Request request = new Request();
-        Command command = new GetUserByLoginCommand();
+        Command command = GetUserByLoginCommand.getInstance();
         System.out.println("Enter login user");
         String login = ScannerHelper.inputStringFromConsole();
         request.getBody().put("login", login);
@@ -151,7 +152,7 @@ public final class UserPage implements Page {
 
     private void updateUser() {
         Request request = new Request();
-        Command command = new UpdateUserCommand();
+        Command command = UpdateUserCommand.getInstance();
         System.out.println("Enter id user");
         int id = ScannerHelper.inputInt();
         request.getBody().put("id", id);
@@ -167,7 +168,7 @@ public final class UserPage implements Page {
 
     private void showAllUsers() {
         Request request = new Request();
-        Command userCommand = new GetUsersCommand();
+        Command userCommand = GetUsersCommand.getInstance();
         Response response = userCommand.execute(request);
         if (response.getResponseCode() == 501) {
             System.out.println(response.getErrorMessage());
@@ -177,6 +178,7 @@ public final class UserPage implements Page {
             for (User user : list) {
                 System.out.println(user);
             }
-        System.out.println("\n Please, make your choice!");
+            System.out.println("\n Please, make your choice!");
+        }
     }
-}}
+}

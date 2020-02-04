@@ -15,7 +15,17 @@ import org.apache.log4j.Logger;
 public class AddUserCommand implements Command {
     private static Logger logger = Logger.getLogger(AddBookCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static AddUserCommand instance;
 
+    private AddUserCommand() {
+    }
+
+    public static synchronized AddUserCommand getInstance() {
+        if (instance == null) {
+            instance = new AddUserCommand();
+        }
+        return instance;
+    }
 
     @Override
     public Response execute(Request request) {

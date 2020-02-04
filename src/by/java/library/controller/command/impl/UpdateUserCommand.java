@@ -10,7 +10,17 @@ import org.apache.commons.lang3.StringUtils;
 
 public class UpdateUserCommand implements Command {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static UpdateUserCommand instance;
 
+    private UpdateUserCommand() {
+    }
+
+    public static synchronized UpdateUserCommand getInstance() {
+        if (instance == null) {
+            instance = new UpdateUserCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         String id = request.getStringValue("id");

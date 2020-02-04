@@ -11,7 +11,17 @@ public class SignOutCommand implements Command {
 
     private static Logger logger = Logger.getLogger(SignOutCommand.class);
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private static SignOutCommand instance;
 
+    private SignOutCommand() {
+    }
+
+    public static synchronized SignOutCommand getInstance() {
+        if (instance == null) {
+            instance = new SignOutCommand();
+        }
+        return instance;
+    }
     @Override
     public Response execute(Request request) {
         SecurityContextHolder.setLoggedUser(null);//todo
