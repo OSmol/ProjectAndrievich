@@ -14,7 +14,17 @@ import java.util.Objects;
 public class TxtUserDAOImpl implements UserDAO {
     private static final String USERS_TXT = "src/by/resources/library/Users.txt";
     private static Logger logger = Logger.getLogger(TxtUserDAOImpl.class);
+    private static TxtUserDAOImpl instance;
 
+    private TxtUserDAOImpl() {
+    }
+
+    public static synchronized TxtUserDAOImpl getInstance() {
+        if (instance == null) {
+            instance = new TxtUserDAOImpl();
+        }
+        return instance;
+    }
 
     @Override
     public List<User> getUsers() throws DAOException {

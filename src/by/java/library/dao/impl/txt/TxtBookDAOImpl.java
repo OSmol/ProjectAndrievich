@@ -15,6 +15,18 @@ import java.util.Objects;
 public class TxtBookDAOImpl implements BookDAO {
     private static final String BOOKS_TXT = "src/by/resources/library/Books.txt";
     private static Logger logger = Logger.getLogger(TxtBookDAOImpl.class);
+    private static TxtBookDAOImpl instance;
+
+    private TxtBookDAOImpl() {
+    }
+
+    public static synchronized TxtBookDAOImpl getInstance() {
+        if (instance == null) {
+            instance = new TxtBookDAOImpl();
+        }
+        return instance;
+    }
+
 
     public List<Book> readFile() throws DAOException {
         File file = new File(BOOKS_TXT);
@@ -80,7 +92,7 @@ public class TxtBookDAOImpl implements BookDAO {
 
     @Override
     public void addBook(Book book) throws DAOException {
-         List<Book> list = getBooks();
+        List<Book> list = getBooks();
         // List<Book> list = new ArrayList<>();
         if (list == null || list.isEmpty()) {
             int generateID = 1;

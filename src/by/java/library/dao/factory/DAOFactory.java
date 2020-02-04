@@ -11,15 +11,15 @@ public class DAOFactory {
     private final SQLBookDAOImpl sqlBookDAO = new SQLBookDAOImpl();
     private final SQLUserDAOImpl sqlUserDAO = new SQLUserDAOImpl();
     private final SQLPersonDAOImpl sqlPersonDAO = new SQLPersonDAOImpl();
-    private final TxtBookDAOImpl txtBookDAO = new TxtBookDAOImpl();
-    private final TxtUserDAOImpl txtUserDAO = new TxtUserDAOImpl();
+    private final TxtBookDAOImpl txtBookDAO = TxtBookDAOImpl.getInstance();
+    private final TxtUserDAOImpl txtUserDAO = TxtUserDAOImpl.getInstance();
     private final TxtPersonDAOImpl txtPersonDAO = new TxtPersonDAOImpl();
     private final TxtEmailDAOImpl txtEmailDAO = new TxtEmailDAOImpl();
     private final TxtLetterDAOImpl txtLetterDAO = new TxtLetterDAOImpl();
 
 
-
-    private DAOFactory(){}
+    private DAOFactory() {
+    }
 
     public static DAOFactory getInstance() {
         return instance;
@@ -44,7 +44,6 @@ public class DAOFactory {
     public TxtUserDAOImpl getTxtUserDAO() {
         return txtUserDAO;
     }
-
 
 
     public TxtPersonDAOImpl getTxtPersonDAO() {
