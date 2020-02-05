@@ -13,9 +13,9 @@ public class DAOFactory {
     private final SQLPersonDAOImpl sqlPersonDAO = new SQLPersonDAOImpl();
     private final TxtBookDAOImpl txtBookDAO = TxtBookDAOImpl.getInstance();
     private final TxtUserDAOImpl txtUserDAO = TxtUserDAOImpl.getInstance();
-    private final TxtPersonDAOImpl txtPersonDAO = new TxtPersonDAOImpl();
-    private final TxtEmailDAOImpl txtEmailDAO = new TxtEmailDAOImpl();
-    private final TxtLetterDAOImpl txtLetterDAO = new TxtLetterDAOImpl();
+    private final TxtPersonDAOImpl txtPersonDAO = TxtPersonDAOImpl.getInstance();
+    private final TxtEmailDAOImpl txtEmailDAO = TxtEmailDAOImpl.getInstance();
+    private final TxtLetterDAOImpl txtLetterDAO = TxtLetterDAOImpl.getInstance();
 
 
     private DAOFactory() {

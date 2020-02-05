@@ -8,10 +8,10 @@ import library.service.impl.UserServiceImpl;
 public class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
 
-    private final library.service.impl.UserServiceImpl UserServiceImpl = new UserServiceImpl();
-    private final library.service.impl.BookServiceImpl BookServiceImpl = new BookServiceImpl();
-    private final library.service.impl.PersonServiceImpl PersonServiceImpl = new PersonServiceImpl();
-    private final SecurityServiceImpl securityServiceImpl = new SecurityServiceImpl();
+    private final UserServiceImpl UserServiceImpl = library.service.impl.UserServiceImpl.getInstance();
+    private final BookServiceImpl BookServiceImpl = library.service.impl.BookServiceImpl.getInstance();
+    private final PersonServiceImpl PersonServiceImpl = library.service.impl.PersonServiceImpl.getInstance();
+    private final SecurityServiceImpl securityServiceImpl = SecurityServiceImpl.getInstance();
 
 
     private ServiceFactory() {
