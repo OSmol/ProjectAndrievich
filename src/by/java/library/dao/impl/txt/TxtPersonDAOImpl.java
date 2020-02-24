@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TxtPersonDAOImpl implements PersonDAO {
-    private static final String BOOKFILE = "src/by/resources/library/Input.txt";
+    private static final String BOOKFILE = "src/by/resources/library/Input.txt";// нельзя использовать  src в пути
+    // иначе ты будешь запускать код только из под IDE
     private static Logger logger = Logger.getLogger(BookServiceImpl.class);
     private final DAOFactory daoFactory = DAOFactory.getInstance();
     private static TxtPersonDAOImpl instance;
@@ -38,7 +39,7 @@ public class TxtPersonDAOImpl implements PersonDAO {
             return (List<Person>) objectInputStream.readObject();
 
         } catch (ClassNotFoundException ce) {
-            throw new DAOException("Класс не существует", ce);
+            throw new DAOException("Класс не существует", ce);// английский в сообщениях
         } catch (FileNotFoundException e) {
             throw new DAOException("Файл для десериализации не существует: ", e);
         } catch (InvalidClassException ioe) {
