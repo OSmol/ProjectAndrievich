@@ -29,6 +29,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addBook(Book book) throws ServiceException {
+        // а валидация на слое сервисов где?
         logger.debug("BookServiceImpl.addBook - run");
         BookDAO txtBookDAO = daoFactory.getTxtBookDAO();
         try {
