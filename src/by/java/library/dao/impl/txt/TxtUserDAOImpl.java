@@ -54,7 +54,7 @@ public class TxtUserDAOImpl implements UserDAO {
         List<User> list = getUsers();
         if (list == null || list.isEmpty()) {
             throw new DAOException("List is empty");
-        } else {
+        } else {// зачем здесь этот if?
             Iterator<User> iterator = list.iterator();
             if (iterator.hasNext()) {
                 do {
