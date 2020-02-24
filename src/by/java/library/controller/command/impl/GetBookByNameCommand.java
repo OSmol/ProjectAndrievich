@@ -30,7 +30,7 @@ public class GetBookByNameCommand implements Command {
             response.setResponseCode(201);
             return response;
         } catch (ServiceException e) {
-            response.setErrorMessage(e.getMessage());
+            response.setErrorMessage(e.getMessage());// не отправляй сообщения от исключения кому-нибудь - это тайна
             response.setResponseCode(501);
             return response;
         }
